@@ -2,26 +2,26 @@
 language: c
 
 env:
-	- LUA='Lua 5.1'
-	
+    - LUA='Lua 5.1'
+    
 before_install:
-	- bash .travis_setup.sh
+    - bash .travis_setup.sh
 
 branches:
-	only:
-		- master
+    only:
+        - master
 
 install:
-	- sudo apt-get update -qq
-	- sudo luarocks install busted
-	- sudo luarocks install moonscript
+    - sudo apt-get update -qq
+    - sudo luarocks install busted
+    - sudo luarocks install moonscript
 
 script: busted spec
 
 notifications:
-	recipients:
-		- megiddo@ulyssesmod.net
-		- sticklyman@ulyssesmod.net
-	email:
-		on_success: always
-		on_failure: always
+    recipients:
+        - megiddo@ulyssesmod.net
+        - sticklyman@ulyssesmod.net
+    email:
+        on_success: always
+        on_failure: always
