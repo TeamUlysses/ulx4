@@ -1,5 +1,4 @@
 # ULX #
-========
 
 [![Build Status](https://travis-ci.org/Nayruden/ulx.svg)](https://travis-ci.org/Nayruden/ulx)
 
@@ -10,13 +9,13 @@ ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and c
 ### Authors ###
 
 ![Nayruden's Avatar](https://avatars3.githubusercontent.com/u/16591?s=100)
-Brett "Nayruden" Smith (Team Lead)
+[Brett "Nayruden" Smith](https://github.com/Nayruden) (Team Lead)
 
 ![Stickly Man!'s Avatar](https://avatars.githubusercontent.com/u/95759?s=100)
-Stickly Man! (GUI Expert)
+[Stickly Man!](https://github.com/SticklyMan) (GUI Expert)
 
 ![JamminR's Avatar](http://forums.ulyssesmod.net/index.php?action=dlattach;attach=826;type=avatar)
-JamminR (Morale & Support)
+[JamminR](http://forums.ulyssesmod.net/index.php?action=profile;u=133) (Morale & Support)
 
 ### Dependencies ###
 
