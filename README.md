@@ -4,6 +4,8 @@
 
 ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and concise description here.
 
+Note that ULX is written primarily in [MoonScript](http://moonscript.org) (described below). Even though Garry's Mod will be running the compiled version of the MoonScript, we ship ULX with both the original and the compiled source for your convenience.
+
 ## Credits ##
 
 ### Authors ###
@@ -22,7 +24,7 @@ ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and c
 Besides the modified version of Garry's Mod's Lua 5.1, ULX pulls in the following dependencies:
 
 [MoonScript](http://moonscript.org) - A programmer friendly language that compiles to Lua.
-MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modifed version of Lua 5.1.
+MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
 
 [dkjson](http://dkolf.de/src/dkjson-lua.fsl) - A [JSON](http://json.org) library.
 JSON is the format of choice for ULX when writing to plain text files. This format was chosen over the existing Source KeyValues format because it's an accepted Internet standard (and thus easier to move the data around) in addition to being less prone to errors.
@@ -42,4 +44,4 @@ Type `ulx help` in your console for a list of available actions.
 
 0.0.1 - *(00 Jan 2000)*
 
- * Initial relase.
+ * Initial release.
