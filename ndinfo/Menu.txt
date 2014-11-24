@@ -46,9 +46,9 @@ Format: 1.52
 # --------------------------------------------------------------------------
 
 
-File: Argument  (lua/arguments.moon)
-File: Command  (lua/command.moon)
-File: Plugin  (lua/plugin.moon)
+File: Argument  (moon/arguments.moon)
+File: Command  (moon/command.moon)
+File: Plugin  (moon/plugin.moon)
 
 Group: Index  {
 

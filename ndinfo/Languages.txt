@@ -126,6 +126,6 @@ Language: MoonScript
 
    Extension: moon
    Line Comment: ---
-   Block Comment: --[[ ]]
+   Block Comment: [=[ ]=]
    Function Prototype Ender: \n
    Variable Prototype Enders: \n =
