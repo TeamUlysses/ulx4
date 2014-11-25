@@ -18,6 +18,6 @@ describe "Test Utilities", ->
 		assert.True(UtilX.CheckArg(4, "test", "function", (() ->)))
 		assert.True(UtilX.CheckArg(5, "test", UtilX, UtilX))
 		assert.True(UtilX.CheckArg(6, "test", UtilX, UtilX!))
-		assert.error(UtilX.CheckArg(5, "test", UtilX, TableX))
-		assert.error(UtilX.CheckArg(5, "test", UtilX, TableX!))
+		assert.error(-> UtilX.CheckArg(5, "test", UtilX, TableX))
+		assert.error(-> UtilX.CheckArg(5, "test", UtilX, TableX!))
 		return

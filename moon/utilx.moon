@@ -76,7 +76,7 @@ export class UtilX
 				str ..= "got " .. dataStr
 			str ..= ")"
 
-		self.Raise str, level
+		self.Raise str, level+1
 		
 
 	[=[
@@ -105,4 +105,4 @@ export class UtilX
 		elseif TableX.HasValueI(expected, moon.type(data)) then
 			return true
 			
-		self.RaiseBadArg argnum, fnName, expected, data, level
+		self.RaiseBadArg argnum, fnName, expected, data, level+1
