@@ -10,9 +10,55 @@ Revisions:
 ]=]
 export class UtilX
 	[=[
-		Blah
+	Function: Trim
+	Trims leading and tailing whitespace from a string.
+
+	Parameters:
+		str - The *string* to trim.
+
+	Returns:
+		The trimmed *string*.
+
+	Notes:
+		* This is 'trim6' from <http://lua-users.org/wiki/StringTrim>.
+
+	Revisions:
+		1.0.0 - Initial.
 	]=]
-	@Raise: (str, level) -> error str, level
+	@Trim: (str using nil) ->
+		str\match("^()%s*$") and "" or str\match("^%s*(.*%S)")
+
+
+	[=[
+	Function: LTrim
+	Exactly like <Trim> except it only trims the left side. Taken from <http://lua-users.org/wiki/CommonFunctions>
+
+	Revisions:
+		1.0.0 - Initial.
+	]=]
+	@LTrim: (str using nil) ->
+		(str\gsub("^%s*", ""))
+
+
+	[=[
+	Function: RTrim
+	Exactly like <Trim> except it only trims the right side. Taken from <http://lua-users.org/wiki/CommonFunctions>
+
+	Revisions:
+		1.0.0 - Initial.
+	]=]
+	@RTrim: (str using nil) ->
+		n = #str
+		while n > 0 and str\find("^%s", n)
+			n -= 1
+			
+		str\sub( 1, n )
+	
+	[=[
+	Function: Raise
+	TODO
+	]=]
+	@Raise: (str, level=1 using nil) -> error str, level
 		
 	[=[
 	Function: Round
@@ -33,10 +79,80 @@ export class UtilX
 	@Round: (num, places=0 using nil) ->
 		mult = 10 ^ places
 		math.floor(num * mult + 0.5) / mult
+			
+	
+	timeCodes =
+		m: 60
+		minute: 60
+		minutes: 60
+		h: 60 * 60
+		hour: 60 * 60
+		hours: 60 * 60
+		d: 60 * 60 * 24
+		day: 60 * 60 * 24
+		days: 60 * 60 * 24
+		w: 60 * 60 * 24 * 7
+		week: 60 * 60 * 24 * 7
+		weeks: 60 * 60 * 24 * 7
+		M: 60 * 60 * 24 * (365.25/12) -- Very hand-wavy, but we only need an approximate
+		month: 60 * 60 * 24 * (365.25/12)
+		months: 60 * 60 * 24 * (365.25/12)
+		y: 60 * 60 * 24 * 365.25
+		year: 60 * 60 * 24 * 365.25
+		years: 60 * 60 * 24 * 365.25
+	[=[
+	Function: TimeStringToSeconds
+	A "time string" to convert into seconds. Can accept minutes, hours, days, weeks, months, or years. See examples below.
+	
+	Parameters:
+		str - The *string* or *number* to convert to seconds. If it's a number of a string of a number, passes back that number.
+		
+	Returns:
+		The *number* of seconds.
+		
+	Examples:
+		All of the following return the same thing...
+		* "1M7d5h3m11s"
+		* "1M 7d 5h 3m 11"
+		* "1M, 7d, 5h, 3m 11s"
+		* "1 month  7 days, 5h 3minute, 11 seconds"
+		
+	Notes:
+		* Commas and spacing are ignored.
+		* Any time multiplier (E.G., weeks) that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
+		
+	Revisions:
+		1.0.0 - Initial.
+	]=]
+	@TimeStringToSeconds: (str using nil) ->
+		UtilX.CheckArg 1, "TimeStringToSeconds", {"string", "number"}, str
+		str = str\gsub "," ""
+		
+		if num = tonumber(str)
+			return num
+		
+		num = 0
+		startIdx = 1
+		codeIdx = str\find "%D", startIdx
+		while codeIdx
+			nextIdx = (str\find("%d", codeIdx)) or #str
+			
+			units = str\sub startIdx, codeIdx-1
+			units = tonumber units
+			code = str\sub codeIdx, nextIdx-1
+			multiplier = timeCodes[code] or 1
+			num += units * multiplier
+			
+			startIdx = nextIdx
+			codeIdx = str\find "%D", startIdx
+			
+		num
+	
 
 	-- Transforms the "expected" argument for functions below into a list of strings.
-	expectedToStrings = (expected) ->
+	expectedToStrings = (expected using nil) ->
 		[ type(v) == "string" and v or v.__name for v in *expected ]
+			
 
 	[=[
 	Function: RaiseBadArg

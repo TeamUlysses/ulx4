@@ -25,3 +25,7 @@ describe "Test Utilities", (using nil) ->
 		assert.error(-> UtilX.CheckArg(11, "test", UtilX, TableX))
 		assert.error(-> UtilX.CheckArg(12, "test", UtilX, TableX!))
 		return
+		
+	it "checks TimeStringToSeconds() compliance", (using nil) ->
+		pending "TODO"
+		return
