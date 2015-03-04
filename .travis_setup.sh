@@ -1,3 +1,4 @@
+#!/bin/sh
 # Stolen from github.com/Ovine-Labs/busted
 # A script for setting up environment for travis-ci testing. 
 # Sets up Lua and Luarocks. 
@@ -25,8 +26,8 @@ else
 fi
 
 cd ..
-curl http://luarocks.org/releases/luarocks-2.1.2.tar.gz | tar xz
-cd luarocks-2.1.2
+curl -L http://luarocks.org/releases/luarocks-2.2.0.tar.gz | tar xz
+cd luarocks-2.2.0
 
 if [ "$LUA" == "LuaJIT 2.0" ]; then
     ./configure --with-lua-include=/usr/local/include/luajit-2.0;
