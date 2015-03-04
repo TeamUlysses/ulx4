@@ -51,12 +51,16 @@ with plugin\Command( "command", ulx.command ) -- Chat alias is automatically ass
 	--.Category = "fun" -- Only need to specify if differing from plugin category
 	--.ChatAlias = "command" or {"cmd", "command"} for multiple - if unspecified, "command" from first line is assumed
 	--.ConsoleAlias = "cmd" or {"cmd1", "cmd2"} for multiple
-	.Args =
+	.Args = {
 		ArgPlayer! -- help text for arguments automatically contains "player to <command name>"
 		ArgTime!\Optional!\min 0 -- help text "time (in minutes) to <command name>"
 		ArgString!\Optional!\Greedy!\RestrictToCompletes!\Completes tbl
-	.Restrictions =
+	}
+	.Restrictions = {
 		RestrictToOnceEvery "1 hour"
+		RestrictToTime "1500-1700" --???
 		RestrictToAbsenceOf "%superadmin"
 		RestrictToPresenceOf "#user"
 		RestrictCustom (ply, ...) -> if ply\IsAlive() then return false, "you must be alive to run this command" else return true
+	}
+	

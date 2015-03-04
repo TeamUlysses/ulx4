@@ -4,6 +4,8 @@
 
 ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and concise description here.
 
+ULX is licensed under the MIT license. For an easy-to-understand summary of the license, please check out [tl;dr Legal](https://tldrlegal.com/license/mit-license).
+
 Note that ULX is written primarily in [MoonScript](http://moonscript.org) (described below). Even though Garry's Mod will be running the compiled version of the MoonScript, we ship ULX with both the original and the compiled source for your convenience.
 
 ## Credits ##

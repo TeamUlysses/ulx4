@@ -29,10 +29,14 @@ class Arg
 		IsOptional = true
 		return self
 
+
 [=[
 Class: ArgNum
 
 The argument class used for any numeric data.
+	
+Passes:
+	A *number* value, defaulting to _0_.
 
 Revisions:
 	1.0.0 - Initial.
@@ -50,4 +54,30 @@ class ArgNum extends Arg
 	Min:     nil
 	Max:     nil
 	RoundTo: nil
+
+	
+[=[
+Class: ArgPlayer
+
+The argument class used for player arguments
+	
+Passes:
+	A single, valid *player* object or possibly a "string" of a valid Steam ID if <AllowOfflineID> is set to true.
+
+Revisions:
+	1.0.0 - Initial.
+]=]	
+class ArgPlayer extends Arg
+	[=[
+	Variables: ArgPlayer Variables
+	All these variables are optional, with sensible defaults.
+	
+		Target         - A *string or nil* specifying the players this argument is allowed to target. 
+			This is passed to <???.GetUser()>. Nil indicates no restriction.
+		AllowOfflineID - A *boolean* of whether or not to allow the argument to contain Steam IDs of offline players. 
+			ID is verified for correctness.
+
+	]=]
+	Target:         nil
+	AllowOfflineID: false
 	

@@ -126,7 +126,7 @@ export class UtilX
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
 		UtilX.CheckArg 1, "TimeStringToSeconds", {"string", "number"}, str
-		str = str\gsub "," ""
+		str = str\gsub ",", ""
 		
 		if num = tonumber(str)
 			return num
