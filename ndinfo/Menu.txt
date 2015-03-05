@@ -38,7 +38,7 @@ Timestamp: Generated on d month, year
 # --------------------------------------------------------------------------
 
 
-File: Arg  (moon/arguments.moon)
+File: Arguments  (moon/arguments.moon)
 File: Command  (moon/command.moon)
 File: Plugin  (moon/plugin.moon)
 File: TableX  (moon/tablex.moon)
@@ -51,5 +51,6 @@ Group: Index  {
    Class Index: Classes
    Variable Index: Variables
    Function Index: Functions
+   File Index: Files
    }  # Group: Index
 

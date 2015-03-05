@@ -4,6 +4,9 @@ moon = require "moon"
 Class: UtilX
 
 A static class used for utility functions that are not specific to Garry's Mod.
+	
+Depends On:
+	* <TableX>
 
 Revisions:
 	1.0.0 - Initial.
@@ -53,6 +56,74 @@ export class UtilX
 			n -= 1
 			
 		str\sub( 1, n )
+		
+	
+	VardumpHelper = (value, depth, key, done using nil) ->
+		str = string.rep "  ", depth
+
+		if key ~= nil
+			t = type key
+			if t == "string"
+				str = string.format "%q", key
+			else
+				str ..= tostring key
+			str ..= " = "
+
+		t = type value
+		if t == "table" and not done[value]
+			done[value] = true
+			str ..= string.format "(table: array size=%i, total values=%i)\n", #value, TableX.Count(value)
+			for k, v in pairs value
+				str ..= VardumpHelper v, depth+1, k, done
+				
+		elseif t == "string" then
+			str ..= string.format "%q\n", value
+			
+		else
+			str = tostring(value) .. "\n"
+
+		str
+
+
+	[=[
+	Function: Vardump
+	Returns useful, readable information about variables.
+
+	Parameters:
+		... - Accepts any number of parameters of *any type* and prints them one by one.
+
+	Returns:
+		A readable *string* serialization of the data passed in.
+
+	Example:
+		:Vardump( { "foo", apple="green", floor=41, shopping={ "milk", "cookies" } } )
+
+		returns the string...
+
+		:(table: array size=1, total values=4)
+		:  1 = "foo"
+		:  "apple" = "green"
+		:  "floor" = 41
+		:  "shopping" = (table: array size=2, total values=2)
+		:    1 = "milk"
+		:    2 = "cookies"
+
+	Notes:
+		* A string will always be surrounded by quotes and a number will always stand by itself. This is to make it easier to identify numbers stored as strings.
+		* Array size and total size are shown in the table header. Array size is the result of the pound operator (#) on the table, total size is the result of <Count>. 
+			Array size is useful debug information when iterating over a table with ipairs or fori.
+
+	Revisions:
+		v1.0.0 - Initial.
+	]=]
+	@Vardump: (... using nil) ->
+		str = ""
+		t = {...}
+		for i=1, select("#", ...)
+			str ..= VardumpHelper(t[i], 0, nil, {})
+
+		str\sub(1, -2) -- Remove last newline
+		
 	
 	[=[
 	Function: Raise

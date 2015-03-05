@@ -170,7 +170,7 @@ export class TableX
 		1.0.0 - Initial.
 	]=]
 	@RemoveDuplicateValues: (list, inPlace using nil) ->
-		list = self.InPlaceHelperI list, inPlace
+		list = InPlaceHelperI list, inPlace
 
 		i = 2
 		while i <= #list
@@ -213,7 +213,7 @@ export class TableX
 		1.0.0 - Initial.
 	]=]
 	@UnionByKey: (tableA, tableB, inPlace using nil) ->
-		tableA = self.InPlaceHelper tableA, inPlace
+		tableA = InPlaceHelper tableA, inPlace
 
 		for k, v in pairs tableB
 			tableA[k] = v
@@ -230,7 +230,7 @@ export class TableX
 		1.0.0 - Initial.
 	]=]
 	@UnionByKeyI: (tableA, tableB, inPlace using nil) ->
-		tableA = self.InPlaceHelperI tableA, inPlace
+		tableA = InPlaceHelperI tableA, inPlace
 
 		for i=1, #tableB do
 			if tableB[i] ~= nil
@@ -344,7 +344,7 @@ export class TableX
 		The intersection *list*. Returns tableA if inPlace is true, a new table otherwise.
 
 	Example:
-		:IntersectionByValue( { "apple", "pear", "kiwi" }, { "pear", "apple", "banana" } )
+		:Intersection( { "apple", "pear", "kiwi" }, { "pear", "apple", "banana" } )
 
 	returns...
 		:{ "apple", "pear" }
@@ -399,7 +399,7 @@ export class TableX
 		1.0.0 - Initial.
 	]=]
 	@DifferenceByKey: (tableA, tableB, inPlace using nil) ->
-		tableA = self.InPlaceHelper tableA, inPlace
+		tableA = InPlaceHelper tableA, inPlace
 
 		for k, v in pairs tableB
 			tableA[k] = nil
@@ -416,7 +416,7 @@ export class TableX
 		1.0.0 - Initial.
 	]=]
 	@DifferenceByKeyI: (tableA, tableB, inPlace using nil) ->
-		tableA = self.InPlaceHelperI tableA, inPlace
+		tableA = InPlaceHelperI tableA, inPlace
 
 		for i=1, #tableB
 			if tableB[i] ~= nil
@@ -438,7 +438,7 @@ export class TableX
 		The difference *list*. Returns tableA if inPlace is true, a new table otherwise.
 
 	Example:
-		:DifferenceByValue( { "apple", "pear", "kiwi" }, { "pear", "apple", "banana" } )
+		:Difference( { "apple", "pear", "kiwi" }, { "pear", "apple", "banana" } )
 
 		returns...
 
@@ -466,37 +466,39 @@ export class TableX
 
 
 	[=[
-		Function: Append
-		Appends values with numeric keys from one table to another.
+	Function: Append
+	Appends values with numeric keys from one table to another.
 
-		Parameters:
-			listA - The first *list* in the append.
-			listB - The second *list* in the append.
-			inPlace - An *optional boolean*, defaults to _false_. If true, all operations occur on tableA itself, rather than a copy.
+	Parameters:
+		listA - The first *list* in the append.
+		listB - The second *list* in the append.
+		inPlace - An *optional boolean*, defaults to _false_. If true, all operations occur on tableA itself, rather than a copy.
 
-		Returns:
-			The *list* result of appending tableB to tableA. Returns tableA if inPlace is true, a new table otherwise.
+	Returns:
+		The *list* result of appending tableB to tableA. Returns tableA if inPlace is true, a new table otherwise.
 
-		Example:
-			:Append( { "apple", "banana", "apple", "kiwi" },
-			:        { "orange", "pear", "apple" } )
+	Example:
+		:Append( { "apple", "banana", "apple", "kiwi" },
+		:        { "orange", "pear", "apple" } )
 
-			returns...
+		returns...
 
-			:{ "apple", "banana", "apple", "kiwi", "orange", "pear", "apple" }
+		:{ "apple", "banana", "apple", "kiwi", "orange", "pear", "apple" }
 
-		Notes:
-			* This function uses fori. See <A Discussion On fori>.
-			* Complexity is O(#listB).
+	Notes:
+		* This function uses fori. See <A Discussion On fori>.
+		* Complexity is O(#listB).
 
-		Revisions:
-			1.0.0 - Initial.
+	Revisions:
+		1.0.0 - Initial.
 	]=]
 	@Append: (listA, listB, inPlace using nil) ->
-		listA = self.InPlaceHelperI listA, inPlace
+		listA = InPlaceHelperI listA, inPlace
 
 		for v in *listB
 			table.insert listA, v
+			
+		listA
 
 	[=[
 	Function: HasValue

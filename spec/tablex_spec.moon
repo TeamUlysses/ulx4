@@ -1,22 +1,23 @@
 import dofile from require "moonscript"
 dofile "moon/tablex.moon"
+dofile "moon/utilx.moon"
 
 describe "Test Table Utilities", (using nil) ->
-	it "checks Count() compliance", (using nil) ->
+	it "Count() compliance", (using nil) ->
 		assert.equal(TableX.Count( {1, 3, "two", [{}]: 4} ), 4)
 		assert.equal(TableX.Count( {} ), 0)
 
-	it "checks IsEmpty() compliance", (using nil) ->
+	it "IsEmpty() compliance", (using nil) ->
 		assert.equal(TableX.IsEmpty( {} ), true)
 		assert.equal(TableX.IsEmpty( { "one" } ), false)
 		assert.equal(TableX.IsEmpty( {[{}]: "apple"} ), false)
 
-	it "checks Empty() compliance", (using nil) ->
+	it "Empty() compliance", (using nil) ->
 		t = {foo: "bar", 3.1415}
 		assert.equal(TableX.Empty(t), t) -- Assert returns self
 		assert.same(t, {})
 
-	it "checks Copy() and CopyI() compliance", (using nil) ->
+	it "Copy() and CopyI() compliance", (using nil) ->
 		t = {"hey", blah: 67, mango: "one"}
 		assert.same(TableX.Copy(t), t)
 		assert.same(TableX.CopyI(t), {"hey"})
@@ -27,7 +28,7 @@ describe "Test Table Utilities", (using nil) ->
 		assert.same(t, TableX.CopyI(t))
 		assert.equal(t[3], TableX.CopyI(t)[3] ) -- Not deep
 
-	it "checks DeepCopy() compliance", (using nil) ->
+	it "DeepCopy() compliance", (using nil) ->
 		t = {"hey", blah: 67, mango: "one"}
 		assert.same(TableX.DeepCopy(t), t)
 
@@ -48,12 +49,12 @@ describe "Test Table Utilities", (using nil) ->
 		assert.same(new, desired)
 		assert.equal(new, first)
 
-	it "checks RemoveDuplicateValues() compliance", (using nil) ->
+	it "RemoveDuplicateValues() compliance", (using nil) ->
 		InPlaceTester({"apple", "pear", "kiwi", "banana"}, TableX.RemoveDuplicateValues, {"apple", "pear", "kiwi", "apple", "banana", "pear", "pear"})
 		InPlaceTester({}, TableX.RemoveDuplicateValues, {})
 		InPlaceTester({"bob"}, TableX.RemoveDuplicateValues, {"bob"})
 
-	it "checks Union*() compliance", (using nil) ->
+	it "Union*() compliance", (using nil) ->
 		-- By Key
 		t, u = {apple: "red", pear: "green", kiwi: "hairy"}, {apple: "green", pear: "green", banana: "yellow"}
 		desired = {apple: "green", pear: "green", kiwi: "hairy", banana: "yellow"}
@@ -75,28 +76,28 @@ describe "Test Table Utilities", (using nil) ->
 		desired = {"apple", "pear", "kiwi", "banana"}
 		InPlaceTester(desired, TableX.Union, t, u)
 
-	it "checks Intersection*() compliance", (using nil) ->
+	it "Intersection*() compliance", (using nil) ->
 		-- By Key
 		t, u = {apple: "red", pear: "green", kiwi: "hairy"}, {apple: "green", pear: "green", banana: "yellow"}
 		desired = {apple: "green", pear: "green"}
 
 		assert.same(TableX.IntersectionByKeyI(t, u), {})
-		InPlaceTester(desired, TableX.IntersectionByKey, t, u)
+		assert.same(TableX.IntersectionByKey(t, u), desired)
 
 		-- Better test of IntersectionByKeyI
 		t, u = {"apple", "pear", "kiwi"}, {"pear", "apple"}
 		desired = {"pear", "apple"}
-		InPlaceTester(desired, TableX.IntersectionByKeyI, t, u)
+		assert.same(TableX.IntersectionByKeyI(t, u), desired)
 
 		-- By Value
 		t, u = {"apple", "pear", "kiwi"}, {"pear", "apple", "banana"}
 		desired = {"apple", "pear"}
-		InPlaceTester(desired, TableX.IntersectionByValue, t, u)
+		InPlaceTester(desired, TableX.Intersection, t, u)
 
 		t, u = {"apple", "pear", "kiwi", "pear"}, {"pear", "apple", "banana", "apple"}
-		InPlaceTester(desired, TableX.IntersectionByValue, t, u)
+		InPlaceTester(desired, TableX.Intersection, t, u)
 
-	it "checks Difference*() compliance", (using nil) ->
+	it "Difference*() compliance", (using nil) ->
 		-- By Key
 		t, u = {apple: "red", pear: "green", kiwi: "hairy"}, {apple: "green", pear: "green", banana: "yellow"}
 		desired = {kiwi: "hairy"}
@@ -112,16 +113,16 @@ describe "Test Table Utilities", (using nil) ->
 		-- By Value
 		t = {"apple", "pear", "kiwi"}
 		desired = {"kiwi"}
-		InPlaceTester(desired, TableX.DifferenceByValue, t, u)
+		InPlaceTester(desired, TableX.Difference, t, u)
 
 		t, u = {"apple", "pear", "kiwi", "pear"}, {"pear", "apple", "banana", "apple"}
-		InPlaceTester(desired, TableX.DifferenceByValue, t, u )
+		InPlaceTester(desired, TableX.Difference, t, u )
 
-	it "checks Append() compliance", (using nil) ->
+	it "Append() compliance", (using nil) ->
 		t, u = {"apple", "banana", "kiwi"}, {"orange", "pear"}
 		assert.same(TableX.Append(t, u), {"apple", "banana", "kiwi", "orange", "pear"})
 
-	it "checks HasValue() compliance", (using nil) ->
+	it "HasValue() compliance", (using nil) ->
 		t = {apple: "red", pear: "green", kiwi: "hairy"}
 		a, b = TableX.HasValue(t, "green")
 		assert.equal(a, true)
@@ -131,5 +132,5 @@ describe "Test Table Utilities", (using nil) ->
 		assert.equal(a, false)
 		assert.equal(b, nil)
 		
-	it "checks SetFromList() compliance", (using nil) ->
+	it "SetFromList() compliance", (using nil) ->
 		assert.same(TableX.SetFromList({"apple", "banana", "kiwi", "pear"}), {apple: true, banana: true, kiwi: true, pear: true})

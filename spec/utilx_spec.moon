@@ -3,7 +3,7 @@ dofile "moon/tablex.moon"
 dofile "moon/utilx.moon"
 
 describe "Test Utilities", (using nil) ->
-	it "checks Round() compliance", (using nil) ->
+	it "Round() compliance", (using nil) ->
 		assert.equal(UtilX.Round(41.41), 41)
 		assert.equal(UtilX.Round(41.50, 0), 42)
 		assert.equal(UtilX.Round(41.499999999999, 0), 41)
@@ -11,7 +11,7 @@ describe "Test Utilities", (using nil) ->
 		assert.equal(UtilX.Round(41.4099, 2), 41.41)
 		return
 		
-	it "checks CheckArg() compliance", (using nil) ->
+	it "CheckArg() compliance", (using nil) ->
 		assert.True(UtilX.CheckArg(1, "test", "number", 41))
 		assert.True(UtilX.CheckArg(2, "test", "string", "41"))
 		assert.True(UtilX.CheckArg(3, "test", "table", {}))
@@ -26,6 +26,6 @@ describe "Test Utilities", (using nil) ->
 		assert.error(-> UtilX.CheckArg(12, "test", UtilX, TableX!))
 		return
 		
-	it "checks TimeStringToSeconds() compliance", (using nil) ->
+	it "TimeStringToSeconds() compliance", (using nil) ->
 		pending "TODO"
 		return

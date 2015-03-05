@@ -1,4 +1,10 @@
 [=[
+File: Arguments
+
+This file defines argument types to be used in TODO.
+]=]
+
+[=[
 Class: Arg
 
 The base argument class.
@@ -46,11 +52,13 @@ class ArgNum extends Arg
 	Variables: ArgNum Variables
 	All these variables are optional, with sensible defaults.
 		
+		Default - A *number*, defaults to _0_. If an argument is option and unspecified, this value is used.
 		Min     - A *number or nil* specifying the minimum value for the argument.
 		Max     - A *number or nil* specifying the maximum value for the argument.
 		RoundTo - A *number or nil* specifying the digit to round to, as passed to <UtilX.Round>.
 	
 	]=]
+	Default: 0
 	Min:     nil
 	Max:     nil
 	RoundTo: nil
@@ -62,7 +70,7 @@ Class: ArgPlayer
 The argument class used for player arguments
 	
 Passes:
-	A single, valid *player* object or possibly a "string" of a valid Steam ID if <AllowOfflineID> is set to true.
+	A single, valid *player* object or possibly a *string* of a valid Steam ID if <AllowOfflineID> is set to true.
 
 Revisions:
 	1.0.0 - Initial.
@@ -73,7 +81,7 @@ class ArgPlayer extends Arg
 	All these variables are optional, with sensible defaults.
 	
 		Target         - A *string or nil* specifying the players this argument is allowed to target. 
-			This is passed to <???.GetUser()>. Nil indicates no restriction.
+			This is passed to <TODO.GetUser()>. Nil indicates no restriction.
 		AllowOfflineID - A *boolean* of whether or not to allow the argument to contain Steam IDs of offline players. 
 			ID is verified for correctness.
 
