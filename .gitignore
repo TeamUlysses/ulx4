@@ -1,2 +1,3 @@
-ndinfo/Data
+doc/ndinfo/Data
+doc/diagrams/svg
 lua/**/*.lua

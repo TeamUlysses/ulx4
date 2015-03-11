@@ -52,7 +52,7 @@ class ArgNum extends Arg
 	Variables: ArgNum Variables
 	All these variables are optional, with sensible defaults.
 		
-		Default - A *number*, defaults to _0_. If an argument is option and unspecified, this value is used.
+		Default - A *number*, defaults to _0_. If an argument is optional and unspecified, this value is used.
 		Min     - A *number or nil* specifying the minimum value for the argument.
 		Max     - A *number or nil* specifying the maximum value for the argument.
 		RoundTo - A *number or nil* specifying the digit to round to, as passed to <UtilX.Round>.
@@ -63,12 +63,37 @@ class ArgNum extends Arg
 	Max:     nil
 	RoundTo: nil
 
-	
+
+[=[
+Class: ArgString
+
+The argument class used for string arguments
+
+Passes:
+	A *string* value, defaulting to _0_.
+
+Revisions:
+	1.0.0 - Initial.
+]=]	
+class ArgString extends Arg
+	[=[
+	Variables: ArgString Variables
+	All these variables are optional, with sensible defaults.
+
+		RestrictToCompletes - A *boolean*, defaults to _false_. 
+			If true, the argument passed will /always/ be one of the arguments from the <Completes> table.
+		Completes           - A *table or nil* of auto-completes (suggestions) for the argument.
+
+	]=]
+	RestrictToCompletes: false
+	Completes:           nil
+
+
 [=[
 Class: ArgPlayer
 
 The argument class used for player arguments
-	
+
 Passes:
 	A single, valid *player* object or possibly a *string* of a valid Steam ID if <AllowOfflineID> is set to true.
 
@@ -79,7 +104,7 @@ class ArgPlayer extends Arg
 	[=[
 	Variables: ArgPlayer Variables
 	All these variables are optional, with sensible defaults.
-	
+
 		Target         - A *string or nil* specifying the players this argument is allowed to target. 
 			This is passed to <TODO.GetUser()>. Nil indicates no restriction.
 		AllowOfflineID - A *boolean* of whether or not to allow the argument to contain Steam IDs of offline players. 
@@ -88,4 +113,3 @@ class ArgPlayer extends Arg
 	]=]
 	Target:         nil
 	AllowOfflineID: false
-	

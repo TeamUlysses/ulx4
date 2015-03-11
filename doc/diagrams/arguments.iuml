@@ -1,0 +1,32 @@
+@startuml
+abstract class Arg {
+	+Default    : //any//
+	+IsOptional : bool = false
+	
+	+UsageShort() : string
+	+UsageLong()  : string
+	+Complete( arg : string ) : table
+	+Parse( arg : string )    : //any//, string
+}
+
+class ArgNum {
+	+Default : number = 0
+	+Min     : number?
+	+Max     : number?
+	+RoundTo : number?
+}
+
+class ArgString {
+	+RestrictToCompletes : bool = false
+	+Completes : table?
+}
+
+class ArgPlayer {
+	+Target         : string?
+	+AllowOfflineID : bool
+}
+
+Arg <|-- ArgNum
+Arg <|-- ArgString
+Arg <|-- ArgPlayer
+@enduml

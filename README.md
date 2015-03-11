@@ -23,16 +23,26 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 
 ### Dependencies ###
 
-Besides the modified version of Garry's Mod's Lua 5.1, ULX pulls in the following dependencies:
+#### Runtime Dependencies ####
 
-[MoonScript](http://moonscript.org) - A programmer friendly language that compiles to Lua.
-MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
+Besides the modified version of Garry's Mod's Lua 5.1, ULX pulls in the following dependencies:
 
 [dkjson](http://dkolf.de/src/dkjson-lua.fsl) - A [JSON](http://json.org) library.
 JSON is the format of choice for ULX when writing to plain text files. This format was chosen over the existing Source KeyValues format because it's an accepted Internet standard (and thus easier to move the data around) in addition to being less prone to errors.
 
+#### Development Dependencies ####
+
+In order to blah blah:
+
+[MoonScript](http://moonscript.org) - A programmer friendly language that compiles to Lua.
+MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
+
 [Busted](http://olivinelabs.com/busted) - Elegant Lua unit testing.
 Busted runs entirely outside of Garry's Mod, testing our core functionality to ensure that everything is working as advertised.
+
+[Natural Docs](http://naturaldocs.org) - Blah
+
+[PlantUML](http://plantuml.sf.net) - Blah
 
 ## Installation ##
 
