@@ -46,7 +46,8 @@ Busted runs entirely outside of Garry's Mod, testing our core functionality to e
 
 ## Installation ##
 
-Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`.
+Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`. Your file structure should look like the following:
+![File structure](http://nayruden.github.io/ulx/doc/diagrams/file-structure.svg)
 
 ## Usage ##
 
