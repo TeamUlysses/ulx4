@@ -1,3 +1,5 @@
-doc/ndinfo/Data
-doc/diagrams/svg
+doc
+!doc/ndinfo/*.txt
+!doc/uml
 lua/**/*.lua
+maps
