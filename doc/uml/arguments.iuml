@@ -2,11 +2,16 @@
 abstract class Arg {
 	+Default    : //any//
 	+IsOptional : bool = false
-	
-	+UsageShort() : string
-	+UsageLong()  : string
-	+Complete( arg : string ) : table
-	+Parse( arg : string )    : //any//, string
+
+	+Combine( args : list<Arg> ) : Arg
+
+	+UsageShort()                : string
+	+UsageLong()                 : string
+	+Completes( str : string )   : table
+	+Parse( str : string )       : //any//, string
+
+	+Serialize()                 : string
+	+Deserialize( serial : str )
 }
 
 class ArgNum {
@@ -16,17 +21,23 @@ class ArgNum {
 	+RoundTo : number?
 }
 
+class ArgTime {
+}
+
 class ArgString {
 	+RestrictToCompletes : bool = false
-	+Completes : table?
+	+StrCompletes : table?
 }
 
 class ArgPlayer {
-	+Target         : string?
+	+RestrictTarget : string?
 	+AllowOfflineID : bool
 }
 
+Command "1" *-- "*" Arg
+
 Arg <|-- ArgNum
+ArgTime <|-- ArgNum
 Arg <|-- ArgString
 Arg <|-- ArgPlayer
 @enduml
