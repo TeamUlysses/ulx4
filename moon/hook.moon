@@ -1,2 +1,0 @@
-class Hook
-	Add: (priority) =>
