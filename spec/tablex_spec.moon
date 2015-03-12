@@ -4,23 +4,23 @@ dofile "moon/utilx.moon"
 
 describe "Test Table Utilities", (using nil) ->
 	it "Count() compliance", (using nil) ->
-		assert.equal(TableX.Count( {1, 3, "two", [{}]: 4} ), 4)
-		assert.equal(TableX.Count( {} ), 0)
+		assert.equal(4, TableX.Count( {1, 3, "two", [{}]: 4} ))
+		assert.equal(0, TableX.Count( {} ))
 
 	it "IsEmpty() compliance", (using nil) ->
-		assert.equal(TableX.IsEmpty( {} ), true)
-		assert.equal(TableX.IsEmpty( { "one" } ), false)
-		assert.equal(TableX.IsEmpty( {[{}]: "apple"} ), false)
+		assert.True(TableX.IsEmpty( {} ))
+		assert.False(TableX.IsEmpty( { "one" } ))
+		assert.False(TableX.IsEmpty( {[{}]: "apple"} ))
 
 	it "Empty() compliance", (using nil) ->
 		t = {foo: "bar", 3.1415}
-		assert.equal(TableX.Empty(t), t) -- Assert returns self
-		assert.same(t, {})
+		assert.equal(t, TableX.Empty(t)) -- Assert returns self
+		assert.same({}, t)
 
 	it "Copy() and CopyI() compliance", (using nil) ->
 		t = {"hey", blah: 67, mango: "one"}
-		assert.same(TableX.Copy(t), t)
-		assert.same(TableX.CopyI(t), {"hey"})
+		assert.same(t, TableX.Copy(t))
+		assert.same({"hey"}, TableX.CopyI(t))
 
 		t = {"one", "two", {"buckle my shoe", "tie a rope"}}
 		assert.same(t, TableX.Copy(t))
@@ -30,7 +30,7 @@ describe "Test Table Utilities", (using nil) ->
 
 	it "DeepCopy() compliance", (using nil) ->
 		t = {"hey", blah: 67, mango: "one"}
-		assert.same(TableX.DeepCopy(t), t)
+		assert.same(t, TableX.DeepCopy(t))
 
 		t = {"one", "two", three: {"buckle my shoe", "tie a rope"}}
 		assert.same(t, TableX.DeepCopy(t))
@@ -41,13 +41,13 @@ describe "Test Table Utilities", (using nil) ->
 		first = args[1]
 		table.insert args, false
 		new = fn(unpack(args))
-		assert.same(new, desired)
-		assert.is_not_equals(new, first)
+		assert.same(desired, new)
+		assert.is_not_equals(first, new)
 
 		args[#args] = true
 		new = fn(unpack(args))
-		assert.same(new, desired)
-		assert.equal(new, first)
+		assert.same(desired, new)
+		assert.equal(first, new)
 
 	it "RemoveDuplicateValues() compliance", (using nil) ->
 		InPlaceTester({"apple", "pear", "kiwi", "banana"}, TableX.RemoveDuplicateValues, {"apple", "pear", "kiwi", "apple", "banana", "pear", "pear"})
@@ -59,7 +59,7 @@ describe "Test Table Utilities", (using nil) ->
 		t, u = {apple: "red", pear: "green", kiwi: "hairy"}, {apple: "green", pear: "green", banana: "yellow"}
 		desired = {apple: "green", pear: "green", kiwi: "hairy", banana: "yellow"}
 
-		assert.same(TableX.UnionByKeyI(t, u), {})
+		assert.same({}, TableX.UnionByKeyI(t, u))
 		InPlaceTester(desired, TableX.UnionByKey, t, u)
 
 		-- Better test of UnionByKeyI
@@ -81,13 +81,13 @@ describe "Test Table Utilities", (using nil) ->
 		t, u = {apple: "red", pear: "green", kiwi: "hairy"}, {apple: "green", pear: "green", banana: "yellow"}
 		desired = {apple: "green", pear: "green"}
 
-		assert.same(TableX.IntersectionByKeyI(t, u), {})
-		assert.same(TableX.IntersectionByKey(t, u), desired)
+		assert.same({}, TableX.IntersectionByKeyI(t, u))
+		assert.same(desired, TableX.IntersectionByKey(t, u))
 
 		-- Better test of IntersectionByKeyI
 		t, u = {"apple", "pear", "kiwi"}, {"pear", "apple"}
 		desired = {"pear", "apple"}
-		assert.same(TableX.IntersectionByKeyI(t, u), desired)
+		assert.same(desired, TableX.IntersectionByKeyI(t, u))
 
 		-- By Value
 		t, u = {"apple", "pear", "kiwi"}, {"pear", "apple", "banana"}
@@ -102,7 +102,7 @@ describe "Test Table Utilities", (using nil) ->
 		t, u = {apple: "red", pear: "green", kiwi: "hairy"}, {apple: "green", pear: "green", banana: "yellow"}
 		desired = {kiwi: "hairy"}
 
-		assert.same(TableX.DifferenceByKeyI(t, u), {})
+		assert.same({}, TableX.DifferenceByKeyI(t, u))
 		InPlaceTester(desired, TableX.DifferenceByKey, t, u)
 
 		-- Better test of DifferenceByKeyI
@@ -120,17 +120,17 @@ describe "Test Table Utilities", (using nil) ->
 
 	it "Append() compliance", (using nil) ->
 		t, u = {"apple", "banana", "kiwi"}, {"orange", "pear"}
-		assert.same(TableX.Append(t, u), {"apple", "banana", "kiwi", "orange", "pear"})
+		assert.same({"apple", "banana", "kiwi", "orange", "pear"}, TableX.Append(t, u))
 
 	it "HasValue() compliance", (using nil) ->
 		t = {apple: "red", pear: "green", kiwi: "hairy"}
 		a, b = TableX.HasValue(t, "green")
-		assert.equal(a, true)
-		assert.equal(b, "pear")
+		assert.True(a)
+		assert.equal("pear", b)
 
 		a, b = TableX.HasValue(t, "blue")
-		assert.equal(a, false)
-		assert.equal(b, nil)
+		assert.False(a)
+		assert.equal(nil, b)
 		
 	it "SetFromList() compliance", (using nil) ->
-		assert.same(TableX.SetFromList({"apple", "banana", "kiwi", "pear"}), {apple: true, banana: true, kiwi: true, pear: true})
+		assert.same({apple: true, banana: true, kiwi: true, pear: true}, TableX.SetFromList({"apple", "banana", "kiwi", "pear"}))

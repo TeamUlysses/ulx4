@@ -197,25 +197,29 @@ export class UtilX
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
 		UtilX.CheckArg 1, "TimeStringToSeconds", {"string", "number"}, str
-		str = str\gsub ",", ""
 		
 		if num = tonumber(str)
 			return num
-		
+			
+		str = UtilX.Trim(str\gsub ",", "")
+		len = #str
 		num = 0
 		startIdx = 1
 		codeIdx = str\find "%D", startIdx
 		while codeIdx
-			nextIdx = (str\find("%d", codeIdx)) or #str
+			nextIdx = (str\find("%d", codeIdx)) or len+1
 			
 			units = str\sub startIdx, codeIdx-1
 			units = tonumber units
-			code = str\sub codeIdx, nextIdx-1
+			code = UtilX.Trim(str\sub codeIdx, nextIdx-1)
 			multiplier = timeCodes[code] or 1
 			num += units * multiplier
 			
 			startIdx = nextIdx
 			codeIdx = str\find "%D", startIdx
+			
+			if not codeIdx and startIdx < len
+				num += tonumber(str\sub startIdx)
 			
 		num
 	
