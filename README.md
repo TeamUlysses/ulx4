@@ -23,14 +23,14 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 
 ### Dependencies ###
 
-#### Runtime Dependencies ####
+#### Runtime Dependencies (Included) ####
 
-Besides the modified version of Garry's Mod's Lua 5.1, ULX pulls in the following dependencies:
+Besides the modified version of Garry's Mod's Lua 5.1, ULX needs the following dependencies to function. These dependencies are included with ULX.
 
 [dkjson](http://dkolf.de/src/dkjson-lua.fsl) - A [JSON](http://json.org) library.
 JSON is the format of choice for ULX when writing to plain text files. This format was chosen over the existing Source KeyValues format because it's an accepted Internet standard (and thus easier to move the data around) in addition to being less prone to errors.
 
-#### Development Dependencies ####
+#### Development Dependencies (Not Included) ####
 
 In order to blah blah:
 
@@ -38,15 +38,18 @@ In order to blah blah:
 MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
 
 [Busted](http://olivinelabs.com/busted) - Elegant Lua unit testing.
-Busted runs entirely outside of Garry's Mod, testing our core functionality to ensure that everything is working as advertised.
+Busted tests our core functionality to ensure that everything is working as advertised.
 
-[Natural Docs](http://naturaldocs.org) - Blah
+[Natural Docs](http://naturaldocs.org) - Documentation generator.
+Natural Docs generates ULX documentation from comments in the source code and is available online at http://ulyssesmod.net/ulx4-doc.
 
-[PlantUML](http://plantuml.sf.net) - Blah
+[PlantUML](http://plantuml.sf.net) - Generates [Unified Modeling Language (UML)](http://www.uml.org/) diagrams from plain-text descriptions.
+This allows us to quickly document ULX source structure without the hassle of a graphical UML editor.
 
 ## Installation ##
 
 Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`. Your file structure should look like the following:
+
 ![File structure](http://nayruden.github.io/ulx/doc/diagrams/file-structure.svg)
 
 ## Usage ##
@@ -55,6 +58,6 @@ Type `ulx help` in your console for a list of available actions.
 
 ## Change Log ##
 
-0.0.1 - *(00 Jan 2000)*
+1.0.0 - *(00 Jan 0000)*
 
  * Initial release.
