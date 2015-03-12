@@ -1,0 +1,15 @@
+@startuml
+salt
+{
+{T
++ <Garry's Mod Root>
+++ addons
++++ ulx
+++++ addon.txt
+++++ lua
++++++ autorun
+++++++ ulx_init.lua
++++++ ulx
+}
+}
+@enduml
