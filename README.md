@@ -32,7 +32,7 @@ JSON is the format of choice for ULX when writing to plain text files. This form
 
 #### Development Dependencies (Not Included) ####
 
-In order to blah blah:
+In order to make changes to ULX's codebase, perform tests, or generate documentation, you'll need the following dependencies:
 
 [MoonScript](http://moonscript.org) - A programmer friendly language that compiles to Lua.
 MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
@@ -51,6 +51,53 @@ This allows us to quickly document ULX source structure without the hassle of a 
 Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`. Your file structure should look like the following:
 
 ![File structure](http://nayruden.github.io/ulx/doc/diagrams/file-structure.svg)
+
+## Development Setup ##
+
+### Windows ###
+
+### Mac ###
+
+If you don't have it already, install Homebrew from [http://brew.sh/](http://brew.sh/). Once Homebrew is installed, use the following commands to install the required dependencies:
+
+##### Required #####
+```
+brew install lua51 luarocks
+luarocks install moonscript LuaSocket
+```
+
+##### Optional (Testing and Documentation) #####
+```
+brew install naturaldocs plantuml
+luarocks install busted
+```
+
+
+### Linux ###
+
+For Debian-based Linux distributions (like Ubuntu), use the following commands to install the required dependencies:
+
+##### Required #####
+```
+sudo apt-get install make lua5.1 luarocks
+sudo luarocks install moonscript LuaSocket
+```
+
+##### Optional (Testing and Documentation) #####
+```
+sudo apt-get install naturaldocs
+sudo luarocks install busted
+```
+
+Installing PlantUML will take a bit more work:
+
+```
+sudo apt-get install default-jre graphvis
+sudo wget -P /usr/local/lib/ -O plantuml.jar http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+sudo sh -c 'echo "/usr/bin/java -jar /usr/local/lib/plantuml.jar \"\$@\"" > /usr/local/bin/plantuml'
+sudo chmod 755 /usr/local/bin/plantuml
+```
+
 
 ## Usage ##
 
