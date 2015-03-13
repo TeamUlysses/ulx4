@@ -36,7 +36,7 @@ JSON is the format of choice for ULX when writing to plain text files. This form
 
 #### Development Dependencies (Not Included) ####
 
-In order to make changes to ULX's codebase, perform tests, or generate documentation, you'll need the following dependencies:
+ULX's codebase and documentation were built using the following tools. You do not need these dependencies installed for ULX to function.
 
 [MoonScript](http://moonscript.org) - A programmer friendly language that compiles to Lua.
 MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
@@ -68,15 +68,16 @@ Type `ulx help` in your console for a list of available actions.
 
 ## Development Setup ##
 
+In order to make changes to ULX's codebase, perform tests, generate documentation, you'll need the following dependencies:
 
 ### Windows ###
 
 
 ### Mac ###
 
-If you don't have it already, install Homebrew from [http://brew.sh](http://brew.sh). Once Homebrew is installed, use the following commands to install the required dependencies:
+If you don't have it already, install Homebrew from [http://brew.sh](http://brew.sh). Once Homebrew is installed, use the following commands to install the required development dependencies:
 
-##### Required #####
+##### Required (Development) #####
 ```
 brew install lua51 luarocks
 luarocks install moonscript LuaSocket
@@ -88,12 +89,11 @@ brew install naturaldocs plantuml
 luarocks install busted
 ```
 
-
 ### Linux ###
 
-For Debian-based Linux distributions (like Ubuntu), use the following commands to install the required dependencies:
+For Debian-based Linux distributions (like Ubuntu), use the following commands to install the required development dependencies:
 
-##### Required #####
+##### Required (Development) #####
 ```
 sudo apt-get install make lua5.1 luarocks
 sudo luarocks install moonscript LuaSocket
