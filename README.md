@@ -8,11 +8,14 @@ ULX is licensed under the MIT license. For an easy-to-understand summary of the 
 
 Note that ULX is written primarily in [MoonScript](http://moonscript.org) (described below). Even though Garry's Mod will be running the compiled version of the MoonScript, we ship ULX with both the original and the compiled source for your convenience.
 
+
+
 ## Credits ##
+
 
 ### Authors ###
 
-![Nayruden's Avatar](https://avatars3.githubusercontent.com/u/16591?s=100)
+![Nayruden's Avatar](https://avatars.githubusercontent.com/u/16591?s=100)
 [Brett "Nayruden" Smith](https://github.com/Nayruden) (Team Lead)
 
 ![Stickly Man!'s Avatar](https://avatars.githubusercontent.com/u/95759?s=100)
@@ -20,6 +23,7 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 
 ![JamminR's Avatar](http://forums.ulyssesmod.net/index.php?action=dlattach;attach=826;type=avatar)
 [JamminR](http://forums.ulyssesmod.net/index.php?action=profile;u=133) (Morale & Support)
+
 
 ### Dependencies ###
 
@@ -46,19 +50,31 @@ Natural Docs generates ULX documentation from comments in the source code and is
 [PlantUML](http://plantuml.sf.net) - Generates [Unified Modeling Language (UML)](http://www.uml.org/) diagrams from plain-text descriptions.
 This allows us to quickly document ULX source structure without the hassle of a graphical UML editor.
 
+
+
 ## Installation ##
 
 Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`. Your file structure should look like the following:
 
-![File structure](http://nayruden.github.io/ulx/doc/diagrams/file-structure.svg)
+![File structure](http://nayruden.github.io/ulx/doc/diagrams/file-structure.png)
+
+
+
+## Usage ##
+
+Type `ulx help` in your console for a list of available actions.
+
+
 
 ## Development Setup ##
 
+
 ### Windows ###
+
 
 ### Mac ###
 
-If you don't have it already, install Homebrew from [http://brew.sh/](http://brew.sh/). Once Homebrew is installed, use the following commands to install the required dependencies:
+If you don't have it already, install Homebrew from [http://brew.sh](http://brew.sh). Once Homebrew is installed, use the following commands to install the required dependencies:
 
 ##### Required #####
 ```
@@ -99,12 +115,9 @@ sudo chmod 755 /usr/local/bin/plantuml
 ```
 
 
-## Usage ##
-
-Type `ulx help` in your console for a list of available actions.
 
 ## Change Log ##
 
-1.0.0 - *(00 Jan 0000)*
+### 1.0.0 - (00 Jan 0000) ###
 
  * Initial release.

@@ -1,4 +1,4 @@
-.PHONY: lua watch lint map test diagram doc
+.PHONY: lua watch lint map test diagram doc all
 
 clean:
 	find lua/* | grep -v "lua/lib" | xargs rm -r ; \
@@ -20,7 +20,9 @@ test:
 	busted
 
 diagram:
-	plantuml -tsvg -o ../diagrams -nbthread auto doc/uml/*.iuml
+	plantuml -tpng -o ../diagrams -nbthread auto doc/uml/*.iuml
 
 doc: diagram
 	naturaldocs -r -i . -o HTML doc -p doc/ndinfo
+
+all: lua map doc
