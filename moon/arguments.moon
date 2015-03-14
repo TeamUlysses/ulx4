@@ -1,6 +1,5 @@
 [=[
 File: Arguments
-
 This file defines argument types to be used in TODO.
 ]=]
 
@@ -38,7 +37,6 @@ class Arg
 
 [=[
 Class: ArgNum
-
 The argument class used for any numeric data.
 
 Passes:
@@ -66,7 +64,6 @@ class ArgNum extends Arg
 
 [=[
 Class: ArgString
-
 The argument class used for string arguments
 
 Passes:
@@ -91,7 +88,6 @@ class ArgString extends Arg
 
 [=[
 Class: ArgPlayer
-
 The argument class used for player arguments
 
 Passes:

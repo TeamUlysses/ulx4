@@ -4,7 +4,7 @@ moon = require "moon"
 Class: UtilX
 
 A static class used for utility functions that are not specific to Garry's Mod.
-	
+
 Depends On:
 	* <TableX>
 
@@ -54,10 +54,10 @@ export class UtilX
 		n = #str
 		while n > 0 and str\find("^%s", n)
 			n -= 1
-			
+
 		str\sub( 1, n )
-		
-	
+
+
 	VardumpHelper = (value, depth, key, done using nil) ->
 		str = string.rep "  ", depth
 
@@ -75,10 +75,10 @@ export class UtilX
 			str ..= string.format "(table: array size=%i, total values=%i)\n", #value, TableX.Count(value)
 			for k, v in pairs value
 				str ..= VardumpHelper v, depth+1, k, done
-				
+
 		elseif t == "string" then
 			str ..= string.format "%q\n", value
-			
+
 		else
 			str = tostring(value) .. "\n"
 
@@ -110,7 +110,7 @@ export class UtilX
 
 	Notes:
 		* A string will always be surrounded by quotes and a number will always stand by itself. This is to make it easier to identify numbers stored as strings.
-		* Array size and total size are shown in the table header. Array size is the result of the pound operator (#) on the table, total size is the result of <Count>. 
+		* Array size and total size are shown in the table header. Array size is the result of the pound operator (#) on the table, total size is the result of <Count>.
 			Array size is useful debug information when iterating over a table with ipairs or fori.
 
 	Revisions:
@@ -123,14 +123,14 @@ export class UtilX
 			str ..= VardumpHelper(t[i], 0, nil, {})
 
 		str\sub(1, -2) -- Remove last newline
-		
-	
+
+
 	[=[
 	Function: Raise
 	TODO
 	]=]
 	@Raise: (str, level=1 using nil) -> error str, level
-		
+
 	[=[
 	Function: Round
 	Rounds a number to a given decimal place.
@@ -138,7 +138,7 @@ export class UtilX
 	Parameters:
 		num    - The *number* to round.
 		places - The *optional number* of places to round to. Defaults to _0_.
-		         0 rounds to the nearest whole number, 1 rounds to the nearest tenth, 2 rounds to the nearest thousandth, etc. 
+		         0 rounds to the nearest whole number, 1 rounds to the nearest tenth, 2 rounds to the nearest thousandth, etc.
 		         Negative numbers round into the non-fractional places; -1 rounds to the nearest tens, -2 rounds to the nearest hundreds, etc.
 
 	Returns:
@@ -150,8 +150,8 @@ export class UtilX
 	@Round: (num, places=0 using nil) ->
 		mult = 10 ^ places
 		math.floor(num * mult + 0.5) / mult
-			
-	
+
+
 	timeCodes =
 		m: 60
 		minute: 60
@@ -174,33 +174,33 @@ export class UtilX
 	[=[
 	Function: TimeStringToSeconds
 	A "time string" to convert into seconds. Can accept minutes, hours, days, weeks, months, or years. See examples below.
-	
+
 	Parameters:
 		str - The *string* or *number* to convert to seconds. If it's a number of a string of a number, passes back that number.
-		
+
 	Returns:
 		The *number* of seconds.
-		
+
 	Examples:
 		All of the following return the same thing...
 		* "1M7d5h3m11s"
 		* "1M 7d 5h 3m 11"
 		* "1M, 7d, 5h, 3m 11s"
 		* "1 month  7 days, 5h 3minute, 11 seconds"
-		
+
 	Notes:
 		* Commas and spacing are ignored.
 		* Any time multiplier (E.G., weeks) that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
-		
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
 		UtilX.CheckArg 1, "TimeStringToSeconds", {"string", "number"}, str
-		
+
 		if num = tonumber(str)
 			return num
-			
+
 		str = UtilX.Trim(str\gsub ",", "")
 		len = #str
 		num = 0
@@ -208,26 +208,26 @@ export class UtilX
 		codeIdx = str\find "%D", startIdx
 		while codeIdx
 			nextIdx = (str\find("%d", codeIdx)) or len+1
-			
+
 			units = str\sub startIdx, codeIdx-1
 			units = tonumber units
 			code = UtilX.Trim(str\sub codeIdx, nextIdx-1)
 			multiplier = timeCodes[code] or 1
 			num += units * multiplier
-			
+
 			startIdx = nextIdx
 			codeIdx = str\find "%D", startIdx
-			
+
 			if not codeIdx and startIdx < len
 				num += tonumber(str\sub startIdx)
-			
+
 		num
-	
+
 
 	-- Transforms the "expected" argument for functions below into a list of strings.
 	expectedToStrings = (expected using nil) ->
 		[ type(v) == "string" and v or v.__name for v in *expected ]
-			
+
 
 	[=[
 	Function: RaiseBadArg
@@ -253,26 +253,25 @@ export class UtilX
 		dataStr = data.__name if type(dataStr) ~= "string"
 
 		str = "bad argument"
-		if argnum then 
+		if argnum then
 			str ..= " #" .. tostring(argnum)
-		if fnName then 
+		if fnName then
 			str ..= " to " .. fnName
-		if expected or data then 
+		if expected or data then
 			str ..= " ("
-			if expected then 
+			if expected then
 				str ..= table.concat(expectedToStrings(expected), " or ") .. " expected"
-			if expected and data then 
+			if expected and data then
 				str ..= ", "
-			if data then 
+			if data then
 				str ..= "got " .. dataStr
 			str ..= ")"
 
 		self.Raise str, level+1
-		
+
 
 	[=[
 	Function: CheckArg
-
 	Used to check to see if a function argument matches what is expected. If it doesn't, calls <RaiseBadArg()>.
 	This function is primarily useful at the beginning of a function definition to ensure that the correct type of data was passed in.
 
@@ -295,5 +294,5 @@ export class UtilX
 				return true
 		elseif TableX.HasValueI(expected, moon.type(data)) then
 			return true
-			
+
 		self.RaiseBadArg argnum, fnName, expected, data, level+1

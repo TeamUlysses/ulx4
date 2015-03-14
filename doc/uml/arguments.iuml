@@ -37,7 +37,7 @@ class ArgPlayer {
 Command "1" *-- "*" Arg
 
 Arg <|-- ArgNum
-ArgTime <|-- ArgNum
+ArgNum <|-- ArgTime
 Arg <|-- ArgString
 Arg <|-- ArgPlayer
 @enduml

@@ -1,6 +1,5 @@
 [=[
 Class: Command
-
 Used to create a new command. Commands are always tied to the console, and optionally to chat as well.
 
 Revisions:
@@ -63,4 +62,3 @@ with plugin\Command( "command", ulx.command ) -- Chat alias is automatically ass
 		RestrictToPresenceOf "#user"
 		RestrictCustom (ply, ...) -> if ply\IsAlive() then return false, "you must be alive to run this command" else return true
 	}
-	
