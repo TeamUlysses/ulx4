@@ -68,7 +68,7 @@ Type `ulx help` in your console for a list of available actions.
 
 ## Development Setup ##
 
-In order to make changes to ULX's codebase, perform tests, generate documentation, you'll need the following dependencies:
+In order to make changes to ULX's codebase, perform tests, or generate documentation, you'll need the following dependencies:
 
 ### Windows ###
 

@@ -1,5 +1,5 @@
 ::Batch script to emulate MAKEFILE for Windows systems
-::Takes one parameter for task.
+::Takes one parameter for task. Otherwise, prompt user for input.
 @ECHO OFF
 SET choice=%1
 SET tasks=clean, lua, watch, lint, map, test, diagram, doc, all
@@ -19,7 +19,7 @@ SET /P choice="What would you like to make?: "
 IF /I "%choice%"=="" GOTO INVALID
 IF /I %choice%==clean (CALL :clean & GOTO end)
 IF /I %choice%==lua (CALL :lua & GOTO end)
-IF /I %choice%==watch ( CALL :watch & GOTO end )
+IF /I %choice%==watch GOTO :watch
 IF /I %choice%==lint ( CALL :lint & GOTO end )
 IF /I %choice%==map ( CALL :map & GOTO end )
 IF /I %choice%==test ( CALL :test & GOTO end )
@@ -43,43 +43,80 @@ GOTO end
 
 
 ::Makefile commands
+
 :clean
-echo "clean"
+FOR /D %%I IN ("lua\*") DO (
+	IF /I NOT %%I==lua\lib (
+		RMDIR /S /Q %%I
+		ECHO Removed %%I
+	)
+)
+FOR %%I IN ("lua\*") DO (
+	DEL /Q %%I
+	ECHO Removed %%I
+)
+IF EXIST map RMDIR /S /Q map
+ECHO Cleanup finished.
 GOTO :EOF
+
 
 :lua
-echo "lua"
+PUSHD moon & moonc -t ../lua * & POPD
 GOTO :EOF
+
 
 :watch
-echo "watch"
+PUSHD moon & moonc -w -t ../lua * & POPD
 GOTO :EOF
+
 
 :lint
-echo "lint"
+CALL moonc -l moon
 GOTO :EOF
+
 
 :map
-echo "map"
+SETLOCAL enabledelayedexpansion
+PUSHD moon
+::Create DIRs if they don't exist.
+FOR /F %%D IN ('DIR /B /S /A:D %CD%') DO (
+	SET _B=%%D
+	SET _RELDIR=!_B:%CD%\=!
+	IF NOT EXIST ..\maps\!_RELDIR! MKDIR ..\maps\!_RELDIR!
+)
+FOR /R %%I IN ("*.moon") DO (
+	SET _B=%%I
+	SET _RELFILE=!_B:%CD%\=!
+	CALL moonc -X ^!_RELFILE^! > ..\maps\!_RELFILE!.map
+	ECHO Mapped !_RELFILE!
+
+)
+POPD
 GOTO :EOF
+
 
 :test
-echo "test"
+CALL busted
 GOTO :EOF
+
 
 :diagram
-echo "diagram"
+CALL plantuml -tpng -o ../diagrams -nbthread auto doc/uml/*.iuml
+ECHO Diagram finished.
 GOTO :EOF
 
+
 :doc
-echo "doc"
+CALL naturaldocs -r -i . -o HTML doc -p doc/ndinfo
 GOTO :EOF
+
 
 :all
 CALL :lua
 CALL :map
 CALL :doc
 GOTO :EOF
+
 
 :end
 PAUSE
