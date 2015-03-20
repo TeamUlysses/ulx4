@@ -54,7 +54,6 @@ class ArgNum extends Arg
 		Min     - A *number or nil* specifying the minimum value for the argument.
 		Max     - A *number or nil* specifying the maximum value for the argument.
 		RoundTo - A *number or nil* specifying the digit to round to, as passed to <UtilX.Round>.
-
 	]=]
 	Default: 0
 	Min:     nil
@@ -63,8 +62,30 @@ class ArgNum extends Arg
 
 
 [=[
+Class: ArgTime
+The argument class used for a timespan using natural language.
+
+Passes:
+	A *number* of seconds, defaulting to _0_.
+
+Revisions:
+	1.0.0 - Initial.
+]=]
+class ArgTime extends ArgNum
+	[=[
+	Variables: ArgNum Variables
+	All these variables are optional, with sensible defaults.
+
+		Min - A *number, string, or nil* specifying the minimum value for the argument.
+		Max - A *number, string, or nil* specifying the maximum value for the argument.
+	]=]
+	Min: nil
+	Max: nil
+
+
+[=[
 Class: ArgString
-The argument class used for string arguments
+The argument class used for string arguments.
 
 Passes:
 	A *string* value, defaulting to _0_.
@@ -77,35 +98,55 @@ class ArgString extends Arg
 	Variables: ArgString Variables
 	All these variables are optional, with sensible defaults.
 
+		Default - A *string*, defaults to _""_. If an argument is optional and unspecified, this value is used.
 		RestrictToCompletes - A *boolean*, defaults to _false_.
 			If true, the argument passed will /always/ be one of the arguments from the <Completes> table.
 		Completes           - A *table or nil* of auto-completes (suggestions) for the argument.
 
 	]=]
+	Default:             ""
 	RestrictToCompletes: false
 	Completes:           nil
 
 
 [=[
-Class: ArgPlayer
-The argument class used for player arguments
+Class: ArgPlayerID
+The argument class used for SteamID arguments.
 
 Passes:
-	A single, valid *player* object or possibly a *string* of a valid Steam ID if <AllowOfflineID> is set to true.
+	A *table of strings or players* (between one and <MaximumTargets> items).
+	Each item is either a valid SteamID or a connected player.
 
 Revisions:
 	1.0.0 - Initial.
 ]=]
-class ArgPlayer extends Arg
+class ArgPlayerID extends Arg
 	[=[
-	Variables: ArgPlayer Variables
+	Variables: ArgPlayerID Variables
 	All these variables are optional, with sensible defaults.
 
-		RestrictTarget - A *string or nil* specifying the players this argument is allowed to target.
+		Default            - A *string*, defaults to _"^"_ (keyword for the player calling the command).
+			If an argument is optional and unspecified, this value is used.
+		RestrictTarget     - A *string or nil* specifying the players this argument is allowed to target.
 			This is passed to <TODO.GetUser()>. Nil indicates no restriction.
-		AllowOfflineID - A *boolean* of whether or not to allow the argument to contain Steam IDs of offline players.
-			ID is verified for correctness.
+		MaximumTargets     - A *number*, defaulting to _1_, specifying the maximum number of players this argument can target.
+		PassPlayerIfActive - A *boolean*. If true, will pass the player object if they are connected.
 
 	]=]
-	RestrictTarget: nil
-	AllowOfflineID: false
+	Default:            "^"
+	RestrictTarget:     nil
+	MaximumTargets:     1
+	PassPlayerIfActive: false
+
+
+[=[
+Class: ArgPlayerActive
+The argument class used for player arguments.
+
+Passes:
+	A *table of players* (between one and <MaximumTargets> items).
+
+Revisions:
+	1.0.0 - Initial.
+]=]
+class ArgPlayerActive extends ArgPlayerID

@@ -5,23 +5,26 @@ abstract class Arg {
 
 	+Combine( args : list<Arg> ) : Arg
 
-	+UsageShort()                : string
-	+UsageLong()                 : string
-	+Completes( str : string )   : table
-	+Parse( str : string )       : //any//, string
+	+UsageShort() : string
+	+UsageLong() : string
+	+Completes( str : string ) : table
+	+Parse( str : string ) : //any//, string
 
-	+Serialize()                 : string
-	+Deserialize( serial : str )
+	+Serialize() : string
+	+Deserialize( serial : string ) : Arg {static}
 }
 
 class ArgNum {
 	+Default : number = 0
-	+Min     : number?
-	+Max     : number?
+	+Min : number?
+	+Max : number?
 	+RoundTo : number?
 }
 
 class ArgTime {
+	+Default : string = ""
+	+Min : number or string?
+	+Max : number or string?
 }
 
 class ArgString {
@@ -29,9 +32,14 @@ class ArgString {
 	+StrCompletes : table?
 }
 
-class ArgPlayer {
+class ArgPlayerID {
+	+Default : string = "^"
 	+RestrictTarget : string?
-	+AllowOfflineID : bool
+	+MaximumTargets : number = 1
+	+PassPlayerIfActive : bool
+}
+
+class ArgPlayerActive {
 }
 
 Command "1" *-- "*" Arg
@@ -39,5 +47,7 @@ Command "1" *-- "*" Arg
 Arg <|-- ArgNum
 ArgNum <|-- ArgTime
 Arg <|-- ArgString
-Arg <|-- ArgPlayer
+Arg <|-- ArgPlayerID
+ArgPlayerID <|-- ArgPlayerActive
+Arg <|-- BoolArg
 @enduml
