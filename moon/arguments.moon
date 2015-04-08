@@ -13,27 +13,89 @@ Revisions:
 ]=]
 class Arg
 	[=[
+	Function: ShortcutFn
+	Only available statically, meant for internal use only.
+	]=]
+	@ShortcutFn: (name, typ, default using nil) =>
+		@[name] = (val=default using nil) =>
+			UtilX.CheckArg(1, "#{@__name}.#{name}", typ, val)
+			@["_" .. name] = val
+
+	[=[
 	Variables: Arg Variables
 	All these variables are optional, with sensible defaults.
 
-		Default    - A value of *any type*. If an argument is optional and unspecified, this value is used.
-		IsOptional - A *boolean* of whether or not this argument is optional.
-
+		_Default  - A value of *any type*. If an argument is optional and unspecified, this value is used.
+		_Optional - A *boolean* of whether or not this argument is optional.
+		_Hint - A *string* (usually a word or two) used in help output to give users a general idea of what the argument is for.
+		_Help - A *string* used in longer help output to describe the argument.
 	]=]
-	Default: nil
-	IsOptional: false
+	_Default:  nil
+	_Optional: false
+	_Hint:     ""
+	_Help:     ""
+
+	@ShortcutFn "Optional", "boolean", true
+	@ShortcutFn "Default"
+	@ShortcutFn "Hint", "string"
+	@ShortcutFn "Help", "string"
+
 
 	[=[
-	Function: Optional
-	A quick shortcut to set <IsOptional> to true.
-
-	Returns:
-		*self*.
+	Function: Combine
+	TODO
 	]=]
-	Optional: =>
-		IsOptional = true
-		return self
+	@Combine: (args, copyTo=Arg() using nil) =>
+		copyTo = Arg()
+		for copyFrom in *args
+			if copyFrom._Default ~= nil
+				copyTo._Default = copyFrom._Default
+			copyTo._Optional = copyFrom._Optional or copyTo._Optional
 
+		copyTo
+
+
+	[=[
+	Function: UsageShort
+	TODO
+	]=]
+	UsageShort: (str using nil) =>
+		str ..= ", "                   if @_Optional and #str > 0
+		str ..= "default #{@_Default}" if @_Optional
+		str = "#{@_Hint}: " .. str     if @_Hint
+		str = "<" .. str .. ">"
+		str = "[" .. str .. "]"        if @_Optional
+
+		str
+
+
+	[=[
+	Function: UsageLong
+	TODO
+	]=]
+	UsageLong: (str using nil) =>
+		str ..= "Type:     #{@__name}\n"
+		str ..= "Default:  #{@_Default}\n" if @_Optional
+		str ..= @_Optional and "This argument is optional\n" or "This argument is required\n"
+		str ..= "Hint:     #{@_Hint}\n"    if @_Hint
+		str ..= "Help:     #{@_Help}\n"    if @_Help
+
+		str
+
+
+	[=[
+	Function: Completes
+	TODO
+	]=]
+	Completes: (str using nil) =>
+		nil
+
+	[=[
+	Function: Parse
+	TODO
+	]=]
+	Parse: (str using nil) =>
+		UtilX.Raise "Arg.Parse() called, but is intentionally unimplemented"
 
 [=[
 Class: ArgNum
@@ -46,19 +108,69 @@ Revisions:
 	1.0.0 - Initial.
 ]=]
 class ArgNum extends Arg
+	-- Values from parent that we want to override the defaults for
+	_Default: 0
+	_Hint:    "number"
+	_Help:    "A number argument"
+
 	[=[
 	Variables: ArgNum Variables
 	All these variables are optional, with sensible defaults.
 
-		Default - A *number*, defaults to _0_. If an argument is optional and unspecified, this value is used.
-		Min     - A *number or nil* specifying the minimum value for the argument.
-		Max     - A *number or nil* specifying the maximum value for the argument.
-		RoundTo - A *number or nil* specifying the digit to round to, as passed to <UtilX.Round>.
+		_Min   - A *number or nil* specifying the minimum value for the argument.
+		_Max   - A *number or nil* specifying the maximum value for the argument.
+		_Round - A *number or nil* specifying the digit to round to, as passed to <UtilX.Round>.
+		_Hint  - A *string* (usually a word or two) used in help output to give users a general idea of what the argument is for.
 	]=]
-	Default: 0
-	Min:     nil
-	Max:     nil
-	RoundTo: nil
+	_Min:   nil
+	_Max:   nil
+	_Round: nil
+
+	@ShortcutFn "Min", {"number", "nil"}
+	@ShortcutFn "Max", {"number", "nil"}
+	@ShortcutFn "Round", {"number", "nil"}, 0
+
+
+	[=[
+	Function: Combine
+	TODO
+	]=]
+	@Combine: (args, copyTo=ArgNum() using nil) =>
+		super\Combine args, copyTo
+		for copyFrom in *args
+			if copyFrom._Min and (not copyTo._Min or copyTo._Min and copyFrom._Min > copyTo._Min)
+				copyTo._Min = copyFrom._Min
+			if copyFrom._Max and (not copyTo._Max or copyTo._Max and copyFrom._Max < copyTo._Max)
+				copyTo._Max = copyFrom._Max
+			copyTo._Round = copyFrom._Round or copyTo._Round
+
+		copyTo
+
+	[=[
+	Function: UsageShort
+	TODO
+	]=]
+	UsageShort: (str = "" using nil) =>
+		if @_Min and @_Min == @_Max
+			str ..= tostring @_Min
+
+		else
+			str ..= @_Min .. "<=" if @_Min
+			str ..= "x"
+			str ..= "<=" .. @_Max if @_Max
+
+		super\UsageShort str
+
+	[=[
+	Function: UsageLong
+	TODO
+	]=]
+	UsageLong: (str = "" using nil) =>
+		super\UsageLong str
+
+		str .. "Min:   #{@_Min}"
+		str .. "Max:   #{@_Max}"
+		str .. "Round: #{@_Round}"
 
 
 [=[
