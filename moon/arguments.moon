@@ -11,15 +11,16 @@ The base argument class.
 Revisions:
 	1.0.0 - Initial.
 ]=]
-class Arg
+export class Arg
 	[=[
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
 	]=]
-	@ShortcutFn: (name, typ, default using nil) =>
-		@[name] = (val=default using nil) =>
-			UtilX.CheckArg(1, "#{@__name}.#{name}", typ, val)
+	ShortcutFn: (name, typ, default using nil) =>
+		@__base[name] = (val=default using nil) =>
+			UtilX.CheckArg(1, "#{@@__name}.#{name}", typ, val)
 			@["_" .. name] = val
+			@
 
 	[=[
 	Variables: Arg Variables
@@ -107,11 +108,13 @@ Passes:
 Revisions:
 	1.0.0 - Initial.
 ]=]
-class ArgNum extends Arg
+export class ArgNum extends Arg
 	-- Values from parent that we want to override the defaults for
 	_Default: 0
 	_Hint:    "number"
 	_Help:    "A number argument"
+
+	@ShortcutFn "Default", "number"
 
 	[=[
 	Variables: ArgNum Variables
@@ -166,11 +169,12 @@ class ArgNum extends Arg
 	TODO
 	]=]
 	UsageLong: (str = "" using nil) =>
-		super\UsageLong str
+		str = super\UsageLong str
 
-		str .. "Min:   #{@_Min}"
-		str .. "Max:   #{@_Max}"
-		str .. "Round: #{@_Round}"
+		str ..= "Min:      #{@_Min}\n"   if @_Min
+		str ..= "Max:      #{@_Max}\n"   if @_Max
+		str ..= "Round:    #{@_Round}\n" if @_Round
+		str
 
 
 [=[
