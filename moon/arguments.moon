@@ -16,11 +16,12 @@ export class Arg
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
 	]=]
-	ShortcutFn: (name, typ, default using nil) =>
+	@ShortcutFn = (name, typ, default using nil) =>
 		@__base[name] = (val=default using nil) =>
 			UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
 			@["_" .. name] = val
 			@
+
 
 	[=[
 	Variables: Arg Variables
@@ -36,15 +37,23 @@ export class Arg
 	_Hint:     ""
 	_Help:     ""
 
-	@ShortcutFn "Optional", "boolean", true
 	@ShortcutFn "Default"
+	@ShortcutFn "Optional", "boolean", true
 	@ShortcutFn "Hint", "string"
 	@ShortcutFn "Help", "string"
 
 
 	[=[
 	Function: Combine
-	TODO
+	This function combines <Arg> instances together in the most restrictive way possible.
+	This is used to combine multiple permission sets for an argument together (E.G., for the user, and their groups).
+
+	Parameters:
+		args - A *table of <Args>* to combine together.
+		copyTo - An optional *<Arg>* instance to copy the resulting combined data into. _Defaults to a blank <Arg>_.
+
+	Returns:
+		The reference to copyTo.
 	]=]
 	@Combine: (args, copyTo=Arg() using nil) =>
 		copyTo = Arg()
@@ -58,9 +67,14 @@ export class Arg
 
 	[=[
 	Function: UsageShort
-	TODO
+
+	Parameters:
+		str - An optional *string* to add the help into. _Defaults to ""_.
+
+	Returns:
+		A short, one-line help *string* for using the argument.
 	]=]
-	UsageShort: (str using nil) =>
+	UsageShort: (str = "" using nil) =>
 		str ..= ", "                   if @_Optional and #str > 0
 		str ..= "default #{@_Default}" if @_Optional
 		str = "#{@_Hint}: " .. str     if @_Hint
@@ -72,12 +86,17 @@ export class Arg
 
 	[=[
 	Function: UsageLong
-	TODO
+	Similar to <UsageShort>, but has no length restrictions on the returned text.
+
+	Parameters:
+		str - An optional *string* to add the help into. _Defaults to ""_.
+
+	Returns:
+		A full *string* help for using the argument.
 	]=]
-	UsageLong: (str using nil) =>
-		str ..= "Type:     #{@__name}\n"
-		str ..= "Default:  #{@_Default}\n" if @_Optional
-		str ..= @_Optional and "This argument is optional\n" or "This argument is required\n"
+	UsageLong: (str = "" using nil) =>
+		str ..= "Type:     #{@@__name}\n"
+		str ..= "Default:  #{@_Default} (used if argument is unspecified)\n" if @_Optional
 		str ..= "Hint:     #{@_Hint}\n"    if @_Hint
 		str ..= "Help:     #{@_Help}\n"    if @_Help
 
@@ -89,14 +108,45 @@ export class Arg
 	TODO
 	]=]
 	Completes: (str using nil) =>
-		nil
+		--return {"Current entry is invalid"} if str\find("%S") and not @IsValid str
+		{@UsageShort!}
+
+
+	[=[
+	Function: IsValid
+	TODO
+	]=]
+	IsValid: (obj using nil) =>
+		UtilX.RaiseUnimplemented "Arg.IsValid"
+
 
 	[=[
 	Function: Parse
 	TODO
 	]=]
 	Parse: (str using nil) =>
-		UtilX.Raise "Arg.Parse() called, but is intentionally unimplemented"
+		UtilX.RaiseUnimplemented "Arg.Parse"
+
+	[=[
+	Function: IsPermissible
+	TODO
+	]=]
+	IsPermissible: (obj using nil) =>
+		UtilX.RaiseUnimplemented "Arg.IsPermissible"
+
+	[=[
+	Function: Serialize
+	TODO
+	]=]
+	Serialize: (str using nil) =>
+		UtilX.RaiseUnimplemented "Arg.Serialize"
+
+	[=[
+	Function: Deserialize
+	TODO
+	]=]
+	@Deserialize: (str, obj using nil) =>
+		UtilX.RaiseUnimplemented "Arg.Deserialize"
 
 [=[
 Class: ArgNum
@@ -149,6 +199,7 @@ export class ArgNum extends Arg
 
 		copyTo
 
+
 	[=[
 	Function: UsageShort
 	TODO
@@ -164,6 +215,7 @@ export class ArgNum extends Arg
 
 		super\UsageShort str
 
+
 	[=[
 	Function: UsageLong
 	TODO
@@ -176,6 +228,35 @@ export class ArgNum extends Arg
 		str ..= "Round:    #{@_Round}\n" if @_Round
 		str
 
+
+	[=[
+	Function: IsValid
+	TODO
+	]=]
+	IsValid: (obj using nil) =>
+		valid = tonumber(obj) ~= nil
+		valid or (obj == nil and @_Optional)
+
+
+	[=[
+	Function: Parse
+	TODO
+	]=]
+	Parse: (str using nil) =>
+		num = tonumber(str)
+		num = @_Default if not num and @_Optional
+		num = UtilX.Round num, @_Round if @_Round
+		num
+
+
+	[=[
+	Function: IsPermissible
+	TODO
+	]=]
+	IsPermissible: (num using nil) =>
+		return false, "Below minimum (#{@_Min})" if num < @_Min
+		return false, "Above maximum (#{@_Max})" if num > @_Max
+		true
 
 [=[
 Class: ArgTime

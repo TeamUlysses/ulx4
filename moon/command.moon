@@ -7,30 +7,55 @@ Revisions:
 ]=]
 class Command
 	[=[
-	Variables: Command Variables
-	All these variables are optional, with sensible defaults.
-
-		Tip          - A *string* tip/help for the command.
-		Access       - A *string* of the group who gets access to the command by default.
-		Category     - A *string* category for the command. See <Plugin.Category>.
-		               This is normally set by the plugin, but you can override it here.
-		ChatAlias    - A *string* or *table* of the chat command alias(es) for the command.
-		               _Defaults to the command parameter passed to <new()>, prefixed with the default chat prefix_.
-		ConsoleAlias - A *string* or *table* of the console command alias(es) for the command.
-		               _Defaults to the command parameter passed to <new()>_.
-		Args         - A *table* of the arguments (of type <Argument>) for the command.
+	Function: ShortcutFn
+	Only available statically, meant for internal use only.
 	]=]
-	Tip:          ""
-	Access:       "user"
-	Category:     "unknown"
-	ChatAlias:    {}
-	ConsoleAlias: {}
-	Args:         {}
+	@ShortcutFn = (name, typ, default using nil) =>
+		@__base[name] = (val=default using nil) =>
+			UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
+			@["_" .. name] = val
+			@
+
+
+	[=[
+	Variables: Command Variables
+
+		_Name         - A *string* of the name of the command.
+		_Callback     - A *function* to callback when the command is called.
+		_Hint         - A one-line hint *string* for the command.
+		_Access       - A *string* or *table* of the groups that get access to the command by default.
+		_Category     - A *string* category for the command. See <Plugin.Category>.
+		               This is normally set by the plugin, but you can override it here.
+		_ChatAlias    - A *string* or *table* of the chat command alias(es) for the command.
+		               _Defaults to the command parameter passed to <new()>, prefixed with the default chat prefix_.
+		_ConsoleAlias - A *string* or *table* of the console command alias(es) for the command.
+		               _Defaults to the command parameter passed to <new()>_.
+		_Args         - A *table* of the arguments (of type <Argument>) for the command.
+		_Restrictions - A *table* of the restrictions (of type <Restriction>) for the command.
+	]=]
+	_Name:         nil
+	_Callback:     nil
+	_Hint:         ""
+	_Access:       {}
+	_Category:     "unknown"
+	_ChatAlias:    {}
+	_ConsoleAlias: {}
+	_Args:         {}
+	_Restrictions: {}
+
+	@ShortcutFn "Name", "string"
+	@ShortcutFn "Callback", "function"
+	@ShortcutFn "Hint", "string"
+	@ShortcutFn "Access", {"string", "table"}
+	@ShortcutFn "Category", "string"
+	@ShortcutFn "ChatAlias", {"string", "table"}
+	@ShortcutFn "ConsoleAlias", {"string", "table"}
+	@ShortcutFn "Args", "table"
+	@ShortcutFn "Restrictions", "table"
 
 
 	[=[
 	Function: new
-
 	Creates a new command.
 
 	Parameters:
@@ -42,23 +67,29 @@ class Command
 		1.0.0 - Initial.
 	]=]
 	new: (name, callback) =>
+		UtilX.CheckArgs "Command", {{"string", name},
+		                            {"function", callback}}
 
+		@_Name = name
+		@_Callback = callback
+		@_ChatAlias = "!" .. name
+		@_ConsoleAlias = name
 
 with plugin\Command( "command", ulx.command ) -- Chat alias is automatically assumed, can override with .ChatAlias = ...
-	.Tip = "Help text"
-	.Access = "admin"
-	--.Category = "fun" -- Only need to specify if differing from plugin category
-	--.ChatAlias = "command" or {"cmd", "command"} for multiple - if unspecified, "command" from first line is assumed
-	--.ConsoleAlias = "cmd" or {"cmd1", "cmd2"} for multiple
-	.Args = {
+	\Hint "Hint text"
+	\Access "admin"
+	--\Category "fun" -- Only need to specify if differing from plugin category
+	--\ChatAlias "command" or {"cmd", "command"} for multiple - if unspecified, "command" from first line is assumed
+	--\ConsoleAlias "cmd" or {"cmd1", "cmd2"} for multiple
+	\Args{
 		ArgPlayer! -- help text for arguments automatically contains "player to <command name>"
 		ArgTime!\Optional!\min 0 -- help text "time (in minutes) to <command name>"
 		ArgString!\Optional!\Greedy!\RestrictToCompletes!\Completes tbl
 	}
-	.Restrictions = {
+	\Restrictions{
 		RestrictToOnceEvery "1 hour"
 		RestrictToTime "1500-1700" --???
 		RestrictToAbsenceOf "%superadmin"
 		RestrictToPresenceOf "#user"
-		RestrictCustom (ply, ...) -> if ply\IsAlive() then return false, "you must be alive to run this command" else return true
+		RestrictToCustom (ply, ...) -> if ply\IsAlive() then return false, "you must be alive to run this command" else return true
 	}
