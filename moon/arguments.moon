@@ -18,7 +18,7 @@ export class Arg
 	]=]
 	ShortcutFn: (name, typ, default using nil) =>
 		@__base[name] = (val=default using nil) =>
-			UtilX.CheckArg(1, "#{@@__name}.#{name}", typ, val)
+			UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
 			@["_" .. name] = val
 			@
 

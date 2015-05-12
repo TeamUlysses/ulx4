@@ -13,18 +13,35 @@ describe "Test Utilities", (using nil) ->
 
 
 	it "CheckArg() compliance", (using nil) ->
-		assert.True(UtilX.CheckArg(1, "test", "number", 41))
-		assert.True(UtilX.CheckArg(2, "test", "string", "41"))
-		assert.True(UtilX.CheckArg(3, "test", "table", {}))
-		assert.True(UtilX.CheckArg(4, "test", "function", (() ->)))
-		assert.True(UtilX.CheckArg(5, "test", "boolean", true))
-		assert.True(UtilX.CheckArg(6, "test", "boolean", true))
-		assert.True(UtilX.CheckArg(7, "test", "nil", nil))
-		assert.True(UtilX.CheckArg(8, "test", UtilX, UtilX))
-		assert.True(UtilX.CheckArg(9, "test", UtilX, UtilX!))
-		assert.True(UtilX.CheckArg(10, "test", TableX, TableX))
-		assert.error(-> UtilX.CheckArg(11, "test", UtilX, TableX))
-		assert.error(-> UtilX.CheckArg(12, "test", UtilX, TableX!))
+		assert.True(UtilX.CheckArg("test", 1, "number", 41))
+		assert.True(UtilX.CheckArg("test", 2, "string", "41"))
+		assert.True(UtilX.CheckArg("test", 3, "table", {}))
+		assert.True(UtilX.CheckArg("test", 4, "function", (() ->)))
+		assert.True(UtilX.CheckArg("test", 5, "boolean", true))
+		assert.True(UtilX.CheckArg("test", 6, "boolean", false))
+		assert.True(UtilX.CheckArg("test", 7, "nil", nil))
+		assert.True(UtilX.CheckArg("test", 8, UtilX, UtilX))
+		assert.True(UtilX.CheckArg("test", 9, UtilX, UtilX!))
+		assert.True(UtilX.CheckArg("test", 10, TableX, TableX))
+		assert.error(-> UtilX.CheckArg("test", 11, UtilX, TableX))
+		assert.error(-> UtilX.CheckArg("test", 12, UtilX, TableX!))
+		return
+
+
+	it "CheckArgs() compliance", (using nil) ->
+		assert.True(UtilX.CheckArgs("test", {{"boolean", true}, {"string", "41"}}))
+		assert.True(UtilX.CheckArgs("test", {{"number", 41},
+		                                     {"string", "41"},
+		                                     {"table", {}},
+		                                     {"function", (() ->)},
+		                                     {"boolean", true},
+		                                     {"boolean", false},
+		                                     {"nil", nil},
+		                                     {UtilX, UtilX},
+		                                     {UtilX, UtilX!},
+		                                     {TableX, TableX}}))
+		assert.error(-> UtilX.CheckArgs("test", {{UtilX, TableX}}))
+		assert.error(-> UtilX.CheckArgs("test", {{UtilX, TableX!}}))
 		return
 
 

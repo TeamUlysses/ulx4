@@ -132,6 +132,13 @@ export class UtilX
 	@Raise: (str, level=1 using nil) -> error str, level
 
 	[=[
+	Function: RaiseUnimplemented
+	TODO
+	]=]
+	@RaiseUnimplemented: (str, level=1 using nil) ->
+		self.Raise str .. " called, but unimplemented", level+1
+
+	[=[
 	Function: Round
 	Rounds a number to a given decimal place.
 
@@ -196,7 +203,7 @@ export class UtilX
 		1.0.0 - Initial.
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
-		UtilX.CheckArg 1, "TimeStringToSeconds", {"string", "number"}, str
+		UtilX.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
 
 		if num = tonumber(str)
 			return num
@@ -235,8 +242,8 @@ export class UtilX
 	This function intelligently figures out how best to word the error with the given information.
 
 	Parameters:
-		argnum   - The *optional number* of the argument that was bad.
 		fnName   - The *optional string* of the function name being called.
+		argnum   - The *optional number* of the argument that was bad.
 		expected - The *optional string, class (via moon.type), or list* of the type(s) you expected.
 		data     - *Optional and any type*, the actual data you got.
 		level    - The *optional number* of how many levels up (from this function) to throw the error. Defaults to _1_.
@@ -247,7 +254,7 @@ export class UtilX
 	Revisions:
 		1.0.0 - Initial.
 	]=]
-	@RaiseBadArg: (argnum, fnName, expected, data, level=1 using nil) ->
+	@RaiseBadArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		expected = { expected } if expected and moon.type(expected) ~= "table"
 		dataStr = moon.type(data)
 		dataStr = data.__name if type(dataStr) ~= "string"
@@ -276,8 +283,8 @@ export class UtilX
 	This function is primarily useful at the beginning of a function definition to ensure that the correct type of data was passed in.
 
 	Parameters:
-		argnum   - The *optional number* of the argument that was bad.
 		fnName   - The *optional string* of the function name being called.
+		argnum   - The *optional number* of the argument that was bad.
 		expected - The *optional string, class (via moon.type), or list* of the type(s) you expected.
 		data     - *Optional and any type*, the actual data you got.
 		level    - The *optional number* of how many levels up (from this function) to throw the error. Defaults to _1_.
@@ -285,14 +292,56 @@ export class UtilX
 	Returns:
 		Returns using *<Raise()>* if the argument doesn't match what's expected, otherwise returns *true*.
 
+	Example:
+		:CheckArg("test", 1, "number", 41)
+
+		returns...
+
+		:true
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
-	@CheckArg: (argnum, fnName, expected, data, level=1 using nil) ->
+	@CheckArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		if moon.type(expected) ~= "table"
 			if expected == moon.type(data)
 				return true
 		elseif TableX.HasValueI(expected, moon.type(data)) then
 			return true
 
-		self.RaiseBadArg argnum, fnName, expected, data, level+1
+		self.RaiseBadArg fnName, argnum, expected, data, level+1
+
+
+	[=[
+	Function: CheckArgs
+	A shortcut for checking all the arguments passed into a function via <CheckArg>.
+
+	Parameters:
+		fnName - The *optional string* of the function name being called.
+		args   - The *array* containing one *array* for each argument.
+		         In each sub-array, the first argument is the expected arg in <CheckArg>.
+		         The second argument is the data arg in <CheckArg>.
+		level  - The *optional number* of how many levels up (from this function) to throw the error. Defaults to _1_.
+
+	Returns:
+		Returns using *<Raise()>* if the arguments don't match what's expected, otherwise returns *true*.
+
+	Example:
+		:CheckArgs("test", {{"boolean", true}, {"string", "41"}})
+
+		returns...
+
+		:true
+
+	Revisions:
+		1.0.0 - Initial.
+	]=]
+	@CheckArgs: (fnName, args, level=1 using nil) ->
+		for argnum=1, #args
+			continue if args[argnum] == nil
+			{expected, data} = args[argnum]
+
+			if not self.CheckArg fnName, argnum, expected, data, level+1
+				return false
+
+		true
