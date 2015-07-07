@@ -77,13 +77,14 @@ If you don't have it already, install Homebrew from [http://brew.sh](http://brew
 ##### Required (Development) #####
 ```
 brew install lua51 luarocks
-luarocks install moonscript LuaSocket
+luarocks-5.1 install moonscript
+luarocks-5.1 install LuaSocket
 ```
 
 ##### Optional (Testing and Documentation) #####
 ```
 brew install naturaldocs plantuml
-luarocks install busted
+luarocks-5.1 install busted
 ```
 
 ### Linux ###
