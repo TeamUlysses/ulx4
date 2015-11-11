@@ -1,27 +1,36 @@
-# (Mostly) stolen from github.com/Ovine-Labs/busted
+# (Mostly) stolen from github.com/moteus/lua-travis-example
 language: c
 
+sudo: false
+
 env:
-    - LUA='Lua 5.1'
-    
-before_install:
-    - bash .travis_setup.sh
+  global:
+    - LUAROCKS=2.2.2
+  matrix:
+    - LUA=lua5.1
+    - LUA=lua5.2
+    - LUA=lua5.3
+    - LUA=luajit     # latest stable version (2.0.3)
+    - LUA=luajit2.0  # current head of 2.0 branch
+    - LUA=luajit2.1  # current head of 2.1 branch
 
 branches:
-    only:
-        - master
+  only:
+    - master
 
-install:
-    - sudo apt-get update -qq
-    - sudo luarocks install busted
-    - sudo luarocks install moonscript
+before_install:
+  - source .travis/setenv_lua.sh
+  - pip install --user cpp-coveralls
+  - luarocks install moonscript
+  - luarocks install busted
 
-script: busted spec
+script:
+  - busted spec
 
 notifications:
-    recipients:
-        - megiddo@ulyssesmod.net
-        - sticklyman@ulyssesmod.net
-    email:
-        on_success: always
-        on_failure: always
+  recipients:
+    - megiddo@ulyssesmod.net
+    - sticklyman@ulyssesmod.net
+  email:
+    on_success: change
+    on_failure: always
