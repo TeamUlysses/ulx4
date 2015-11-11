@@ -1,3 +1,5 @@
+unpack = unpack or table.unpack -- This gives us Lua 5.2 and 5.3 compatability
+
 [=[
 Class: TableX
 
@@ -37,7 +39,7 @@ export class TableX
 		c = 0
 		for v in pairs t
 			c += 1
-			
+
 		c
 
 
@@ -83,8 +85,8 @@ export class TableX
 			t[ k ] = nil
 
 		t
-	
-	
+
+
 	[=[
 	Function: Copy
 	Make a shallow copy of a table. A shallow copy means that any subtables will still refer to the	same underlying table.
@@ -107,9 +109,9 @@ export class TableX
 
 	[=[
 	Function: CopyI
-	Exactly the same as <Copy> except that it uses fori instead of pairs. 
+	Exactly the same as <Copy> except that it uses fori instead of pairs.
 	In general, this means that it only copies numeric keys. See <A Discussion On fori>.
-	
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
@@ -141,9 +143,9 @@ export class TableX
 
 	InPlaceHelperI = (t, inPlace using nil) ->
 		if inPlace then return t
-		self.CopyI t 
-		
-		
+		self.CopyI t
+
+
 	[=[
 	Function: RemoveDuplicateValues
 	Removes any duplicate values from a list.
@@ -177,7 +179,7 @@ export class TableX
 			v = list[ i ]
 			for j=1, i-1
 				if list[j] == v
-					table.remove list, i 
+					table.remove list, i
 					i -= 1 -- Since we removed it and it will be incremented below otherwise
 					break
 			i += 1
@@ -225,7 +227,7 @@ export class TableX
 	Function: UnionByKeyI
 	Exactly the same as <UnionByKey> except that it uses fori instead of pairs. In general, this
 	means that it only merges on numeric keys. See <A Discussion On fori>.
-	
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
@@ -279,7 +281,7 @@ export class TableX
 	Gets the intersection of two tables by key.
 
 	Parameters:
-		tableA - The first *table* in the intersection. 
+		tableA - The first *table* in the intersection.
 		tableB - The second *table* in the intersection.
 
 	Returns:
@@ -313,9 +315,9 @@ export class TableX
 
 	[=[
 	Function: IntersectionByKeyI
-	Exactly the same as <IntersectionByKey> except that it uses fori instead of pairs. In 
+	Exactly the same as <IntersectionByKey> except that it uses fori instead of pairs. In
 	general, this means that it only merges on numeric keys. See <A Discussion On fori>.
-	
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
@@ -411,7 +413,7 @@ export class TableX
 	Function: DifferenceByKeyI
 	Exactly the same as <DifferenceByKey> except that it uses fori instead of pairs. In general,
 	this means that it only performs the difference on numeric keys. See <A Discussion On fori>.
-	
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
@@ -497,7 +499,7 @@ export class TableX
 
 		for v in *listB
 			table.insert listA, v
-			
+
 		listA
 
 	[=[
@@ -534,7 +536,7 @@ export class TableX
 	Function: HasValueI
 	Exactly the same as <HasValue> except that it uses fori instead of pairs.
 	In general, this means that it only merges on numeric keys. See <A Discussion On fori>.
-	
+
 	Revisions:
 		1.0.0 - Initial.
 	]=]
@@ -544,12 +546,12 @@ export class TableX
 				return true, i
 
 		false, nil
-		
+
 	[=[
 	Function: SetFromList
 	Creates a set from a list. A list is defined as a table with all numeric keys in sequential order (such as {"red", "yellow", "green"}).
-	A set is defined as a table that only uses the boolean value true for keys that exist in the table. 
-	This function takes the values from the list and makes them the keys in a set, all with the value of 'true'. 
+	A set is defined as a table that only uses the boolean value true for keys that exist in the table.
+	This function takes the values from the list and makes them the keys in a set, all with the value of 'true'.
 	Note that you lose ordering and duplicates in the list during this conversion, but gain ease of testing for a value's existence in the table.
 	One simply needs to test whether the value of a key is true or nil.
 
