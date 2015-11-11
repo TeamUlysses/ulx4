@@ -83,7 +83,9 @@ export class Arg
 
 	[=[
 	Function: Completes
-	TODO
+
+	Returns:
+		TODO
 	]=]
 	Completes: (str using nil) =>
 		--return {"Current entry is invalid"} if str\find("%S") and not @IsValid str
@@ -105,12 +107,14 @@ export class Arg
 	Parse: (str using nil) =>
 		UtilX.RaiseUnimplemented "Arg.Parse"
 
+
 	[=[
 	Function: IsPermissible
 	TODO
 	]=]
 	IsPermissible: (obj using nil) =>
 		UtilX.RaiseUnimplemented "Arg.IsPermissible"
+
 
 	[=[
 	Function: Serialize
@@ -119,12 +123,15 @@ export class Arg
 	Serialize: (str using nil) =>
 		UtilX.RaiseUnimplemented "Arg.Serialize"
 
+
 	[=[
 	Function: Deserialize
 	TODO
 	]=]
-	@Deserialize: (str, obj using nil) =>
+	@Deserialize: (str, obj using nil) ->
 		UtilX.RaiseUnimplemented "Arg.Deserialize"
+
+
 
 [=[
 Class: ArgNum
@@ -221,6 +228,34 @@ export class ArgNum extends Arg
 		return false, "Above maximum (#{@_Max})" if num > @_Max
 		true
 
+
+	[=[
+	Function: Serialize
+	TODO
+	]=]
+	Serialize: (str using nil) =>
+		"#{@_Min}:#{@_Max}"
+
+
+	[=[
+	Function: Deserialize
+	TODO
+	]=]
+	@Deserialize: (str, obj using nil) ->
+		splitPt = str\find ":"
+
+		local min, max
+		if splitPt
+			min = tonumber(str\sub(1, splitPt-1))
+			max = tonumber(str\sub(splitPt+1))
+		else -- Assume they want it restricted to one value
+			min = tonumber(str)
+			max = min
+
+		ArgNum!\Min(min)\Max(max)
+
+
+
 [=[
 Class: ArgTime
 The argument class used for a timespan using natural language.
@@ -241,6 +276,7 @@ class ArgTime extends ArgNum
 	]=]
 	Min: nil
 	Max: nil
+
 
 
 [=[
@@ -267,6 +303,7 @@ class ArgString extends Arg
 	Default:             ""
 	RestrictToCompletes: false
 	Completes:           nil
+
 
 
 [=[
@@ -297,6 +334,7 @@ class ArgPlayerID extends Arg
 	RestrictTarget:     nil
 	MaximumTargets:     1
 	PassPlayerIfActive: false
+
 
 
 [=[

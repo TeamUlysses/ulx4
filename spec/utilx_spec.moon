@@ -28,6 +28,7 @@ describe "Test Utilities", (using nil) ->
 		assert.error(-> UtilX.CheckArg("test", 12, UtilX, TableX!))
 		return
 
+
 	it "CheckArg() corner cases", (using nil) ->
 		assert.True(UtilX.CheckArg())
 		assert.True(UtilX.CheckArg("test"))
