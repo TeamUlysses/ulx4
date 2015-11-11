@@ -1,3 +1,5 @@
+unpack = unpack or table.unpack -- This gives us Lua 5.2 and 5.3 compatability
+
 import dofile from require "moonscript"
 dofile "moon/tablex.moon"
 dofile "moon/utilx.moon"
