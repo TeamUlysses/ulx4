@@ -9,22 +9,54 @@ describe "Test Arguments", (using nil) ->
 		a = Arg!
 		assert.is_not_nil(a)
 
-		a = with Arg!
-			\Default(45)
-			\Optional!
-			\Hint("arg")
-			\Help("this is an arg")
+		a = Arg!
+		assert.equals("<arg>", a\UsageShort!)
+
+		a\Optional!
+		assert.equals("[<arg: default nil>]", a\UsageShort!)
+
+		a\Default(45)\Hint("arg2")
+		assert.equals("[<arg2: default 45>]", a\UsageShort!)
+
+		a\Help("this is an arg")
 
 		assert.same({a\UsageShort!}, a\Completes!)
-		assert.equals("[<arg: default 45>]", a\UsageShort!)
 		assert.equals(
 			"Type:     Arg\n" ..
 			"Default:  45 (used if argument is unspecified)\n" ..
-			"Hint:     arg\n" ..
+			"Hint:     arg2\n" ..
 			"Help:     this is an arg", a\UsageLong!)
-		assert.error(-> a\IsValid!)
-		assert.error(-> a\Parse!)
-		assert.error(-> a\IsPermissible!)
-		assert.error(-> a\Serialize!)
-		assert.error(-> a\Deserialize!)
+
+		assert.True(a\IsValid("apple"))
+		assert.True(a\IsValid(nil))
+		assert.False(Arg!\IsValid(nil))
+		assert.equals("pear", a\Parse("pear"))
+		assert.equals(45, a\Parse(nil))
+		assert.True(a\IsPermissible(false))
+		return
+
+
+	it "NumArg compliance", (using nil) ->
+		a = ArgNum!
+		assert.equals("<number: x>", a\UsageShort!)
+
+		a\Optional!
+		assert.equals("[<number: x, default 0>]", a\UsageShort!)
+
+		assert.error(-> a\Default("apple"))
+		a\Default 41
+
+		assert.same({a\UsageShort!}, a\Completes!)
+		assert.equals(
+			"Type:     ArgNum\n" ..
+			"Default:  41 (used if argument is unspecified)\n" ..
+			"Hint:     number\n" ..
+			"Help:     A number argument", a\UsageLong!)
+
+		assert.False(a\IsValid("apple"))
+		assert.True(a\IsValid(nil))
+		assert.False(ArgNum!\IsValid(nil))
+		assert.nil(a\Parse("pear"))
+		assert.equals(41, a\Parse(nil))
+		assert.True(a\IsPermissible(false))
 		return

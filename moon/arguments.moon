@@ -35,8 +35,8 @@ export class Arg
 	]=]
 	_Default:  nil
 	_Optional: false
-	_Hint:     ""
-	_Help:     ""
+	_Hint:     "arg"
+	_Help:     "An arbitrary argument"
 
 	@ShortcutFn "Default"
 	@ShortcutFn "Optional", "boolean", true
@@ -56,7 +56,8 @@ export class Arg
 	UsageShort: (str = "" using nil) =>
 		str ..= ", "                   if @_Optional and #str > 0
 		str ..= "default #{@_Default}" if @_Optional
-		str = "#{@_Hint}: " .. str     if @_Hint
+		str = ": " .. str              if @_Hint and #str > 0
+		str = tostring(@_Hint) .. str  if @_Hint
 		str = "<" .. str .. ">"
 		str = "[" .. str .. "]"        if @_Optional
 
@@ -237,8 +238,8 @@ export class ArgNum extends Arg
 	See <Arg.IsValid>. For <ArgNum>, "valid" is anything that passes tonumber().
 	]=]
 	IsValid: (obj using nil) =>
-		if not super\IsValid(obj)
-			return false
+		if obj == nil and @_Optional
+			return true
 		tonumber(obj) ~= nil
 
 
