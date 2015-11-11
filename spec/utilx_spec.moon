@@ -1,6 +1,7 @@
-import dofile from require "moonscript"
-dofile "moon/tablex.moon"
-dofile "moon/utilx.moon"
+require "moonscript"
+
+require "moon/tablex"
+require "moon/utilx"
 
 describe "Test Utilities", (using nil) ->
 	it "Round() compliance", (using nil) ->
@@ -12,7 +13,7 @@ describe "Test Utilities", (using nil) ->
 		return
 
 
-	it "CheckArg() compliance", (using nil) ->
+	it "CheckArg() basic compliance", (using nil) ->
 		assert.True(UtilX.CheckArg("test", 1, "number", 41))
 		assert.True(UtilX.CheckArg("test", 2, "string", "41"))
 		assert.True(UtilX.CheckArg("test", 3, "table", {}))
@@ -25,6 +26,23 @@ describe "Test Utilities", (using nil) ->
 		assert.True(UtilX.CheckArg("test", 10, TableX, TableX))
 		assert.error(-> UtilX.CheckArg("test", 11, UtilX, TableX))
 		assert.error(-> UtilX.CheckArg("test", 12, UtilX, TableX!))
+		return
+
+	it "CheckArg() corner cases", (using nil) ->
+		assert.True(UtilX.CheckArg())
+		assert.True(UtilX.CheckArg("test"))
+		assert.True(UtilX.CheckArg("test", 3))
+		assert.True(UtilX.CheckArg("test", 4, "function", (() ->)))
+		assert.True(UtilX.CheckArg(nil, 5, "boolean", true))
+		assert.True(UtilX.CheckArg("test", nil, "boolean", false))
+		assert.True(UtilX.CheckArg("test", 7, nil, "41"))
+		assert.True(UtilX.CheckArg(nil, nil, UtilX, UtilX))
+		assert.True(UtilX.CheckArg(nil, nil, nil, UtilX!))
+		assert.True(UtilX.CheckArg(nil, 10, nil, TableX))
+		assert.error(-> UtilX.CheckArg("test", 11, UtilX, nil))
+		assert.error(-> UtilX.CheckArg(nil, 12, "string", nil))
+		assert.error(-> UtilX.CheckArg("test", nil, "string", 42))
+		assert.error(-> UtilX.CheckArg(nil, nil, "table", true))
 		return
 
 

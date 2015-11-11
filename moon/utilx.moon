@@ -303,6 +303,7 @@ export class UtilX
 		1.0.0 - Initial.
 	]=]
 	@CheckArg: (fnName, argnum, expected, data, level=1 using nil) ->
+		if expected == nil return true
 		if moon.type(expected) ~= "table"
 			if expected == moon.type(data)
 				return true

@@ -1,8 +1,9 @@
 unpack = unpack or table.unpack -- This gives us Lua 5.2 and 5.3 compatability
 
-import dofile from require "moonscript"
-dofile "moon/tablex.moon"
-dofile "moon/utilx.moon"
+require "moonscript"
+
+require "moon/tablex"
+require "moon/utilx"
 
 describe "Test Table Utilities", (using nil) ->
 	it "Count() compliance", (using nil) ->
