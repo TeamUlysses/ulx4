@@ -1,6 +1,6 @@
 # ULX #
 
-[![Build Status](https://travis-ci.org/Nayruden/ulx.svg)](https://travis-ci.org/Nayruden/ulx)
+[![Build Status](https://travis-ci.org/TeamUlysses/ulx4.svg?branch=master)](https://travis-ci.org/TeamUlysses/ulx4)
 
 ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and concise description here.
 
@@ -56,7 +56,7 @@ This allows us to quickly document ULX source structure without the hassle of a 
 
 Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`. Your file structure should look like the following:
 
-![File structure](http://nayruden.github.io/ulx/doc/diagrams/file-structure.png)
+![File structure](http://teamulysses.github.io/ulx4/doc/diagrams/file-structure.png)
 
 
 
