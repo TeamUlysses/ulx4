@@ -44,28 +44,6 @@ export class Arg
 
 
 	[=[
-	Function: Combine
-	This function combines <Arg> instances together in the most restrictive way possible.
-	This is used to combine multiple permission sets for an argument together (E.G., for the user, and their groups).
-
-	Parameters:
-		args - A *table of <Args>* to combine together.
-		copyTo - An optional *<Arg>* instance to copy the resulting combined data into. _Defaults to a blank <Arg>_.
-
-	Returns:
-		The reference to copyTo.
-	]=]
-	@Combine: (args, copyTo=Arg() using nil) =>
-		copyTo = Arg()
-		for copyFrom in *args
-			if copyFrom._Default ~= nil
-				copyTo._Default = copyFrom._Default
-			copyTo._Optional = copyFrom._Optional or copyTo._Optional
-
-		copyTo
-
-
-	[=[
 	Function: UsageShort
 
 	Parameters:
@@ -95,10 +73,10 @@ export class Arg
 		A full *string* help for using the argument.
 	]=]
 	UsageLong: (str = "" using nil) =>
-		str ..= "Type:     #{@@__name}\n"
-		str ..= "Default:  #{@_Default} (used if argument is unspecified)\n" if @_Optional
-		str ..= "Hint:     #{@_Hint}\n"    if @_Hint
-		str ..= "Help:     #{@_Help}\n"    if @_Help
+		str ..=   "Type:     #{@@__name}"
+		str ..= "\nDefault:  #{@_Default} (used if argument is unspecified)" if @_Optional
+		str ..= "\nHint:     #{@_Hint}"    if @_Hint
+		str ..= "\nHelp:     #{@_Help}"    if @_Help
 
 		str
 
@@ -185,22 +163,6 @@ export class ArgNum extends Arg
 
 
 	[=[
-	Function: Combine
-	TODO
-	]=]
-	@Combine: (args, copyTo=ArgNum() using nil) =>
-		super\Combine args, copyTo
-		for copyFrom in *args
-			if copyFrom._Min and (not copyTo._Min or copyTo._Min and copyFrom._Min > copyTo._Min)
-				copyTo._Min = copyFrom._Min
-			if copyFrom._Max and (not copyTo._Max or copyTo._Max and copyFrom._Max < copyTo._Max)
-				copyTo._Max = copyFrom._Max
-			copyTo._Round = copyFrom._Round or copyTo._Round
-
-		copyTo
-
-
-	[=[
 	Function: UsageShort
 	TODO
 	]=]
@@ -221,11 +183,12 @@ export class ArgNum extends Arg
 	TODO
 	]=]
 	UsageLong: (str = "" using nil) =>
-		str = super\UsageLong str
+		str = super\UsageLong(str)
 
-		str ..= "Min:      #{@_Min}\n"   if @_Min
-		str ..= "Max:      #{@_Max}\n"   if @_Max
-		str ..= "Round:    #{@_Round}\n" if @_Round
+		str ..= "\nMin:      #{@_Min}"   if @_Min
+		str ..= "\nMax:      #{@_Max}"   if @_Max
+		str ..= "\nRound:    #{@_Round}" if @_Round
+
 		str
 
 
@@ -298,7 +261,7 @@ class ArgString extends Arg
 		Default - A *string*, defaults to _""_. If an argument is optional and unspecified, this value is used.
 		RestrictToCompletes - A *boolean*, defaults to _false_.
 			If true, the argument passed will /always/ be one of the arguments from the <Completes> table.
-		Completes           - A *table or nil* of auto-completes (suggestions) for the argument.
+		Completes           - A *list of strings or nil* of auto-completes (suggestions) for the argument.
 
 	]=]
 	Default:             ""

@@ -40,6 +40,7 @@ Timestamp: Generated on d month, year
 
 File: Arguments  (moon/arguments.moon)
 File: Command  (moon/command.moon)
+File: Hook  (moon/hook.moon)
 File: Plugin  (moon/plugin.moon)
 File: TableX  (moon/tablex.moon)
 File: UtilX  (moon/utilx.moon)

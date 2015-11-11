@@ -3,8 +3,6 @@ abstract class Arg {
 	+Default    : //any//
 	+IsOptional : bool = false
 
-	+Combine( args : list<Arg> ) : Arg {static}
-
 	+UsageShort() : string
 	+UsageLong() : string
 	+Completes( str : string ) : table
