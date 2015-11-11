@@ -1,0 +1,10 @@
+* text=auto
+
+*.moon text
+*.lua text
+*.txt text
+*.yml text
+*.iuml text
+*.sh text
+*.md text
+*.bat text

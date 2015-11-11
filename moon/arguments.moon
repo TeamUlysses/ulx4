@@ -26,7 +26,7 @@ export class Arg
 	[=[
 	Variables: Arg Variables
 	All these variables are optional, with sensible defaults. *Do not set these directly*. Instead, call the setter
-	function of the same name without the underscore. E.G., call "Defult(myDefaultValue)".
+	function of the same name without the underscore. E.G., call `Default(myDefaultValue)`.
 
 		_Default  - A value of *any type*. If an argument is optional and unspecified, this value is used.
 		_Optional - A *boolean* of whether or not this argument is optional.

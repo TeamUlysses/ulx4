@@ -19,6 +19,8 @@ class Command
 
 	[=[
 	Variables: Command Variables
+	All these variables are optional, with sensible defaults. *Do not set these directly*. Instead, call the setter
+	function of the same name without the underscore. E.G., call `Name("Billy Bob")`.
 
 		_Name         - A *string* of the name of the command.
 		_Callback     - A *function* to callback when the command is called.
