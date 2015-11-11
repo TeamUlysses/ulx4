@@ -1,11 +1,11 @@
 [=[
-Class: Command
+Class: UCommand
 Used to create a new command. Commands are always tied to the console, and optionally to chat as well.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
-class Command
+export class UCommand
 	[=[
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
@@ -66,7 +66,7 @@ class Command
 		           The callback gets called with the arguments specified in the <Args> variable.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	new: (name, callback) =>
 		UtilX.CheckArgs "Command", {{"string", name},

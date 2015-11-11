@@ -177,6 +177,6 @@ Note: LuaRocks requires [Visual Studio (free)](https://www.visualstudio.com/prod
 
 ## Change Log ##
 
-### 1.0.0 - (00 Jan 0000) ###
+### 4.0.0 - (00 Jan 0000) ###
 
  * Initial release.

@@ -4,7 +4,7 @@ Class: TableX
 A static class used for table-specific utility functions that are not specific to Garry's Mod.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 export class TableX
 	[=[
@@ -31,7 +31,7 @@ export class TableX
 		* Complexity is O(n), where n is the number of values in t.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Count: (t using nil) ->
 		c = 0
@@ -56,7 +56,7 @@ export class TableX
 		* Complexity is O(1).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@IsEmpty: (t using nil) ->
 		next(t) == nil
@@ -76,7 +76,7 @@ export class TableX
 		* Complexity is O(Count(t)).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Empty: (t using nil) ->
 		for k, v in pairs t
@@ -99,7 +99,7 @@ export class TableX
 		* Complexity is O(Count(t)).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Copy: (t using nil) ->
 		{ k, v for k, v in pairs t }
@@ -111,7 +111,7 @@ export class TableX
 	In general, this means that it only copies numeric keys. See <A Discussion On fori>.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@CopyI: (t using nil) ->
 		[ v for v in *t ]
@@ -128,7 +128,7 @@ export class TableX
 		The copied *table*.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@DeepCopy: (t using nil) ->
 		{ k, (type(v) == "table" and self.DeepCopy(v) or v) for k, v in pairs t }
@@ -167,7 +167,7 @@ export class TableX
 		* Duplicates are removed after the first value occurs. See example above.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@RemoveDuplicateValues: (list, inPlace using nil) ->
 		list = InPlaceHelperI list, inPlace
@@ -210,7 +210,7 @@ export class TableX
 		* Complexity is O(Count(tableB)).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@UnionByKey: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelper tableA, inPlace
@@ -227,7 +227,7 @@ export class TableX
 	means that it only merges on numeric keys. See <A Discussion On fori>.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@UnionByKeyI: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelperI tableA, inPlace
@@ -266,7 +266,7 @@ export class TableX
 		* You might want to consider using <SetFromList> combined with <UnionByKey> for large tables or if you plan on doing this often.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Union: (listA, listB, inPlace using nil) ->
 		listA = self.Append listA, listB, inPlace
@@ -298,7 +298,7 @@ export class TableX
 		* Complexity is O(Count(tableA)).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@IntersectionByKey: (tableA, tableB using nil) ->
 		result = {}
@@ -317,7 +317,7 @@ export class TableX
 	general, this means that it only merges on numeric keys. See <A Discussion On fori>.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@IntersectionByKeyI: (tableA, tableB using nil) ->
 		result = {}
@@ -357,7 +357,7 @@ export class TableX
 		* You might want to consider using <SetFromList> combined with <IntersectionByKey> for large tables or if you plan on doing this often.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Intersection: (listA, listB, inPlace using nil) ->
 		listA = self.RemoveDuplicateValues listA, inPlace
@@ -396,7 +396,7 @@ export class TableX
 		* Complexity is O(Count(tableB)).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@DifferenceByKey: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelper tableA, inPlace
@@ -413,7 +413,7 @@ export class TableX
 	this means that it only performs the difference on numeric keys. See <A Discussion On fori>.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@DifferenceByKeyI: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelperI tableA, inPlace
@@ -452,7 +452,7 @@ export class TableX
 		* You might want to consider using <SetFromList> combined with <DifferenceByKey> for large tables or if you plan on doing this often.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Difference: (listA, listB, inPlace using nil) ->
 		listA = self.RemoveDuplicateValues listA, inPlace
@@ -490,7 +490,7 @@ export class TableX
 		* Complexity is O(#listB).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Append: (listA, listB, inPlace using nil) ->
 		listA = InPlaceHelperI listA, inPlace
@@ -520,7 +520,7 @@ export class TableX
 		:true, "pear"
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@HasValue: (t, value using nil) ->
 		for k, v in pairs t
@@ -536,7 +536,7 @@ export class TableX
 	In general, this means that it only merges on numeric keys. See <A Discussion On fori>.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@HasValueI: (t, value using nil) ->
 		for i=1, #t do
@@ -571,7 +571,7 @@ export class TableX
 		* Complexity is O(#list).
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@SetFromList: (list using nil) ->
 		{ v, true for v in *list }

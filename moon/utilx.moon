@@ -9,7 +9,7 @@ Depends On:
 	* <TableX>
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 export class UtilX
 	[=[
@@ -26,7 +26,7 @@ export class UtilX
 		* This is 'trim6' from <http://lua-users.org/wiki/StringTrim>.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Trim: (str using nil) ->
 		str\match("^()%s*$") and "" or str\match("^%s*(.*%S)")
@@ -37,7 +37,7 @@ export class UtilX
 	Exactly like <Trim> except it only trims the left side. Taken from <http://lua-users.org/wiki/CommonFunctions>
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@LTrim: (str using nil) ->
 		(str\gsub("^%s*", ""))
@@ -48,7 +48,7 @@ export class UtilX
 	Exactly like <Trim> except it only trims the right side. Taken from <http://lua-users.org/wiki/CommonFunctions>
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@RTrim: (str using nil) ->
 		n = #str
@@ -114,7 +114,7 @@ export class UtilX
 			Array size is useful debug information when iterating over a table with ipairs or fori.
 
 	Revisions:
-		v1.0.0 - Initial.
+		v4.0.0 - Initial.
 	]=]
 	@Vardump: (... using nil) ->
 		str = ""
@@ -152,7 +152,7 @@ export class UtilX
 		The rounded *number*.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@Round: (num, places=0 using nil) ->
 		mult = 10 ^ places
@@ -200,7 +200,7 @@ export class UtilX
 		* Any time multiplier (E.G., weeks) that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
 		UtilX.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
@@ -252,7 +252,7 @@ export class UtilX
 		Always returns using *<Raise()>*.
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@RaiseBadArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		expected = { expected } if expected and moon.type(expected) ~= "table"
@@ -300,7 +300,7 @@ export class UtilX
 		:true
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@CheckArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		if expected == nil return true
@@ -335,7 +335,7 @@ export class UtilX
 		:true
 
 	Revisions:
-		1.0.0 - Initial.
+		4.0.0 - Initial.
 	]=]
 	@CheckArgs: (fnName, args, level=1 using nil) ->
 		for argnum=1, #args

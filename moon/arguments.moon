@@ -9,7 +9,7 @@ The base argument class. This class is not really meant to be used in practice a
 but <Arg> lays down some important shared functionality for the other argument classes.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 export class Arg
 	[=[
@@ -175,7 +175,7 @@ Passes:
 	A *number* value, defaulting to _0_.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 export class ArgNum extends Arg
 	-- Values from parent that we want to override the defaults for
@@ -312,7 +312,7 @@ Passes:
 	A *number* of seconds, defaulting to _0_.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 class ArgTime extends ArgNum
 	[=[
@@ -335,7 +335,7 @@ Passes:
 	A *string* value, defaulting to _0_.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 class ArgString extends Arg
 	[=[
@@ -363,7 +363,7 @@ Passes:
 	Each item is either a valid SteamID or a connected player.
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 class ArgPlayerID extends Arg
 	[=[
@@ -393,6 +393,6 @@ Passes:
 	A *table of players* (between one and <MaximumTargets> items).
 
 Revisions:
-	1.0.0 - Initial.
+	4.0.0 - Initial.
 ]=]
 class ArgPlayerActive extends ArgPlayerID
