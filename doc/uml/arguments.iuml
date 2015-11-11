@@ -9,7 +9,7 @@ abstract class Arg {
 	+Parse( str : string ) : //any//, string
 
 	+Serialize() : string
-	+Deserialize( serial : string ) : Arg {static}
+	+Deserialize( serialized : string ) : Arg {static}
 }
 
 class ArgNum {
