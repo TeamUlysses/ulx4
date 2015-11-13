@@ -11,7 +11,7 @@ Depends On:
 Revisions:
 	4.0.0 - Initial.
 ]=]
-export class UtilX
+class ulx.UtilX
 	[=[
 	Function: Trim
 	Trims leading and tailing whitespace from a string.
@@ -72,7 +72,7 @@ export class UtilX
 		t = type value
 		if t == "table" and not done[value]
 			done[value] = true
-			str ..= string.format "(table: array size=%i, total values=%i)\n", #value, TableX.Count(value)
+			str ..= string.format "(table: array size=%i, total values=%i)\n", #value, ulx.TableX.Count(value)
 			for k, v in pairs value
 				str ..= VardumpHelper v, depth+1, k, done
 
@@ -203,12 +203,12 @@ export class UtilX
 		4.0.0 - Initial.
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
-		UtilX.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
+		ulx.UtilX.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
 
 		if num = tonumber(str)
 			return num
 
-		str = UtilX.Trim(str\gsub ",", "")
+		str = ulx.UtilX.Trim(str\gsub ",", "")
 		len = #str
 		num = 0
 		startIdx = 1
@@ -218,7 +218,7 @@ export class UtilX
 
 			units = str\sub startIdx, codeIdx-1
 			units = tonumber units
-			code = UtilX.Trim(str\sub codeIdx, nextIdx-1)
+			code = ulx.UtilX.Trim(str\sub codeIdx, nextIdx-1)
 			multiplier = timeCodes[code] or 1
 			num += units * multiplier
 
@@ -307,7 +307,7 @@ export class UtilX
 		if moon.type(expected) ~= "table"
 			if expected == moon.type(data)
 				return true
-		elseif TableX.HasValueI(expected, moon.type(data)) then
+		elseif ulx.TableX.HasValueI(expected, moon.type(data)) then
 			return true
 
 		self.RaiseBadArg fnName, argnum, expected, data, level+1

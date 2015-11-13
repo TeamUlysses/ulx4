@@ -11,14 +11,14 @@ but <Arg> lays down some important shared functionality for the other argument c
 Revisions:
 	4.0.0 - Initial.
 ]=]
-export class Arg
+class ulx.Arg
 	[=[
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
 	]=]
 	@ShortcutFn = (name, typ, default using nil) =>
 		@__base[name] = (val=default using nil) =>
-			UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
+			ulx.UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
 			@["_" .. name] = val
 			@
 
@@ -177,7 +177,7 @@ Passes:
 Revisions:
 	4.0.0 - Initial.
 ]=]
-export class ArgNum extends Arg
+class ulx.ArgNum extends ulx.Arg
 	-- Values from parent that we want to override the defaults for
 	_Default: 0
 	_Hint:    "number"
@@ -253,7 +253,7 @@ export class ArgNum extends Arg
 	Parse: (obj using nil) =>
 		num = tonumber(obj)
 		num = @_Default if obj == nil and @_Optional
-		num = UtilX.Round num, @_Round if num and @_Round
+		num = ulx.UtilX.Round num, @_Round if num and @_Round
 		num
 
 
@@ -314,7 +314,7 @@ Passes:
 Revisions:
 	4.0.0 - Initial.
 ]=]
-class ArgTime extends ArgNum
+class ulx.ArgTime extends ulx.ArgNum
 	[=[
 	Variables: ArgNum Variables
 	All these variables are optional, with sensible defaults.
@@ -337,7 +337,7 @@ Passes:
 Revisions:
 	4.0.0 - Initial.
 ]=]
-class ArgString extends Arg
+class ulx.ArgString extends ulx.Arg
 	[=[
 	Variables: ArgString Variables
 	All these variables are optional, with sensible defaults.
@@ -365,7 +365,7 @@ Passes:
 Revisions:
 	4.0.0 - Initial.
 ]=]
-class ArgPlayerID extends Arg
+class ulx.ArgPlayerID extends ulx.Arg
 	[=[
 	Variables: ArgPlayerID Variables
 	All these variables are optional, with sensible defaults.
@@ -395,4 +395,4 @@ Passes:
 Revisions:
 	4.0.0 - Initial.
 ]=]
-class ArgPlayerActive extends ArgPlayerID
+class ulx.ArgPlayerActive extends ulx.ArgPlayerID

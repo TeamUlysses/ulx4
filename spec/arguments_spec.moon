@@ -1,15 +1,17 @@
+_G.ulx = _G.ulx or {}
+
 require "moonscript"
 
-require "moon/tablex"
-require "moon/utilx"
-require "moon/arguments"
+require "moon/ulx/sh_tablex"
+require "moon/ulx/sh_utilx"
+require "moon/ulx/sh_arguments"
 
 describe "Test Arguments", (using nil) ->
 	it "Base Arg compliance", (using nil) ->
-		a = Arg!
+		a = ulx.Arg!
 		assert.is_not_nil(a)
 
-		a = Arg!
+		a = ulx.Arg!
 		assert.equals("<arg>", a\UsageShort!)
 
 		a\Optional!
@@ -29,7 +31,7 @@ describe "Test Arguments", (using nil) ->
 
 		assert.True(a\IsValid("apple"))
 		assert.True(a\IsValid(nil))
-		assert.False(Arg!\IsValid(nil))
+		assert.False(ulx.Arg!\IsValid(nil))
 		assert.equals("pear", a\Parse("pear"))
 		assert.equals(45, a\Parse(nil))
 		assert.True(a\IsPermissible(false))
@@ -37,7 +39,7 @@ describe "Test Arguments", (using nil) ->
 
 
 	it "NumArg compliance", (using nil) ->
-		a = ArgNum!
+		a = ulx.ArgNum!
 		assert.equals("<number: x>", a\UsageShort!)
 
 		a\Optional!
@@ -55,7 +57,7 @@ describe "Test Arguments", (using nil) ->
 
 		assert.False(a\IsValid("apple"))
 		assert.True(a\IsValid(nil))
-		assert.False(ArgNum!\IsValid(nil))
+		assert.False(ulx.ArgNum!\IsValid(nil))
 		assert.nil(a\Parse("pear"))
 		assert.equals(41, a\Parse(nil))
 		assert.True(a\IsPermissible(false))

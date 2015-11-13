@@ -6,7 +6,7 @@ A static class used for table-specific utility functions that are not specific t
 Revisions:
 	4.0.0 - Initial.
 ]=]
-export class TableX
+class ulx.TableX
 	[=[
 	Function: Count
 	Counts the number of elements in a table using pairs.

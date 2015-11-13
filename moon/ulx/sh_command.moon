@@ -1,11 +1,11 @@
 [=[
-Class: UCommand
+Class: Command
 Used to create a new command. Commands are always tied to the console, and optionally to chat as well.
 
 Revisions:
 	4.0.0 - Initial.
 ]=]
-export class UCommand
+class ulx.Command
 	[=[
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
