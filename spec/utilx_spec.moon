@@ -1,6 +1,4 @@
-_G.ulx = _G.ulx or {}
-
-require "moonscript"
+require "spec/init"
 
 require "moon/ulx/sh_tablex"
 require "moon/ulx/sh_utilx"

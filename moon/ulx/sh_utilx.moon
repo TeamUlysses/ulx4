@@ -1,5 +1,3 @@
-moon = require "moon"
-
 [=[
 Class: UtilX
 
@@ -7,6 +5,7 @@ A static class used for utility functions that are not specific to Garry's Mod.
 
 Depends On:
 	* <TableX>
+	* Moon standard library
 
 Revisions:
 	4.0.0 - Initial.

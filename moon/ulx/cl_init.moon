@@ -1,4 +1,4 @@
-print "ULX v#{ulx.VERSION} loading..."
+print "ULX v#{ulx.VERSION} loading client-side..."
 
 [[
 Player loading notes:

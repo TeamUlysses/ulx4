@@ -1,4 +1,4 @@
-print "ULX v#{ulx.VERSION} loading..."
+print "ULX v#{ulx.VERSION} loading server-side..."
 
 hook.Add("PlayerAuthed","t",(ply, ...) -> print( SysTime(), "auth", ply, ...))
 hook.Add("PlayerConnect","t",(...) -> print( SysTime(), "connect", ...))

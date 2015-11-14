@@ -1,7 +1,4 @@
-unpack = unpack or table.unpack -- This gives us Lua 5.2 and 5.3 compatability
-_G.ulx = _G.ulx or {}
-
-require "moonscript"
+require "spec/init"
 
 require "moon/ulx/sh_tablex"
 require "moon/ulx/sh_utilx"
