@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/TeamUlysses/ulx4.svg?branch=master)](https://travis-ci.org/TeamUlysses/ulx4)
 
+### NOTE: This version of ULX is in early development, and is not currently a full replacement for ULX 3. Do not run this on your servers yet! ###
+
 ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and concise description here.
 
 ULX is licensed under the MIT license. For an easy-to-understand summary of the license, please check out [tl;dr Legal](https://tldrlegal.com/license/mit-license).
