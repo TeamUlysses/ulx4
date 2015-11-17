@@ -17,6 +17,9 @@ class ulx.Command
 			@
 
 
+	@CmdList: {}
+
+
 	[=[
 	Variables: Command Variables
 	All these variables are optional, with sensible defaults. *Do not set these directly*. Instead, call the setter
@@ -34,6 +37,7 @@ class ulx.Command
 		               _Defaults to the command parameter passed to <new()>_.
 		_Args         - A *table* of the arguments (of type <Argument>) for the command.
 		_Restrictions - A *table* of the restrictions (of type <Restriction>) for the command.
+		_Plugin       - TODO
 	]=]
 	_Name:         nil
 	_Callback:     nil
@@ -44,6 +48,7 @@ class ulx.Command
 	_ConsoleAlias: {}
 	_Args:         {}
 	_Restrictions: {}
+	_Plugin:       {}
 
 	@ShortcutFn "Name", "string"
 	@ShortcutFn "Callback", "function"
@@ -61,21 +66,25 @@ class ulx.Command
 	Creates a new command.
 
 	Parameters:
-		name     - A *string* command name (E.G., "ulx slap").
+		name     - A *string* command name (E.G., "slap").
 		callback - A *function* to call when the command is invoked.
 		           The callback gets called with the arguments specified in the <Args> variable.
+		plugin   - TODO
 
 	Revisions:
 		4.0.0 - Initial.
 	]=]
-	new: (name, callback) =>
+	new: (name, callback, plugin) =>
 		UtilX.CheckArgs "Command", {{"string", name},
-		                            {"function", callback}}
+		                            {"function", callback},
+		                            {{"nil", ulx.Plugin}, plugin}}
 
 		@_Name = name
 		@_Callback = callback
 		@_ChatAlias = "!" .. name
 		@_ConsoleAlias = name
+		@_Plugin = plugin
+		-- TODO insert into CmdList
 
 with plugin\Command( "command", ulx.command ) -- Chat alias is automatically assumed, can override with .ChatAlias = ...
 	\Hint "Hint text"

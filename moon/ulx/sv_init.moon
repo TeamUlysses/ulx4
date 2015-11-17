@@ -1,6 +1,21 @@
 print "ULX v#{ulx.VERSION} loading server-side..."
 
-hook.Add("PlayerAuthed","t",(ply, ...) -> print( SysTime(), "auth", ply, ...))
-hook.Add("PlayerConnect","t",(...) -> print( SysTime(), "connect", ...))
-hook.Add("PlayerInitialSpawn","t",(ply) -> print( SysTime(), "spawn", ply, ply\SteamID!, ply\IsFullyAuthenticated!))
--- TODO next: sent init command to client
+util.AddNetworkString(ulx.NET_CMDS)
+
+playerAuth = (ply using net) ->
+	net.Start(ulx.NET_CMDS)
+	net.WriteString("start")
+	net.Send(ply)
+	nil
+hook.Add("PlayerAuthed", "ULX Start Client", playerAuth)
+
+[[
+Player loading notes (server-side):
+	On a listen server, "PlayerConnect" is not called for the server host.
+	"PlayerInitialSpawn" is called about 2-3 seconds before "PlayerAuth".
+	Player appears in player.GetAll() shortly after "PlayerInitialSpawn".
+	The player sometimes flags for "IsFullyAuthenticated" on PlayerInitialSpawn.
+
+Notes (client-side):
+	The name of the local player may be "unconnected" even up to the "InitPostEntity" hook.
+]]

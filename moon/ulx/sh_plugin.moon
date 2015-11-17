@@ -6,7 +6,7 @@ Used to create a new ULX plugin. Stores plugin configuration information as well
 Revisions:
 	4.0.0 - Initial.
 ]=]
-class Plugin
+class ulx.Plugin
 	[=[
 	Variables: Plugin Variables
 	All these variables are optional.
@@ -23,7 +23,7 @@ class Plugin
 	Description:    "Not set"
 	Category:       "Unknown"
 	ReleaseVersion: "0.0.0"
-	
+
 	AddCommand: (name, callback) =>
 		return with Commmand!
 			.Category = @Category
