@@ -78,7 +78,7 @@ If you don't have it already, install Homebrew from [http://brew.sh](http://brew
 
 ##### Required (Development) #####
 ```
-brew install lua51 luarocks
+brew install lua51
 luarocks-5.1 install moonscript
 luarocks-5.1 install LuaSocket
 ```
