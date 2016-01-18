@@ -128,7 +128,8 @@ class ulx.UtilX
 	Function: Raise
 	TODO
 	]=]
-	@Raise: (str, level=1 using nil) -> error str, level
+	@Raise: (str, level=1 using nil) ->
+		error str, level+1
 
 	[=[
 	Function: RaiseUnimplemented

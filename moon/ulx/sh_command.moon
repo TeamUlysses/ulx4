@@ -12,10 +12,9 @@ class ulx.Command
 	]=]
 	@ShortcutFn = (name, typ, default using nil) =>
 		@__base[name] = (val=default using nil) =>
-			UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
+			ulx.UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
 			@["_" .. name] = val
 			@
-
 
 	@CmdList: {}
 
@@ -56,9 +55,22 @@ class ulx.Command
 	@ShortcutFn "Access", {"string", "table"}
 	@ShortcutFn "Category", "string"
 	@ShortcutFn "ChatAlias", {"string", "table"}
-	@ShortcutFn "ConsoleAlias", {"string", "table"}
+	--@ShortcutFn "ConsoleAlias", {"string", "table"}
 	@ShortcutFn "Args", "table"
 	@ShortcutFn "Restrictions", "table"
+	@ShortcutFn "Plugin", {"nil", "Plugin"}
+
+	UnregisterCommands = () =>
+		--TODO
+
+	ConsoleAlias: (aliases using nil) =>
+		ulx.UtilX.CheckArg "#{@@__name}.ConsoleAlias", 1, {"string", "table"}, aliases, 2
+
+		UnregisterCommands!
+		aliases = {aliases} if type(aliases) == "string"
+		for alias in *aliases
+			@@CmdList[alias] = self
+			concommand.Add alias, @_Callback, nil, @_Hint
 
 
 	[=[
@@ -74,18 +86,18 @@ class ulx.Command
 	Revisions:
 		4.0.0 - Initial.
 	]=]
-	new: (name, callback, plugin) =>
-		UtilX.CheckArgs "Command", {{"string", name},
+	new: (name, callback, plugin using nil) =>
+		ulx.UtilX.CheckArgs "Command", {{"string", name},
 		                            {"function", callback},
 		                            {{"nil", ulx.Plugin}, plugin}}
 
-		@_Name = name
-		@_Callback = callback
-		@_ChatAlias = "!" .. name
-		@_ConsoleAlias = name
-		@_Plugin = plugin
-		-- TODO insert into CmdList
+		@Name name
+		@Callback callback
+		@ChatAlias "!" .. name
+		@ConsoleAlias name
+		@Plugin plugin
 
+[=[
 with plugin\Command( "command", ulx.command ) -- Chat alias is automatically assumed, can override with .ChatAlias = ...
 	\Hint "Hint text"
 	\Access "admin"
@@ -104,3 +116,4 @@ with plugin\Command( "command", ulx.command ) -- Chat alias is automatically ass
 		RestrictToPresenceOf "#user"
 		RestrictToCustom (ply, ...) -> if ply\IsAlive() then return false, "you must be alive to run this command" else return true
 	}
+]=]
