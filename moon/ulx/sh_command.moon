@@ -60,17 +60,20 @@ class ulx.Command
 	@ShortcutFn "Restrictions", "table"
 	@ShortcutFn "Plugin", {"nil", "Plugin"}
 
-	UnregisterCommands = () =>
-		--TODO
+	UnregisterCommands: (using nil) =>
+		for alias in *@_ConsoleAlias
+			@@CmdList[alias] = nil
+			concommand.Remove alias
 
 	ConsoleAlias: (aliases using nil) =>
 		ulx.UtilX.CheckArg "#{@@__name}.ConsoleAlias", 1, {"string", "table"}, aliases, 2
 
-		UnregisterCommands!
+		@UnregisterCommands!
 		aliases = {aliases} if type(aliases) == "string"
 		for alias in *aliases
 			@@CmdList[alias] = self
 			concommand.Add alias, @_Callback, nil, @_Hint
+		@_ConsoleAlias = aliases
 
 
 	[=[
@@ -89,7 +92,7 @@ class ulx.Command
 	new: (name, callback, plugin using nil) =>
 		ulx.UtilX.CheckArgs "Command", {{"string", name},
 		                            {"function", callback},
-		                            {{"nil", ulx.Plugin}, plugin}}
+		                            {{"nil", ulx.Plugin}, plugin}}, 3
 
 		@Name name
 		@Callback callback
