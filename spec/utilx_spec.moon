@@ -100,5 +100,16 @@ describe "Test Utilities", (using nil) ->
 			ux.TimeStringToSeconds("1M, 7d, 5h, 3m 11s "),
 			ux.TimeStringToSeconds("1 month  7 days, 5h 3minute, 11 seconds"),
 			ux.TimeStringToSeconds(" 1 month  7 days, 5h 3minute, 11 seconds ")
+		return
 
+
+	it "Explode() compliance", (using nil) ->
+		assert.same { "This", "is", "a", "sentence" },
+			ux.Explode( " ", "This is a sentence" )
+		return
+
+
+	it "SplitArgs() compliance", (using nil) ->
+		assert.same { "This", "is", "a", "Cool sentence to", "make", "split up" },
+			ux.SplitArgs( "This is a \"Cool sentence to\" make \"split up\"" )
 		return

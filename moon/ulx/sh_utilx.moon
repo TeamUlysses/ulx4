@@ -136,7 +136,7 @@ class ulx.UtilX
 	TODO
 	]=]
 	@RaiseUnimplemented: (str, level=1 using nil) ->
-		self.Raise str .. " called, but unimplemented", level+1
+		@.Raise str .. " called, but unimplemented", level+1
 
 	[=[
 	Function: Round
@@ -203,12 +203,12 @@ class ulx.UtilX
 		4.0.0 - Initial.
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
-		ulx.UtilX.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
+		@.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
 
 		if num = tonumber(str)
 			return num
 
-		str = ulx.UtilX.Trim(str\gsub ",", "")
+		str = @.Trim(str\gsub ",", "")
 		len = #str
 		num = 0
 		startIdx = 1
@@ -218,7 +218,7 @@ class ulx.UtilX
 
 			units = str\sub startIdx, codeIdx-1
 			units = tonumber units
-			code = ulx.UtilX.Trim(str\sub codeIdx, nextIdx-1)
+			code = @.Trim(str\sub codeIdx, nextIdx-1)
 			multiplier = timeCodes[code] or 1
 			num += units * multiplier
 
@@ -274,7 +274,7 @@ class ulx.UtilX
 				str ..= "got " .. dataStr
 			str ..= ")"
 
-		self.Raise str, level+1
+		@.Raise str, level+1
 
 
 	[=[
@@ -310,7 +310,7 @@ class ulx.UtilX
 		elseif ulx.TableX.HasValueI(expected, moon.type(data)) then
 			return true
 
-		self.RaiseBadArg fnName, argnum, expected, data, level+1
+		@.RaiseBadArg fnName, argnum, expected, data, level+1
 
 
 	[=[
@@ -342,7 +342,104 @@ class ulx.UtilX
 			continue if args[argnum] == nil
 			{expected, data} = args[argnum]
 
-			if not self.CheckArg fnName, argnum, expected, data, level+1
+			if not @.CheckArg fnName, argnum, expected, data, level+1
 				return false
 
 		true
+
+
+	[=[
+	Function: Explode
+	Split a string by a separator.
+
+	Parameters:
+		separator - The *string* separator. This can be RegEx.
+		str - The *string* to explode.
+		limit - The *optional number* specifying the maximum times to explode.
+
+	Returns:
+		A *list of strings*.
+
+	Example:
+		:Explode( " ", "This is a sentence" )
+
+		returns...
+
+		:{ "This", "is", "a", "sentence" }
+
+		Revisions:
+			4.0.0 - Initial.
+	]=]
+	@Explode: (separator, str, limit using nil) ->
+		t = {}
+		curpos = 1
+		while true -- We have a break in the loop
+			newpos, endpos = str\find separator, curpos -- find the next separator in the string
+			if newpos ~= nil -- if found then..
+				table.insert t, str\sub(curpos, newpos-1) -- Save it in our table.
+				curpos = endpos + 1 -- save just after where we found it for searching next time.
+			else
+				if limit and #t > limit
+					return t -- Reached limit
+				table.insert( t, str\sub(curpos) ) -- Save what's left in our array.
+				break
+
+		return t
+
+
+	[=[
+	Function: SplitArgs
+	This is similar to a string explode function on whitespace, except that it also allows for grouping with startToken and endToken.
+
+	Parameters:
+		args - The *string* to split into individual arguments.
+		startToken - The *string* character to start a string with, default to _'"'_ (double quotes).
+		endToken - The *string* character to end a string with, default to _'"'_ (double quotes).
+
+	Returns:
+		1 - A *list of strings*. Each item is one argument.
+		2 - A *boolean*, which is true if the start and end tokens were mismatched (parsing ended while looking for an endToken).
+
+	Example:
+		:SplitArgs( "This is a \"Cool sentence to\" make \"split up\"" )
+
+		returns...
+
+		:{ "This", "is", "a", "Cool sentence to", "make", "split up" }
+
+	Notes:
+		* Mismatched quotes will result in having the last quote grouping the remaining input into one argument.
+		* Args outside of quotes are trimmed (via string.Trim), while args inside quotes is not trimmed at all.
+
+	Revisions:
+		4.0.0 - Initial.
+	]=]
+	@SplitArgs: (args, startToken='"', endToken='"' using nil) ->
+		args = @.Trim args
+		argv = {}
+		currentPos = 1 -- Our current position within the string
+		inQuote = false -- Is the text we're currently processing in a quote?
+		argsLen = #args
+
+		while inQuote or currentPos <= argsLen
+			tokenToLookFor = inQuote and endToken or startToken
+			tokenPos = args\find tokenToLookFor, currentPos, true
+
+			-- The string up to the quote, the whole string if no quote was found
+			prefix = args\sub currentPos, (tokenPos or 0) - 1
+			if not inQuote
+				trimmedPrefix = @.Trim prefix
+				if trimmedPrefix ~= "" -- Something to be had from this...
+					arg = @.Explode( "%s+", trimmedPrefix )
+					ulx.TableX.Append argv, arg, true
+			else
+				table.insert argv, prefix
+
+			-- If a quote was found, update our position and note our state
+			if tokenPos ~= nil
+				currentPos = tokenPos + 1
+				inQuote = not inQuote
+			else -- Otherwise we've processed the whole string now
+				break
+
+		return argv, inQuote
