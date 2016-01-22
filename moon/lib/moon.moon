@@ -1,6 +1,6 @@
 -- Taken from github.com/leafo/moonscript/commit/24b3a86c68c505ec31040e6c8529bd1e0e8b690e (5 Oct 2015)
 -- Renamed file and made minimal modifications for Garry-compability
-include("lib/moon_util.lua")
+--include("lib/moon_util.lua")
 util = moon.util
 lua = { :debug, :type }
 

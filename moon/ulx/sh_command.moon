@@ -24,6 +24,13 @@ class ulx.Command
 	Only available statically, meant for internal use only.
 	]=]
 	@CommandRouter: (ply, commandStr, argv, args using nil) ->
+		-- Default argv doesn't parse some things correctly, so just do it ourselves
+		-- Examples of things that default argv chokes on...
+		-- MyCmd hi:there
+		-- MyCmd we don't like single quotes
+		-- MyCmd http://google.com -- though this information is LOST, so we can't fix it
+		argv = ulx.UtilX.SplitArgs args
+
 		while #argv > 0
 			newCommandStr = commandStr .. " " .. argv[1]
 			if not @CmdMap[newCommandStr]

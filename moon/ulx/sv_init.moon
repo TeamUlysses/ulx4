@@ -6,7 +6,7 @@ playerAuth = (ply using net) ->
 	net.Start(ulx.NET_CMDS)
 	net.WriteString("start")
 	net.Send(ply)
-	nil
+
 hook.Add("PlayerAuthed", "ULX Start Client", playerAuth)
 
 [[

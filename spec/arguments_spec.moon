@@ -58,5 +58,5 @@ describe "Test Arguments", (using nil) ->
 		assert.False(ulx.ArgNum!\IsValid(nil))
 		assert.nil(a\Parse("pear"))
 		assert.equals(41, a\Parse(nil))
-		assert.True(a\IsPermissible(false))
+		assert.True(a\IsPermissible(3))
 		return

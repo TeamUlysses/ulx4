@@ -19,7 +19,7 @@ describe "Test Commands", (using nil) ->
 		fn = spy.new (ply, ... using nil) ->
 			--print ulx.UtilX.Vardump(ply, ...)
 		wrappedFn = (...) -> fn(...)
-		runArgs = {ply1, "slap", {"arg1", "arg21 arg22"}, 'arg1 "arg21 arg22"'}
+		runArgs = {ply1, "slap", {"arg1", "arg21's arg22"}, 'arg1 "arg21\'s arg22"'}
 		return
 
 

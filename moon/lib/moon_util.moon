@@ -136,7 +136,7 @@ safe_module = (name, tbl) ->
       error "Attempted to import non-existent `#{key}` from #{name}"
   }
 
-_G.moon = _G.moon or {}
+_G.moon = _G.moon or moon
 moon.util = {
   :moon, :pos_to_line, :get_closest_line, :get_line, :reversed, :trim, :split,
   :dump, :debug_posmap, :getfenv, :setfenv, :get_options, :unpack, :safe_module

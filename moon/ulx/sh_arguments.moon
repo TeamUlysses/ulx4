@@ -265,6 +265,7 @@ class ulx.ArgNum extends ulx.Arg
 		num - A *number*.
 	]=]
 	IsPermissible: (num using nil) =>
+		return false, "Not a number (given #{num})" if type(num) ~= "number"
 		return false, "Below minimum (#{@_Min})" if @_Min and num < @_Min
 		return false, "Above maximum (#{@_Max})" if @_Max and num > @_Max
 		true
