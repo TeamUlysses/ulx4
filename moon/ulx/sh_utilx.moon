@@ -110,7 +110,7 @@ class ulx.UtilX
 	Notes:
 		* A string will always be surrounded by quotes and a number will always stand by itself. This is to make it easier to identify numbers stored as strings.
 		* Array size and total size are shown in the table header. Array size is the result of the pound operator (#) on the table, total size is the result of <Count>.
-			Array size is useful debug information when iterating over a table with ipairs or fori.
+		  Array size is useful debug information when iterating over a table with ipairs or fori.
 
 	Revisions:
 		v4.0.0 - Initial.

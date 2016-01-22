@@ -16,7 +16,7 @@ class ulx.Arg
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
 	]=]
-	@ShortcutFn = (name, typ, default using nil) =>
+	@ShortcutFn = (name, typ, default using nil) ->
 		@__base[name] = (val=default using nil) =>
 			ulx.UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
 			@["_" .. name] = val
@@ -38,10 +38,10 @@ class ulx.Arg
 	_Hint:     "arg"
 	_Help:     "An arbitrary argument"
 
-	@ShortcutFn "Default"
-	@ShortcutFn "Optional", "boolean", true
-	@ShortcutFn "Hint", "string"
-	@ShortcutFn "Help", "string"
+	@.ShortcutFn "Default"
+	@.ShortcutFn "Optional", "boolean", true
+	@.ShortcutFn "Hint", "string"
+	@.ShortcutFn "Help", "string"
 
 
 	[=[
@@ -183,7 +183,7 @@ class ulx.ArgNum extends ulx.Arg
 	_Hint:    "number"
 	_Help:    "A number argument"
 
-	@ShortcutFn "Default", "number"
+	@.ShortcutFn "Default", "number"
 
 	[=[
 	Variables: ArgNum Variables
@@ -198,9 +198,9 @@ class ulx.ArgNum extends ulx.Arg
 	_Max:   nil
 	_Round: nil
 
-	@ShortcutFn "Min", {"number", "nil"}
-	@ShortcutFn "Max", {"number", "nil"}
-	@ShortcutFn "Round", {"number", "nil"}, 0
+	@.ShortcutFn "Min", {"number", "nil"}
+	@.ShortcutFn "Max", {"number", "nil"}
+	@.ShortcutFn "Round", {"number", "nil"}, 0
 
 
 	[=[

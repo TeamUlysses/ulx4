@@ -6,17 +6,45 @@ Revisions:
 	4.0.0 - Initial.
 ]=]
 class ulx.Command
+	@CmdMap: {}
+
 	[=[
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
 	]=]
-	@ShortcutFn = (name, typ, default using nil) =>
+	@ShortcutFn: (name, typ, default using nil) ->
 		@__base[name] = (val=default using nil) =>
 			ulx.UtilX.CheckArg "#{@@__name}.#{name}", 1, typ, val
 			@["_" .. name] = val
 			@
 
-	@CmdList: {}
+
+	[=[
+	Function: CommandRouter
+	Only available statically, meant for internal use only.
+	]=]
+	@CommandRouter: (ply, commandStr, argv, args using nil) ->
+		while #argv > 0
+			newCommandStr = commandStr .. " " .. argv[1]
+			if not @CmdMap[newCommandStr]
+				break
+			commandStr = newCommandStr
+			table.remove argv, 1
+
+		@.ExecutionRouter ply, commandStr, argv
+
+
+	[=[
+	Function: ExecutionRouter
+	TODO
+	]=]
+	@ExecutionRouter: (ply, commandStr, argv using nil) ->
+		cmd = @CmdMap[commandStr]
+		if not cmd
+			--log.warn "ExecutionRouter received invalid command" -- TODO
+			return
+
+		cmd\Execute ply, argv
 
 
 	[=[
@@ -34,8 +62,8 @@ class ulx.Command
 		               _Defaults to the command parameter passed to <new()>, prefixed with the default chat prefix_.
 		_ConsoleAlias - A *string* or *table* of the console command alias(es) for the command.
 		               _Defaults to the command parameter passed to <new()>_.
-		_Args         - A *table* of the arguments (of type <Argument>) for the command.
-		_Restrictions - A *table* of the restrictions (of type <Restriction>) for the command.
+		_Args         - A *list of <Arguments>* for the command.
+		_Restrictions - A *list of <Restrictions>* for the command.
 		_Plugin       - TODO
 	]=]
 	_Name:         nil
@@ -49,20 +77,20 @@ class ulx.Command
 	_Restrictions: {}
 	_Plugin:       {}
 
-	@ShortcutFn "Name", "string"
-	@ShortcutFn "Callback", "function"
-	@ShortcutFn "Hint", "string"
-	@ShortcutFn "Access", {"string", "table"}
-	@ShortcutFn "Category", "string"
-	@ShortcutFn "ChatAlias", {"string", "table"}
-	--@ShortcutFn "ConsoleAlias", {"string", "table"}
-	@ShortcutFn "Args", "table"
-	@ShortcutFn "Restrictions", "table"
-	@ShortcutFn "Plugin", {"nil", "Plugin"}
+	@.ShortcutFn "Name", "string"
+	@.ShortcutFn "Callback", "function"
+	@.ShortcutFn "Hint", "string"
+	@.ShortcutFn "Access", {"string", "table"}
+	@.ShortcutFn "Category", "string"
+	@.ShortcutFn "ChatAlias", {"string", "table"}
+	--@.ShortcutFn "ConsoleAlias", {"string", "table"}
+	@.ShortcutFn "Args", "table"
+	@.ShortcutFn "Restrictions", "table"
+	@.ShortcutFn "Plugin", {"nil", "Plugin"}
 
 	UnregisterCommands: (using nil) =>
 		for alias in *@_ConsoleAlias
-			@@CmdList[alias] = nil
+			@@CmdMap[alias] = nil
 			concommand.Remove alias
 
 	ConsoleAlias: (aliases using nil) =>
@@ -71,8 +99,8 @@ class ulx.Command
 		@UnregisterCommands!
 		aliases = {aliases} if type(aliases) == "string"
 		for alias in *aliases
-			@@CmdList[alias] = self
-			concommand.Add alias, @_Callback, nil, @_Hint
+			@@CmdMap[alias] = self
+			concommand.Add alias, @@CommandRouter, nil, @_Hint
 		@_ConsoleAlias = aliases
 
 
@@ -99,6 +127,31 @@ class ulx.Command
 		@ChatAlias "!" .. name
 		@ConsoleAlias name
 		@Plugin plugin
+
+	[=[
+	Function: Execute
+	TODO
+	]=]
+	Execute: (ply, argvRaw using nil) =>
+		-- TODO, check access
+		argvParsed = {}
+		cmdArgs = @_Args
+
+		for i=1, #cmdArgs
+			cmdArg = cmdArgs[i]
+			argRaw = argvRaw[i]
+			argParsed = argRaw
+			if type(argRaw) == "string"
+				argParsed = cmdArg\Parse argRaw
+
+			permissible, msg = cmdArg\IsPermissible argParsed
+			if not permissible
+				return false, msg
+
+			argvParsed[i]=argParsed
+
+		@._Callback ply, unpack(argvParsed)
+		return true
 
 [=[
 with plugin\Command( "command", ulx.command ) -- Chat alias is automatically assumed, can override with .ChatAlias = ...
