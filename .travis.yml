@@ -23,6 +23,7 @@ before_install:
   - pip install --user cpp-coveralls
   - luarocks install moonscript
   - luarocks install busted
+  - luarocks install lua-cjson
 
 script:
   - busted spec
