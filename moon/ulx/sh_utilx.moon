@@ -63,7 +63,7 @@ class ulx.UtilX
 		if key ~= nil
 			t = type key
 			if t == "string"
-				str = string.format "%q", key
+				str ..= string.format "%q", key
 			else
 				str ..= tostring key
 			str ..= " = "
@@ -79,7 +79,7 @@ class ulx.UtilX
 			str ..= string.format "%q\n", value
 
 		else
-			str = tostring(value) .. "\n"
+			str ..= tostring(value) .. "\n"
 
 		str
 
