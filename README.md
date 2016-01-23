@@ -29,13 +29,6 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 
 ### Dependencies ###
 
-#### Runtime Dependencies (Included) ####
-
-Besides the modified version of Garry's Mod's Lua 5.1, ULX needs the following dependencies to function. These dependencies are included with ULX.
-
-[dkjson](http://dkolf.de/src/dkjson-lua.fsl) - A [JSON](http://json.org) library.
-JSON is the format of choice for ULX when writing to plain text files. This format was chosen over the existing Source KeyValues format because it's an accepted Internet standard (and thus easier to move the data around) in addition to being less prone to errors.
-
 #### Development Dependencies (Not Included) ####
 
 ULX's codebase and documentation were built using the following tools. You do not need these dependencies installed for ULX to function.
@@ -45,6 +38,9 @@ MoonScript was chosen for ULX in order to minimize typing, increase clarity of i
 
 [Busted](http://olivinelabs.com/busted) - Elegant Lua unit testing.
 Busted tests our core functionality to ensure that everything is working as advertised.
+
+[lua-cjson](http://www.kyne.com.au/~mark/software/lua-cjson.php) - A [JSON](http://json.org) library.
+JSON is the format of choice for ULX when writing to plain text files. This format was chosen over the existing Source KeyValues format because it's an accepted Internet standard (and thus easier to move the data around) in addition to being less prone to errors. Garry's Mod natively supports JSON, but we need to process JSON data in our unit tests.
 
 [Natural Docs](http://naturaldocs.org) - Documentation generator.
 Natural Docs generates ULX documentation from comments in the source code and is available online at http://ulyssesmod.net/ulx4-doc.
@@ -87,6 +83,7 @@ luarocks-5.1 install LuaSocket
 ```
 brew install naturaldocs plantuml
 luarocks-5.1 install busted
+luarocks-5.1 install lua-cjson
 ```
 
 ### Linux ###
@@ -103,6 +100,7 @@ sudo luarocks install moonscript LuaSocket
 ```
 sudo apt-get install naturaldocs
 sudo luarocks install busted
+sudo luarocks install lua-cjson
 ```
 
 Installing PlantUML will take a bit more work:
