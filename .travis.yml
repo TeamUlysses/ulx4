@@ -24,6 +24,7 @@ before_install:
   - luarocks install moonscript
   - luarocks install busted
   - luarocks install lua-cjson
+  - luarocks install luafilesystem
 
 script:
   - busted spec
