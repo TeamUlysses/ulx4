@@ -15,7 +15,7 @@ class ulx.File
 		4.0.0 - Initial.
 	]=]
 	@ReadAllText: (path, mount="GAME" using nil) ->
-		-- TODO type checking
+		-- TODO type checking and mounting
 		file.Read path, search
 
 
@@ -35,7 +35,23 @@ class ulx.Directory
 	Revisions:
 		4.0.0 - Initial.
 	]=]
-	@GetFiles: (path=".", searchPattern="*", searchRecursive=false, mount="GAME" using nil) ->
-		-- TODO type checking + recurisve
-		files, dirs = file.Find path .. "/" .. searchPattern, mount
+	@GetFiles: (path="", searchPattern="*", searchRecursive=false, mount="GAME" using nil) ->
+		-- TODO type checking and mounting
+		files = GetFilesHelper path, searchPattern, searchRecursive, mount, {}
 		files
+
+	GetFilesHelper = (path, searchPattern, searchRecursive, mount, filesAccum using nil) ->
+		if path ~= "" and path\sub(-1) ~= "\\"
+			path ..= "/"
+
+		files = file.Find(path .. searchPattern, mount)
+		dummy, dirs = file.Find(path .. "*", mount)
+
+		for file in *files
+			table.insert(filesAccum, path .. file)
+
+		if searchRecursive
+			for dir in *dirs
+				GetFilesHelper(path .. dir, searchPattern, searchRecursive, mount, filesAccum)
+
+		return filesAccum
