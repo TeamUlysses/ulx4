@@ -23,8 +23,20 @@ class ulx.Lang
 			return formatStr\format numToCheck
 
 		Single: (toCheck, strIfSingle, strOtherwise) ->
-			#toCheck == 1 and strIfSingle or strOtherwise
+			typ = type toCheck
+			if typ ~= "table" and typ ~= "string"
+				--log.warn "Non-countable passed..." -- TODO
+				return ""
+
+			return #toCheck == 1 and strIfSingle or strOtherwise
 	}
+
+	[=[
+	Function: AddMutator
+	TODO
+	]=]
+	@AddMutator: (name, func using nil) ->
+		@Mutators[name] = func
 
 	[=[
 	Function: SetLanguage
@@ -42,6 +54,7 @@ class ulx.Lang
 		for langFile in *langFiles
 			txt = ulx.File.ReadAllText langFile
 			phrases = util.JSONToTable txt
+			-- TODO, type check phrases
 			ulx.TableX.UnionByKey phraseAccum, phrases, true
 
 		@Phrases = phraseAccum
@@ -56,75 +69,67 @@ class ulx.Lang
 		@Phrases[phraseName]
 
 	[=[
-	Function: AddMutator
-	TODO
-	]=]
-	@AddMutator: (name, func using nil) ->
-		@Mutators[name] = func
-
-	[=[
 	Function: GetMutatedPhrase
 	TODO
 	]=]
 	@GetMutatedPhrase: (phraseName, data using nil) ->
-		txt = @.GetPhrase phraseName
-		mutatedPhrase = txt\gsub("{.-}", (mutatorBlock using nil) ->
-			--print mutatorBlock
-			curPos = mutatorBlock\find "[}|]", 3
-			replacementName = mutatorBlock\sub(2, curPos-1)
-			--print phraseName
+		phrase = @.GetPhrase phraseName
+		mutatedPhrase = phrase\gsub "{.-}", (placeholder using nil) ->
+			processPlaceholder(placeholder, data)
+		ulx.UtilX.Trim mutatedPhrase
 
-			--mutated = data[replacementName]
-			mutatorFunctionsAndArguments = {}
-			while mutatorBlock\sub(curPos, curPos) == "|"
-				nextPos = mutatorBlock\find("[}|]", curPos+1)
-				functionBlock = mutatorBlock\sub(curPos+1, nextPos-1)
-				fn, args = getFunction functionBlock, mutated
-				table.insert mutatorFunctionsAndArguments, {fn, args}
-				curPos = nextPos
+	-- Receives everything between and including the brackets "{DAMAGE|NonZero:for %i damage}"
+	processPlaceholder = (placeholder, data using nil) ->
+		curPos = placeholder\find("|", 3, true) or #placeholder -- next pipe or the end bracket
+		placeholderName = placeholder\sub(2, curPos-1)
 
-			replacement = data[replacementName]
-			mutated = callMutatorChain replacement, mutatorFunctionsAndArguments
-			if type(mutated) == "table"
-				mutated = mutateListToString replacement, callMutatorChain, mutatorFunctionsAndArguments
+		mutatorFnsAndArgs = {}
+		while placeholder\sub(curPos, curPos) == "|"
+			nextPos = placeholder\find("|", curPos+2, true) or #placeholder -- next pipe or the end bracket
+			functionBlock = placeholder\sub(curPos+1, nextPos-1)
+			fn, args = getFnAndArgs functionBlock, mutated
+			table.insert mutatorFnsAndArgs, {fn, args}
+			curPos = nextPos
 
-			--print mutated
-			return mutated
-		)
+		replacement = data[placeholderName]
+		mutated = pipeMutators replacement, mutatorFnsAndArgs
+		if type(mutated) == "table"
+			mutated = listPipeMutators replacement, mutatorFnsAndArgs
 
-		return ulx.UtilX.Trim mutatedPhrase
+		return mutated
 
-	getFunction = (functionBlock, txt) ->
-		--print functionBlock
-		curPos = functionBlock\find(":", 1, true) or #functionBlock+1
+	-- Receives a mutator function and all its arguments "NonZero:for %i damage"
+	getFnAndArgs = (functionBlock, txt) ->
+		curPos = functionBlock\find(":", 2, true) or #functionBlock+1 -- next colon of end of string
 		functionName = functionBlock\sub(1, curPos-1)
-		--print functionName
 		args = {}
+
 		while functionBlock\sub(curPos, curPos) == ":"
-			nextPos = functionBlock\find(":", curPos+1, true) or #functionBlock+1
+			nextPos = functionBlock\find(":", curPos+2, true) or #functionBlock+1 -- next colon of end of string
 			arg = functionBlock\sub(curPos+1, nextPos-1)
 			table.insert args, arg
-			--print #args, arg
 			curPos = nextPos
 
 		return @Mutators[functionName], args
 
-	mutateListToString = (list, fn, ... using nil) ->
+	-- Make a string from a list while piping each item
+	listPipeMutators = (list, ... using nil) ->
 		str = ""
 		for i=1, #list-2
-			str ..= fn(list[i], ...) .. ", "
+			str ..= pipeMutators(list[i], ...) .. ", "
 
 		if #list > 1
-			mutated = fn(list[#list-1], ...)
+			mutated = pipeMutators(list[#list-1], ...)
 			conjuction = " " .. @.GetPhrase("AND") .. " "
 			str ..= mutated .. conjuction
 
-		str ..= fn(list[#list], ...)
+		str ..= pipeMutators(list[#list], ...)
 		return str
 
-	callMutatorChain = (replacement, mutatorFunctionsAndArguments using nil) ->
-		for mutatorFunctionsAndArgument in *mutatorFunctionsAndArguments
-			fn = mutatorFunctionsAndArgument[1]
-			args = mutatorFunctionsAndArgument[2]
+	-- Send a string through each mutator function with the specified arguments
+	pipeMutators = (replacement, mutatorFnsAndArgs using nil) ->
+		for mutatorFnAndArgs in *mutatorFnsAndArgs
+			fn = mutatorFnAndArgs[1]
+			args = mutatorFnAndArgs[2]
 			replacement = fn(replacement, unpack(args))
 		return replacement
