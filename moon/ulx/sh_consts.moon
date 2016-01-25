@@ -1,3 +1,9 @@
+[=[
+File: Constants
+TODO
+]=]
+
+
 ulx.VERSION_MAJOR = 4
 ulx.VERSION_MINOR = 0
 ulx.VERSION_PATCH = 0
