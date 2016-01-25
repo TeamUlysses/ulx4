@@ -13,7 +13,7 @@ export class file
 		path = pathPattern\sub 1, posLastSlash
 		path = "./" if path == ""
 		searchPattern = pathPattern\sub posLastSlash+1
-		searchPattern = searchPattern\gsub("*", ".*", 1, true)\gsub(".", "\.", 1, true) -- To use in RegEx
+		searchPattern = searchPattern\gsub("*", ".*", 1, true)\gsub("\\.", "\\.", 1, true) -- To use in RegEx
 
 		for file in lfs.dir path
 			if file\find searchPattern
