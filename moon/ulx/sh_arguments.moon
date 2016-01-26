@@ -185,6 +185,8 @@ class ulx.ArgNum extends ulx.Arg
 
 	@.ShortcutFn "Default", "number"
 
+	lang = ulx.Lang -- shortcut
+
 	[=[
 	Variables: ArgNum Variables
 	All these variables are optional, with sensible defaults. See <Arg.Arg Variables> above for an important note.
@@ -255,7 +257,9 @@ class ulx.ArgNum extends ulx.Arg
 		if obj ~= nil
 			num = tonumber obj
 			if num == nil
-				return false, "Cannot parse '#{obj}' to a number"
+				return false, lang.GetMutatedPhrase "ARG_CANNOT_PARSE",
+					TYPE: lang.GetPhrase "NUMBER"
+					GIVEN: tostring obj
 		elseif @_Optional
 			num = @_Default
 		num = ulx.UtilX.Round num, @_Round if num and @_Round
@@ -270,10 +274,16 @@ class ulx.ArgNum extends ulx.Arg
 		num - A *number* or *nil*.
 	]=]
 	IsPermissible: (num using nil) =>
-		return false, "Mandatory argument not specified" if num == nil and not @_Optional
-		return false, "Not a number (given '#{num}')" if type(num) ~= "number"
-		return false, "Below minimum (#{@_Min})" if @_Min and num < @_Min
-		return false, "Above maximum (#{@_Max})" if @_Max and num > @_Max
+		data =
+			TYPE: lang.GetPhrase "NUMBER"
+			GIVEN: tostring num
+			MIN: @_Min
+			MAX: @_Max
+
+		return false, lang.GetMutatedPhrase("ARG_NOT_SPECIFIED", data) if num == nil and not @_Optional
+		return false, lang.GetMutatedPhrase("ARG_INCORRECT_TYPE", data) if type(num) ~= "number"
+		return false, lang.GetMutatedPhrase("ARGNUM_BELOW_MIN", data) if @_Min and num < @_Min
+		return false, lang.GetMutatedPhrase("ARGNUM_ABOVE_MAX", data) if @_Max and num > @_Max
 		return true
 
 

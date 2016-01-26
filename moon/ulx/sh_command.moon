@@ -8,6 +8,8 @@ Revisions:
 class ulx.Command
 	@CmdMap: {}
 
+	lang = ulx.Lang -- shortcut
+
 	[=[
 	Function: ShortcutFn
 	Only available statically, meant for internal use only.
@@ -53,7 +55,10 @@ class ulx.Command
 		success, argNum, msg = @.ExecutionRouter ply, commandName, argv
 
 		if not success
-			fullMsg = "\"#{commandName}\" arg ##{argNum}: #{msg}"
+			fullMsg = lang.GetMutatedPhrase "COMMAND_ARG_MESSAGE",
+				COMMANDNAME: commandName
+				ARGNUM: argNum
+				MESSAGE: msg
 			ulx.TSayRed ply, fullMsg
 			return false, fullMsg
 
@@ -63,11 +68,12 @@ class ulx.Command
 	Function: ExecutionRouter
 	TODO
 	]=]
-	@ExecutionRouter: (ply, commandStr, argv using nil) ->
-		cmd = @CmdMap[commandStr]
+	@ExecutionRouter: (ply, commandName, argv using nil) ->
+		cmd = @CmdMap[commandName]
 		if not cmd
 			--log.warn "ExecutionRouter received unknown command" -- TODO
-			return false, "Unknown command '#{commandStr}'"
+			return false, lang.GetMutatedPhrase "COMMAND_UNKNOWN",
+				COMMANDNAME: commandName
 
 		cmd\Execute ply, argv
 

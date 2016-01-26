@@ -23,3 +23,4 @@ export class Player extends Entity
 	Nick: GetName
 
 	ChatPrint: (msg) =>
+		--print msg

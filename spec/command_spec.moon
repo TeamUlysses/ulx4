@@ -103,7 +103,7 @@ describe "Test Commands", (using nil) ->
 		executed, msg = ulx.Command.ConsoleRouter ply1, "slap", nil, "bob"
 		assert.False executed
 		assert.spy(fn).was_not_called!
-		assert.spy(ply1.ChatPrint).was_called_with ply1, [["slap" arg #1: Cannot parse 'bob' to a number]]
+		assert.spy(ply1.ChatPrint).was_called_with ply1, [["slap" arg #1: Cannot parse 'bob' to number]]
 		return
 
 
