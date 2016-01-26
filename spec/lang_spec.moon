@@ -2,6 +2,9 @@ require "spec/init"
 
 require "spec/mocks/filesystem"
 require "spec/mocks/util"
+
+require "moon/lib/tableshape"
+
 require "moon/ulx/sh_tablex"
 require "moon/ulx/sh_utilx"
 require "moon/ulx/sh_filesystem"

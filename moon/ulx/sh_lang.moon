@@ -12,6 +12,20 @@ class ulx.Lang
 
 	@Mutators: {}
 
+	parseAndVerifyLangTxt = (txt using nil) ->
+		phrases = util.JSONToTable txt
+		if not phrases
+			return false, "unable to parse JSON"
+
+		types = tableshape.types
+		dictionary = types.map_of types.string, types.string
+		valid, err = dictionary\check_value phrases
+
+		if not valid
+			return false, err
+
+		return phrases
+
 	[=[
 	Function: AddMutator
 	TODO
@@ -34,8 +48,11 @@ class ulx.Lang
 
 		for langFile in *langFiles
 			txt = ulx.File.ReadAllText langFile
-			phrases = util.JSONToTable txt
-			-- TODO, type check phrases
+			phrases, err = parseAndVerifyLangTxt txt
+			if not phrases
+				print err
+				--log.warn "invalid..." -- TODO
+				continue
 			ulx.TableX.UnionByKey phraseAccum, phrases, true
 
 		@Phrases = phraseAccum
