@@ -248,13 +248,18 @@ class ulx.ArgNum extends ulx.Arg
 	See <Arg.Parse>.
 
 	Returns:
-		An appropriately rounded *number* or *nil* if parsing fails.
+		An appropriately rounded *number* or *false* and a *string* message if parsing fails.
 	]=]
 	Parse: (obj using nil) =>
-		num = tonumber(obj)
-		num = @_Default if obj == nil and @_Optional
+		local num
+		if obj ~= nil
+			num = tonumber obj
+			if num == nil
+				return false, "Cannot parse '#{obj}' to a number"
+		elseif @_Optional
+			num = @_Default
 		num = ulx.UtilX.Round num, @_Round if num and @_Round
-		num
+		return true, num
 
 
 	[=[
@@ -262,13 +267,14 @@ class ulx.ArgNum extends ulx.Arg
 	See <Arg.IsPermissible>. For <ArgNum>, checks the bounds of the number.
 
 	Parameters:
-		num - A *number*.
+		num - A *number* or *nil*.
 	]=]
 	IsPermissible: (num using nil) =>
-		return false, "Not a number (given #{num})" if type(num) ~= "number"
+		return false, "Mandatory argument not specified" if num == nil and not @_Optional
+		return false, "Not a number (given '#{num}')" if type(num) ~= "number"
 		return false, "Below minimum (#{@_Min})" if @_Min and num < @_Min
 		return false, "Above maximum (#{@_Max})" if @_Max and num > @_Max
-		true
+		return true
 
 
 	[=[

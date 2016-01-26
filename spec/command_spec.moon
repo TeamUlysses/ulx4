@@ -4,6 +4,8 @@ require "moon/ulx/sh_tablex"
 require "moon/ulx/sh_utilx"
 require "moon/ulx/sh_arguments"
 require "moon/ulx/sh_command"
+require "moon/ulx/sh_messaging"
+require "moon/ulx/sh_player"
 
 require "spec/mocks/command"
 require "spec/mocks/entity"
@@ -94,6 +96,25 @@ describe "Test Commands", (using nil) ->
 		executed, msg = command\Execute ply1, {"-0.1"}
 		assert.False executed
 		assert.spy(fn).was_not_called!
+		return
+
+	it "tests errors", (using nil) ->
+		command = with ulx.Command "slap", wrappedFn
+			\Args{
+				ulx.ArgNum!\Min(0)\Max(100)
+			}
+		spy.on(ply1, "ChatPrint")
+
+		executed, msg = ulx.Command.ConsoleRouter ply1, "slap", nil, "100.1"
+		assert.False executed
+		assert.spy(fn).was_not_called!
+		assert.spy(ply1.ChatPrint).was_called_with ply1, [["slap" arg #1: Above maximum (100)]]
+		ply1.ChatPrint\clear!
+
+		executed, msg = ulx.Command.ConsoleRouter ply1, "slap", nil, "bob"
+		assert.False executed
+		assert.spy(fn).was_not_called!
+		assert.spy(ply1.ChatPrint).was_called_with ply1, [["slap" arg #1: Cannot parse 'bob' to a number]]
 		return
 
 

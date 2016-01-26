@@ -17,6 +17,8 @@ IncludeAndAddCSLuaFile "ulx/sh_utilx.lua"
 -- GMod things
 IncludeAndAddCSLuaFile "ulx/sh_arguments.lua"
 IncludeAndAddCSLuaFile "ulx/sh_command.lua"
+IncludeAndAddCSLuaFile "ulx/sh_messaging.lua"
+IncludeAndAddCSLuaFile "ulx/sh_player.lua"
 
 -- Client things
 AddCSLuaFile "autorun/ulx_init.lua"

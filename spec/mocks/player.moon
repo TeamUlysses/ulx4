@@ -10,6 +10,8 @@ export class player
 export class Player extends Entity
 	Name: ""
 
+	@Type: () -> "Player"
+
 	new: (name using nil) =>
 		@Name = name
 
@@ -19,3 +21,5 @@ export class Player extends Entity
 		@Name
 	Name: GetName
 	Nick: GetName
+
+	ChatPrint: (msg) =>

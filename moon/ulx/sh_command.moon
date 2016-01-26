@@ -19,18 +19,8 @@ class ulx.Command
 			@
 
 
-	[=[
-	Function: CommandRouter
-	Only available statically, meant for internal use only.
-	]=]
-	@CommandRouter: (ply, commandStr, argv, args using nil) ->
-		-- Default argv doesn't parse some things correctly, so just do it ourselves
-		-- Examples of things that default argv chokes on...
-		-- MyCmd hi:there
-		-- MyCmd we don't like single quotes
-		-- MyCmd http://google.com -- though this information is LOST, so we can't fix it
-		argv = ulx.UtilX.SplitArgs args
-
+	splitCommandNameAndArgv = (initialCommandStr, argv using nil) ->
+		commandStr = initialCommandStr
 		while #argv > 0
 			newCommandStr = commandStr .. " " .. argv[1]
 			if not @CmdMap[newCommandStr]
@@ -38,8 +28,36 @@ class ulx.Command
 			commandStr = newCommandStr
 			table.remove argv, 1
 
-		@.ExecutionRouter ply, commandStr, argv
+		return commandStr, argv
 
+	[=[
+	Function: ConsoleRouter
+	This static callback function is primarily meant to act as the buffer between the Source console and ULX. *You probably should not call this directly*.
+	This function is called by the engine, executes the appropriate callback, and prints any errors back to the caller.
+
+	Parameters:
+		ply - The *player* calling the command.
+		commandStr - A *string* containing the first word of whatever was specified on console.
+		argv - A *list of strings* as parsed by the Source engine but is *ignored* in this function, since Source parses these oddly.
+		args - A *string* of everything but the first word of whatever was specified on console. This is used to build our own argv.
+	]=]
+	@ConsoleRouter: (ply, commandFirstWord, argv, args using nil) ->
+		-- Default argv doesn't parse some things correctly, so just do it ourselves
+		-- Examples of things that default argv chokes on...
+		-- MyCmd hi:there
+		-- MyCmd we don't like single quotes
+		-- MyCmd http://google.com -- though this information is LOST, so we can't fix it
+		argv = ulx.UtilX.SplitArgs args
+		commandName, argv = splitCommandNameAndArgv commandFirstWord, argv
+
+		success, argNum, msg = @.ExecutionRouter ply, commandName, argv
+
+		if not success
+			fullMsg = "\"#{commandName}\" arg ##{argNum}: #{msg}"
+			ulx.TSayRed ply, fullMsg
+			return false, fullMsg
+
+		return true
 
 	[=[
 	Function: ExecutionRouter
@@ -48,8 +66,8 @@ class ulx.Command
 	@ExecutionRouter: (ply, commandStr, argv using nil) ->
 		cmd = @CmdMap[commandStr]
 		if not cmd
-			--log.warn "ExecutionRouter received invalid command" -- TODO
-			return
+			--log.warn "ExecutionRouter received unknown command" -- TODO
+			return false, "Unknown command '#{commandStr}'"
 
 		cmd\Execute ply, argv
 
@@ -107,7 +125,7 @@ class ulx.Command
 		aliases = {aliases} if type(aliases) == "string"
 		for alias in *aliases
 			@@CmdMap[alias] = self
-			concommand.Add alias, @@CommandRouter, nil, @_Hint
+			concommand.Add alias, @@ConsoleRouter, nil, @_Hint
 		@_ConsoleAlias = aliases
 
 
@@ -148,12 +166,15 @@ class ulx.Command
 			cmdArg = cmdArgs[i]
 			argRaw = argvRaw[i]
 			argParsed = argRaw
-			if type(argRaw) == "string"
-				argParsed = cmdArg\Parse argRaw
+			if type(argRaw) ~= "number"
+				parsed, returned = cmdArg\Parse argRaw
+				if not parsed
+					return false, i, returned
+				argParsed = returned
 
 			permissible, msg = cmdArg\IsPermissible argParsed
 			if not permissible
-				return false, msg
+				return false, i, msg
 
 			argvParsed[i]=argParsed
 

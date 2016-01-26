@@ -262,7 +262,7 @@ class ulx.UtilX
 	@RaiseBadArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		expected = { expected } if expected and moon.type(expected) ~= "table"
 		dataStr = moon.type(data)
-		dataStr = data.__name if type(dataStr) ~= "string"
+		dataStr = data.__class.__name if type(dataStr) ~= "string"
 
 		str = "bad argument"
 		if argnum then
