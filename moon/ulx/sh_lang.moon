@@ -1,6 +1,5 @@
 [=[
 Class: Lang
-
 A static class used for dealing with translated messages.
 
 Revisions:
@@ -11,25 +10,7 @@ class ulx.Lang
 	@BackupLanguage: "english"
 	@Phrases: {}
 
-	@Mutators: {
-		NonZero: (numToCheck, formatStr using nil) ->
-			if type(numToCheck) ~= "number"
-				--log.warn "Non-number passed..." -- TODO
-				return ""
-
-			if numToCheck == 0
-				return ""
-
-			return formatStr\format numToCheck
-
-		Single: (toCheck, strIfSingle, strOtherwise) ->
-			typ = type toCheck
-			if typ ~= "table" and typ ~= "string"
-				--log.warn "Non-countable passed..." -- TODO
-				return ""
-
-			return #toCheck == 1 and strIfSingle or strOtherwise
-	}
+	@Mutators: {}
 
 	[=[
 	Function: AddMutator
@@ -105,7 +86,7 @@ class ulx.Lang
 		args = {}
 
 		while functionBlock\sub(curPos, curPos) == ":"
-			nextPos = functionBlock\find(":", curPos+2, true) or #functionBlock+1 -- next colon of end of string
+			nextPos = functionBlock\find(":", curPos+1, true) or #functionBlock+1 -- next colon of end of string
 			arg = functionBlock\sub(curPos+1, nextPos-1)
 			table.insert args, arg
 			curPos = nextPos

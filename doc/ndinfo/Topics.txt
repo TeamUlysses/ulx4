@@ -93,3 +93,12 @@ Topic Type: Hook
 
    Keywords:
       hook, hooks
+
+
+Topic Type: Mutator
+
+   Plural: Mutators
+   Scope: Always global
+
+   Keywords:
+      mutator, mutators
