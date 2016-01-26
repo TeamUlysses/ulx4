@@ -180,24 +180,29 @@ class ulx.UtilX
 		years: 60 * 60 * 24 * 365.25
 	[=[
 	Function: TimeStringToSeconds
-	A "time string" to convert into seconds. Can accept minutes, hours, days, weeks, months, or years. See examples below.
+	A natural language time string to convert into seconds. Can accept minutes, hours, days, weeks, months, or years.
+	Amounts can be fractional and positive or negative. See examples below.
 
 	Parameters:
-		str - The *string* or *number* to convert to seconds. If it's a number of a string of a number, passes back that number.
+		str - The *string* or *number* to convert to seconds. If it's a number, it's simply passed back.
 
 	Returns:
 		The *number* of seconds.
 
 	Examples:
-		All of the following return the same thing...
+		All of the following return the same number of seconds...
 		* "1M7d5h3m11s"
 		* "1M 7d 5h 3m 11"
 		* "1M, 7d, 5h, 3m 11s"
 		* "1 month  7 days, 5h 3minute, 11 seconds"
 
+		You can use negative and fractional times, or even repeat a time span...
+		* "1 year - 6.5 hours"
+		* "1 year - 6 hours + 5 minutes - 3 minutes"
+
 	Notes:
 		* Commas and spacing are ignored.
-		* Any time multiplier (E.G., weeks) that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
+		* Any time multiplier that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
 
 	Revisions:
 		4.0.0 - Initial.
@@ -208,13 +213,13 @@ class ulx.UtilX
 		if num = tonumber(str)
 			return num
 
-		str = @.Trim(str\gsub ",", "")
+		str = @.Trim(str\gsub("[+,]", "")\gsub("-%s+", "-"))
 		len = #str
 		num = 0
 		startIdx = 1
-		codeIdx = str\find "%D", startIdx
+		codeIdx = str\find "[^-\\.%d]", startIdx
 		while codeIdx
-			nextIdx = (str\find("%d", codeIdx)) or len+1
+			nextIdx = (str\find("[-\\.%d]", codeIdx)) or len+1
 
 			units = str\sub startIdx, codeIdx-1
 			units = tonumber units
@@ -223,7 +228,7 @@ class ulx.UtilX
 			num += units * multiplier
 
 			startIdx = nextIdx
-			codeIdx = str\find "%D", startIdx
+			codeIdx = str\find "[^-\\.%d]", startIdx
 
 			if not codeIdx and startIdx < len
 				num += tonumber(str\sub startIdx)
