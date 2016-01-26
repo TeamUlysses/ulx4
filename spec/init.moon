@@ -1,8 +1,27 @@
+export ulx = ulx or {}
+
 require "moonscript"
+
+require "spec/mocks/command"
+require "spec/mocks/filesystem"
+require "spec/mocks/util"
+require "spec/mocks/entity"
+require "spec/mocks/player"
+
+require "moon/lib/tableshape"
+
+require "moon/ulx/sh_tablex"
+require "moon/ulx/sh_utilx"
+require "moon/ulx/sh_filesystem"
+require "moon/ulx/sh_lang"
+require "moon/ulx/sh_mutators"
+require "moon/ulx/sh_arguments"
+require "moon/ulx/sh_command"
+require "moon/ulx/sh_messaging"
+require "moon/ulx/sh_player"
 
 export unpack = unpack or table.unpack -- This gives us Lua 5.2 and 5.3 compatability
 export moon = require "moon"
-export ulx = ulx or {}
 
 -- Hijack the typing system so we can pass our mock objects off as something coming from the Source engine
 oldType = moon.type

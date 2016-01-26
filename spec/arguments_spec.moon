@@ -1,9 +1,5 @@
 require "spec/init"
 
-require "moon/ulx/sh_tablex"
-require "moon/ulx/sh_utilx"
-require "moon/ulx/sh_arguments"
-
 describe "Test Arguments", (using nil) ->
 	it "Base Arg compliance", (using nil) ->
 		a = ulx.Arg!

@@ -1,8 +1,5 @@
 require "spec/init"
 
-require "moon/ulx/sh_tablex"
-require "moon/ulx/sh_utilx"
-
 tx = ulx.TableX -- Save typing
 
 describe "Test Table Utilities", (using nil) ->

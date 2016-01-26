@@ -1,16 +1,5 @@
 require "spec/init"
 
-require "spec/mocks/filesystem"
-require "spec/mocks/util"
-
-require "moon/lib/tableshape"
-
-require "moon/ulx/sh_tablex"
-require "moon/ulx/sh_utilx"
-require "moon/ulx/sh_filesystem"
-require "moon/ulx/sh_lang"
-require "moon/ulx/sh_mutators"
-
 describe "Test Language", (using nil) ->
 	lang = ulx.Lang -- Save typing
 

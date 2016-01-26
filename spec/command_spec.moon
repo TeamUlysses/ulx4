@@ -1,16 +1,5 @@
 require "spec/init"
 
-require "moon/ulx/sh_tablex"
-require "moon/ulx/sh_utilx"
-require "moon/ulx/sh_arguments"
-require "moon/ulx/sh_command"
-require "moon/ulx/sh_messaging"
-require "moon/ulx/sh_player"
-
-require "spec/mocks/command"
-require "spec/mocks/entity"
-require "spec/mocks/player"
-
 describe "Test Commands", (using nil) ->
 	local ply1, runArgs, fn, wrappedFn
 	setup ->
