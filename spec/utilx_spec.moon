@@ -104,12 +104,12 @@ describe "Test Utilities", (using nil) ->
 
 
 	it "Explode() compliance", (using nil) ->
-		assert.same { "This", "is", "a", "sentence" },
-			ux.Explode( " ", "This is a sentence" )
+		assert.same {"This", "is", "a", "sentence"},
+			ux.Explode(" ", "This is a sentence")
 		return
 
 
 	it "SplitArgs() compliance", (using nil) ->
-		assert.same { "This", "is", "a", "Cool sentence to", "make", "split up" },
-			ux.SplitArgs( "This is a \"Cool sentence to\" make \"split up\"" )
+		assert.same {'This', 'is', 'a', 'Cool sentence to', 'make', 'split up'},
+			ux.SplitArgs('This is a "Cool sentence to" make "split up"')
 		return

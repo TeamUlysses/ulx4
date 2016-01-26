@@ -401,11 +401,11 @@ class ulx.UtilX
 		2 - A *boolean*, which is true if the start and end tokens were mismatched (parsing ended while looking for an endToken).
 
 	Example:
-		:SplitArgs( "This is a \"Cool sentence to\" make \"split up\"" )
+		:SplitArgs('This is a "Cool sentence to" make "split up"')
 
 		returns...
 
-		:{ "This", "is", "a", "Cool sentence to", "make", "split up" }
+		:{'This', 'is', 'a', 'Cool sentence to', 'make', 'split up'}
 
 	Notes:
 		* Mismatched quotes will result in having the last quote grouping the remaining input into one argument.
