@@ -29,6 +29,13 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 
 ### Dependencies ###
 
+#### Runtime Dependencies (Included) ####
+
+Besides the modified version of Garry's Mod's Lua 5.1, ULX needs the following dependencies to function. These dependencies are included with ULX.
+
+[tableshape](https://github.com/leafo/tableshape) - A Lua library for verifying the shape (schema, structure, etc.) of a table.
+This helps ULX verify the validity of data as it's being loaded or moved around.
+
 #### Development Dependencies (Not Included) ####
 
 ULX's codebase and documentation were built using the following tools. You do not need these dependencies installed for ULX to function.
