@@ -159,25 +159,39 @@ class ulx.UtilX
 		math.floor(num * mult + 0.5) / mult
 
 
-	timeCodes =
-		m: 60
+	timeCodesRaw =
 		minute: 60
-		minutes: 60
-		h: 60 * 60
 		hour: 60 * 60
-		hours: 60 * 60
-		d: 60 * 60 * 24
 		day: 60 * 60 * 24
-		days: 60 * 60 * 24
-		w: 60 * 60 * 24 * 7
 		week: 60 * 60 * 24 * 7
-		weeks: 60 * 60 * 24 * 7
-		M: 60 * 60 * 24 * (365.25/12) -- Very hand-wavy, but we only need an approximate
-		month: 60 * 60 * 24 * (365.25/12)
-		months: 60 * 60 * 24 * (365.25/12)
-		y: 60 * 60 * 24 * 365.25
-		year: 60 * 60 * 24 * 365.25
-		years: 60 * 60 * 24 * 365.25
+		month: 60 * 60 * 24 * 30 -- Very hand-wavy, but we only need an approximate
+		year: 60 * 60 * 24 * 365
+	timeCodeLanguageMapping =
+		MINUTES: timeCodesRaw.minute
+		MINUTE: timeCodesRaw.minute
+		MINUTE_SHORT: timeCodesRaw.minute
+		HOURS: timeCodesRaw.hour
+		HOUR: timeCodesRaw.hour
+		HOUR_SHORT: timeCodesRaw.hour
+		DAYS: timeCodesRaw.day
+		DAY: timeCodesRaw.day
+		DAY_SHORT: timeCodesRaw.day
+		WEEKS: timeCodesRaw.week
+		WEEK: timeCodesRaw.week
+		WEEK_SHORT: timeCodesRaw.week
+		MONTHS: timeCodesRaw.month
+		MONTH: timeCodesRaw.month
+		MONTH_SHORT: timeCodesRaw.month
+		YEARS: timeCodesRaw.year
+		YEAR: timeCodesRaw.year
+		YEAR_SHORT: timeCodesRaw.year
+	timeCodes = {}
+
+	fillTimeCodes = (using timeCodes) ->
+		timeCodes = {}
+		for phraseName, value in pairs timeCodeLanguageMapping
+			phrase = ulx.Lang.GetPhrase phraseName
+			timeCodes[phrase] = value
 	[=[
 	Function: TimeStringToSeconds
 	A natural language time string to convert into seconds. Can accept minutes, hours, days, weeks, months, or years.
@@ -209,6 +223,9 @@ class ulx.UtilX
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
 		@.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
+
+		if timeCodes.CurrentLanguage ~= ulx.Lang.CurrentLanguage
+			fillTimeCodes!
 
 		if num = tonumber(str)
 			return num

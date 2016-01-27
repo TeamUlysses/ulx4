@@ -1,8 +1,27 @@
 {
 	"AND": "and",
 
-	"SECOND": "second",
 	"SECONDS": "seconds",
+	"SECOND": "second",
+	"SECOND_SHORT": "s",
+	"MINUTES": "minutes",
+	"MINUTE": "minute",
+	"MINUTE_SHORT": "m",
+	"HOURS": "hours",
+	"HOUR": "hour",
+	"HOUR_SHORT": "h",
+	"DAYS": "days",
+	"DAY": "day",
+	"DAY_SHORT": "d",
+	"WEEKS": "weeks",
+	"WEEK": "week",
+	"WEEK_SHORT": "w",
+	"MONTHS": "months",
+	"MONTH": "month",
+	"MONTH_SHORT": "M",
+	"YEARS": "years",
+	"YEAR": "year",
+	"YEAR_SHORT": "y",
 
 	"NUMBER": "number",
 

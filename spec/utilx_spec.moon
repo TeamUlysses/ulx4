@@ -100,7 +100,7 @@ describe "Test Utilities", (using nil) ->
 			ux.TimeStringToSeconds("41.5 w -  11h"),
 			ux.TimeStringToSeconds("41.5weeks -11hours")
 
-		assert.equal 3252791,
+		assert.equal 3214991,
 			ux.TimeStringToSeconds("1M7d5h3m11s"),
 			ux.TimeStringToSeconds("1M 7d 5h 3m 11"),
 			ux.TimeStringToSeconds(" 1M 7d 5h 3m 11"),
@@ -110,13 +110,13 @@ describe "Test Utilities", (using nil) ->
 			ux.TimeStringToSeconds("1 month  7 days, 5h 3minute, 11 seconds"),
 			ux.TimeStringToSeconds(" 1 month  7 days, 5h 3minute, 11 seconds ")
 
-		assert.equal 60*60*24*365.25 - 6*60*60,
+		assert.equal 60*60*24*365 - 6*60*60,
 			ux.TimeStringToSeconds("1 year - 6 hours")
 
-		assert.equal 60*60*24*365.25 - 6.5*60*60 + 5*60,
+		assert.equal 60*60*24*365 - 6.5*60*60 + 5*60,
 			ux.TimeStringToSeconds("1 year - 6.5 hours + 5 minutes")
 
-		assert.equal 60*60*24*365.25 - 6*60*60 + 2*60,
+		assert.equal 60*60*24*365 - 6*60*60 + 2*60,
 			ux.TimeStringToSeconds("1 year - 6 hours + 5 minutes - 3 minutes")
 		return
 
