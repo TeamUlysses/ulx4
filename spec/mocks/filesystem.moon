@@ -6,7 +6,26 @@ export class file
 
 	@Read: (path, mount using nil) ->
 		f = io.open path
-		f\read "*a"
+		txt = f\read "*a"
+		f\close!
+		txt
+
+	@Write: (path, text using nil) ->
+		path = "data/" .. path
+		f = io.open path, "w"
+		f\write text
+		f\close!
+
+	@Delete: (path using nil) ->
+		os.remove "data/" .. path
+
+	@CreateDir: (path using nil) ->
+		cd = "data"
+		lfs.mkdir cd
+		folders = ulx.UtilX.Explode "/", path
+		for folder in *folders
+			cd ..= "/" .. folder
+			lfs.mkdir cd
 
 	@Find: (pathPattern, mount, sorting using nil) ->
 		files = {}
