@@ -26,6 +26,12 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 ![JamminR's Avatar](http://forums.ulyssesmod.net/index.php?action=dlattach;attach=826;type=avatar)
 [JamminR](http://forums.ulyssesmod.net/index.php?action=profile;u=133) (Morale & Support)
 
+### Translations ###
+
+The following amazing folks have contributed translations for ULX.
+
+* **Russian** - [Fixator10](https://github.com/fixator10)
+* **German** - [Markus](https://github.com/markusmarkusz)
 
 ### Dependencies ###
 
