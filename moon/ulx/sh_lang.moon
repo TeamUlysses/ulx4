@@ -92,6 +92,9 @@ class ulx.Lang
 	]=]
 	@GetMutatedPhrase: (phraseName, data using nil) ->
 		phrase = @.GetPhrase phraseName
+		if not phrase
+			return nil
+			
 		mutatedPhrase = phrase\gsub "{.-}", (placeholder using nil) ->
 			processPlaceholder(placeholder, data)
 		ulx.UtilX.Trim mutatedPhrase
