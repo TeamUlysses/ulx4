@@ -532,7 +532,7 @@ class ulx.TableX
 	[=[
 	Function: HasValueI
 	Exactly the same as <HasValue> except that it uses fori instead of pairs.
-	In general, this means that it only merges on numeric keys. See <A Discussion On fori>.
+	In general, this means that it only checks numeric keys. See <A Discussion On fori>.
 
 	Revisions:
 		4.0.0 - Initial.
