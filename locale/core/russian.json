@@ -1,0 +1,37 @@
+{
+	"AND": "и",
+
+	"SECONDS": "секунд",
+	"SECOND": "секунда",
+	"SECOND_SHORT": "с",
+	"MINUTES": "минут",
+	"MINUTE": "минута",
+	"MINUTE_SHORT": "м",
+	"HOURS": "часов",
+	"HOUR": "час",
+	"HOUR_SHORT": "ч",
+	"DAYS": "дней",
+	"DAY": "день",
+	"DAY_SHORT": "д",
+	"WEEKS": "недель",
+	"WEEK": "неделя",
+	"WEEK_SHORT": "н",
+	"MONTHS": "месяцев",
+	"MONTH": "месяц",
+	"MONTH_SHORT": "М",
+	"YEARS": "лет",
+	"YEAR": "год",
+	"YEAR_SHORT": "л",
+
+	"NUMBER": "число",
+
+	"COMMAND_ARG_MESSAGE": "\"{COMMANDNAME}\" арг #{ARGNUM}: {MESSAGE}",
+	"COMMAND_UNKNOWN": "Неизвестная команда '{COMMANDNAME}'",
+
+	"ARG_NOT_SPECIFIED": "Не указан обязательный аргумент",
+	"ARG_CANNOT_PARSE": "Невозможно разобрать '{GIVEN}' для {TYPE}",
+	"ARG_INCORRECT_TYPE": "Не {TYPE} (дано '{GIVEN}')",
+
+	"ARGNUM_BELOW_MIN": "Меньше минимального ({MIN})",
+	"ARGNUM_ABOVE_MAX": "Выше максимального ({MAX})"
+}
