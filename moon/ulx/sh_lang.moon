@@ -9,7 +9,6 @@ class ulx.Lang
 	@CurrentLanguage: "english"
 	@BackupLanguage: "english"
 	@Phrases: {}
-
 	@Mutators: {}
 
 	parseAndVerifyLangTxt = (txt using nil) ->
@@ -25,6 +24,12 @@ class ulx.Lang
 			return false, err
 
 		return phrases
+
+	init = () ->
+		configLang = ulx.CoreConfig.Language
+		@.SetLanguage configLang
+		return
+	ulx.RegisterInitCallback init
 
 	[=[
 	Function: AddMutator
@@ -57,7 +62,6 @@ class ulx.Lang
 
 		@Phrases = phraseAccum
 		return true
-	@.SetLanguage @CurrentLanguage -- TODO, make cvar
 
 	[=[
 	Function: GetPhrase

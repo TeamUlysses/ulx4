@@ -1,5 +1,10 @@
 print "ULX v#{ulx.VERSION} loading server-side..."
 
+ulx.CoreConfig = Config "server"
+ulx.CoreConfig\LoadAndUseDefaults
+	Language: "english"
+	SteamAPIKey: 123
+
 util.AddNetworkString(ulx.NET_CMDS)
 
 playerAuth = (ply using net) ->

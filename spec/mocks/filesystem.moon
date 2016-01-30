@@ -1,6 +1,9 @@
 require "lfs"
 
 export class file
+	@Exists: (path, mount using nil) ->
+		lfs.attributes(path, "mode") ~= nil
+
 	@Read: (path, mount using nil) ->
 		f = io.open path
 		f\read "*a"

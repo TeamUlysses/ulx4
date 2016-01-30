@@ -1,6 +1,10 @@
 if ulx return
 export ulx = {}
 
+initCallbacks = {}
+ulx.RegisterInitCallback = (callback using nil) ->
+	table.insert initCallbacks, callback
+
 IncludeAndAddCSLuaFile = (filename using nil) ->
 	include filename
 	AddCSLuaFile filename
@@ -36,3 +40,6 @@ if SERVER
 	}
 else
 	include("ulx/cl_init.lua")
+
+for callback in *initCallbacks
+	callback!

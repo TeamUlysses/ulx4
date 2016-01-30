@@ -1,5 +1,9 @@
 export ulx = ulx or {}
 
+initCallbacks = {} -- TODO, find better way rather than repeating this
+ulx.RegisterInitCallback = (callback using nil) ->
+	table.insert initCallbacks, callback
+
 require "moonscript"
 
 require "spec/mocks/command"
@@ -13,6 +17,7 @@ require "moon/lib/tableshape"
 require "moon/ulx/sh_tablex"
 require "moon/ulx/sh_utilx"
 require "moon/ulx/sh_filesystem"
+require "moon/ulx/sh_config"
 require "moon/ulx/sh_lang"
 require "moon/ulx/sh_mutators"
 require "moon/ulx/sh_arguments"
@@ -30,3 +35,12 @@ moon.type = (value using nil) ->
 	if typ and typ.Type
 		typ = typ.Type!
 	typ
+
+
+ulx.CoreConfig = ulx.Config "server"
+ulx.CoreConfig\LoadAndUseDefaults
+	Language: "english"
+	SteamAPIKey: 123
+
+for callback in *initCallbacks
+	callback!

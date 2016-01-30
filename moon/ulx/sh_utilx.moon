@@ -1,6 +1,5 @@
 [=[
 Class: UtilX
-
 A static class used for utility functions that are not specific to Garry's Mod.
 
 Depends On:
@@ -224,7 +223,7 @@ class ulx.UtilX
 	@TimeStringToSeconds: (str using nil) ->
 		@.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
 
-		if timeCodes.CurrentLanguage ~= ulx.Lang.CurrentLanguage
+		if timeCodes.CurrentLanguage ~= ulx.Lang.CurrentLanguage -- TODO, better way of hooking language changes
 			fillTimeCodes!
 
 		if num = tonumber(str)

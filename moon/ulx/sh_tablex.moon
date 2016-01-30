@@ -1,6 +1,5 @@
 [=[
 Class: TableX
-
 A static class used for table-specific utility functions that are not specific to Garry's Mod.
 
 Revisions:

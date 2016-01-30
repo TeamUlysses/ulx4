@@ -16,7 +16,18 @@ class ulx.File
 	]=]
 	@ReadAllText: (path, mount="GAME" using nil) ->
 		-- TODO type checking and mounting
-		file.Read path, search
+		file.Read path, mount
+
+	[=[
+	Function: Exists
+	TODO
+
+	Revisions:
+		4.0.0 - Initial.
+	]=]
+	@Exists: (path, mount="GAME" using nil) ->
+		-- TODO type checking and mounting
+		file.Exists path, mount
 
 
 [=[
