@@ -32,8 +32,8 @@ export moon = require "moon"
 oldType = moon.type
 moon.type = (value using nil) ->
 	typ = oldType value
-	if typ and typ.Type
-		typ = typ.Type!
+	if typ and typ.EngineType
+		typ = typ.EngineType!
 	typ
 
 

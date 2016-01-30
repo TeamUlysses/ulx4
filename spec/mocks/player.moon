@@ -10,7 +10,7 @@ export class player
 export class Player extends Entity
 	Name: ""
 
-	@Type: () -> "Player"
+	@EngineType: () -> "Player"
 
 	new: (name using nil) =>
 		@Name = name
