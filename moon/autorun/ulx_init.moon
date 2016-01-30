@@ -10,8 +10,7 @@ IncludeAndAddCSLuaFile = (filename using nil) ->
 	AddCSLuaFile filename
 
 -- External libs
-IncludeAndAddCSLuaFile "lib/moon_util.lua"
-IncludeAndAddCSLuaFile "lib/moon.lua"
+IncludeAndAddCSLuaFile "lib/tableshape.lua"
 
 -- General things
 IncludeAndAddCSLuaFile "ulx/sh_consts.lua"

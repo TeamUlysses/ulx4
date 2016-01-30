@@ -4,12 +4,32 @@ A static class used for utility functions that are not specific to Garry's Mod.
 
 Depends On:
 	* <TableX>
-	* Moon standard library
 
 Revisions:
 	4.0.0 - Initial.
 ]=]
 class ulx.UtilX
+	[=[
+	Function: Type
+	Taken from Moonscript's library (moon.type). This is identical to Lua's type, just made Moonscript class-aware.
+
+	Parameters:
+		value - The value of *any type* to check.
+
+	Returns:
+		If value is a Moonscript class, returns a *table* of the class table. Otherwise returns a *string* describing the type (just like standard Lua).
+
+	Revisions:
+		4.0.0 - Initial.
+	]=]
+	@Type: (value) -> -- the moonscript object class
+		base_type = type value
+		if base_type == "table"
+			cls = value.__class
+			return cls if cls
+		base_type
+
+
 	[=[
 	Function: Trim
 	Trims leading and tailing whitespace from a string.
@@ -265,7 +285,7 @@ class ulx.UtilX
 	Parameters:
 		fnName   - The *optional string* of the function name being called.
 		argnum   - The *optional number* of the argument that was bad.
-		expected - The *optional string, class (via moon.type), or list* of the type(s) you expected.
+		expected - The *optional string, class (via <Type>), or list* of the type(s) you expected.
 		data     - *Optional and any type*, the actual data you got.
 		level    - The *optional number* of how many levels up (from this function) to throw the error. Defaults to _1_.
 
@@ -276,8 +296,8 @@ class ulx.UtilX
 		4.0.0 - Initial.
 	]=]
 	@RaiseBadArg: (fnName, argnum, expected, data, level=1 using nil) ->
-		expected = { expected } if expected and moon.type(expected) ~= "table"
-		dataStr = moon.type(data)
+		expected = { expected } if expected and @.Type(expected) ~= "table"
+		dataStr = @.Type(data)
 		dataStr = data.__class.__name if type(dataStr) ~= "string"
 
 		str = "bad argument"
@@ -306,7 +326,7 @@ class ulx.UtilX
 	Parameters:
 		fnName   - The *optional string* of the function name being called.
 		argnum   - The *optional number* of the argument that was bad.
-		expected - The *optional string, class (via moon.type), or list* of the type(s) you expected.
+		expected - The *optional string, class (via <Type>), or list* of the type(s) you expected.
 		data     - *Optional and any type*, the actual data you got.
 		level    - The *optional number* of how many levels up (from this function) to throw the error. Defaults to _1_.
 
@@ -325,10 +345,10 @@ class ulx.UtilX
 	]=]
 	@CheckArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		if expected == nil return true
-		if moon.type(expected) ~= "table"
-			if expected == moon.type(data)
+		if @.Type(expected) ~= "table"
+			if expected == @.Type(data)
 				return true
-		elseif ulx.TableX.HasValueI(expected, moon.type(data)) then
+		elseif ulx.TableX.HasValueI(expected, @.Type(data)) then
 			return true
 
 		@.RaiseBadArg fnName, argnum, expected, data, level+1

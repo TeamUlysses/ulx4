@@ -29,8 +29,8 @@ export unpack = unpack or table.unpack -- This gives us Lua 5.2 and 5.3 compatab
 export moon = require "moon"
 
 -- Hijack the typing system so we can pass our mock objects off as something coming from the Source engine
-oldType = moon.type
-moon.type = (value using nil) ->
+oldType = ulx.UtilX.Type
+ulx.UtilX.Type = (value using nil) ->
 	typ = oldType value
 	if typ and typ.EngineType
 		typ = typ.EngineType!
