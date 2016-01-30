@@ -7,7 +7,6 @@ Revisions:
 ]=]
 class ulx.Config
 	@__base.__index = (key) =>
-		--print ulx.UtilX.Vardump @
 		base = getmetatable @
 		fromBase = base[key]
 		if fromBase ~= nil
@@ -16,6 +15,13 @@ class ulx.Config
 		if values
 			return values[key]
 
+	@__base.__newindex = (key, value) =>
+		values = @Values
+		if values and not ulx.TableX.HasValueI({"Name", "Shape", "Values", "Path"}, key)
+			values[key] = value
+		else
+			rawset @, key, value
+
 	[=[
 	Function: new
 	TODO
@@ -23,6 +29,7 @@ class ulx.Config
 	new: (@Name, @Shape using nil) =>
 		ulx.UtilX.CheckArg "Config", 1, "string", @Name
 		ulx.UtilX.CheckArg "Config", 2, {"nil", tableshape.BaseType}, @Shape
+		@Path = "data/ulx/config/#{@Name}.json.txt"
 		return
 
 	[=[
@@ -53,12 +60,10 @@ class ulx.Config
 	TODO
 	]=]
 	Load: (using nil) =>
-		path = "data/ulx/config/#{@Name}.json.txt"
-
-		if not ulx.File.Exists path
+		if not ulx.File.Exists @Path
 			return false, "File does not exist"
 
-		txt = ulx.File.ReadAllText path
+		txt = ulx.File.ReadAllText @Path
 		data = util.JSONToTable txt
 
 		if not data
@@ -71,3 +76,11 @@ class ulx.Config
 
 		-- TODO, clear out "extra" values in data that don't belong.
 		@Values = data
+
+	[=[
+	Function: Save
+	TODO
+	]=]
+	Save: (using nil) =>
+		txt = util.TableToJSON @Values
+		ulx.File.WriteAllText @Path, txt
