@@ -1,0 +1,4 @@
+{
+	"SLAP": "{INITIATOR} ударил {TARGETS} {DAMAGE|NonZero:на %i урона}",
+	"SLAP_ANON": "{TARGETS} {TARGETS|Single:был:были} шлепнут {DAMAGE|NonZero:на %i урона}"
+}
