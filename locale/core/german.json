@@ -29,8 +29,8 @@
 	"COMMAND_UNKNOWN": "Unbekannter Befehl '{COMMANDNAME}'",
 
 	"ARG_NOT_SPECIFIED": "Es wurden nicht genügend Argumente angegeben.",
-	"ARG_CANNOT_PARSE": "Cannot parse '{GIVEN}' to {TYPE}",
-	"ARG_INCORRECT_TYPE": "Not a {TYPE} (given '{GIVEN}')",
+	"ARG_CANNOT_PARSE": "'{GIVEN}' konnte nicht zu {TYPE} zusammengefasst werden.",
+	"ARG_INCORRECT_TYPE": "Das ist kein(e) {TYPE} (Eingabe: '{GIVEN}')",
 
 	"ARGNUM_BELOW_MIN": "Unter dem Minimum ({MIN})",
 	"ARGNUM_ABOVE_MAX": "Über dem Maximum ({MAX})"
