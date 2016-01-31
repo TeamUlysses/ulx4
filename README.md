@@ -31,6 +31,7 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 The following amazing folks have contributed translations for ULX.
 
 * **German** - [Markus](https://github.com/markusmarkusz)
+* **Portuguese** - [Bruno "comedinha" Carvalho](https://github.com/comedinha)
 * **Russian** - [Fixator10](https://github.com/fixator10)
 
 ### Dependencies ###
