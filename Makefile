@@ -2,7 +2,7 @@
 
 clean:
 	find lua/* | grep -v "lua/lib" | xargs rm -r ; \
-	rm -rf map
+	rm -rf maps
 
 lua:
 	cd moon && moonc -t ../lua *
