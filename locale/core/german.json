@@ -1,0 +1,37 @@
+{
+	"AND": "und",
+
+	"SECONDS": "Sekunden",
+	"SECOND": "Sekunde",
+	"SECOND_SHORT": "sek",
+	"MINUTES": "Minuten",
+	"MINUTE": "Minute",
+	"MINUTE_SHORT": "min",
+	"HOURS": "Stunden",
+	"HOUR": "Stunde",
+	"HOUR_SHORT": "std",
+	"DAYS": "Tage",
+	"DAY": "Tag",
+	"DAY_SHORT": "t",
+	"WEEKS": "Wochen",
+	"WEEK": "Woche",
+	"WEEK_SHORT": "w",
+	"MONTHS": "Monate",
+	"MONTH": "Monat",
+	"MONTH_SHORT": "M",
+	"YEARS": "Jahre",
+	"YEAR": "Jahr",
+	"YEAR_SHORT": "j",
+
+	"NUMBER": "Nummer",
+
+	"COMMAND_ARG_MESSAGE": "\"{COMMANDNAME}\" Fehler bei Argument #{ARGNUM}: {MESSAGE}",
+	"COMMAND_UNKNOWN": "Unbekannter Befehl '{COMMANDNAME}'",
+
+	"ARG_NOT_SPECIFIED": "Es wurden nicht genügend Argumente angegeben.",
+	"ARG_CANNOT_PARSE": "'{GIVEN}' konnte nicht zu {TYPE} zusammengefasst werden.",
+	"ARG_INCORRECT_TYPE": "Das ist kein(e) {TYPE} (Eingabe: '{GIVEN}')",
+
+	"ARGNUM_BELOW_MIN": "Unter dem Minimum ({MIN})",
+	"ARGNUM_ABOVE_MAX": "Über dem Maximum ({MAX})"
+}
