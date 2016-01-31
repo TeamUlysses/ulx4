@@ -1,0 +1,37 @@
+{
+	"AND": "e",
+
+	"SECONDS": "segundos",
+	"SECOND": "segundo",
+	"SECOND_SHORT": "s",
+	"MINUTES": "minutos",
+	"MINUTE": "minuto",
+	"MINUTE_SHORT": "min",
+	"HOURS": "horas",
+	"HOUR": "hora",
+	"HOUR_SHORT": "h",
+	"DAYS": "dias",
+	"DAY": "dia",
+	"DAY_SHORT": "d",
+	"WEEKS": "semanas",
+	"WEEK": "semana",
+	"WEEK_SHORT": "S",
+	"MONTHS": "meses",
+	"MONTH": "mês",
+	"MONTH_SHORT": "M",
+	"YEARS": "anos",
+	"YEAR": "ano",
+	"YEAR_SHORT": "A",
+
+	"NUMBER": "número",
+
+	"COMMAND_ARG_MESSAGE": "\"{COMMANDNAME}\" arg #{ARGNUM}: {MESSAGE}",
+	"COMMAND_UNKNOWN": "Comando desconhecido '{COMMANDNAME}'",
+
+	"ARG_NOT_SPECIFIED": "Argumento obrigatório não especificado",
+	"ARG_CANNOT_PARSE": "Não é possível analisar '{GIVEN}' para {TYPE}",
+	"ARG_INCORRECT_TYPE": "Não é um {TYPE} (dado '{GIVEN}')",
+
+	"ARGNUM_BELOW_MIN": "Abaixo do mínimo ({MIN})",
+	"ARGNUM_ABOVE_MAX": "Acima do máximo ({MAX})"
+}
