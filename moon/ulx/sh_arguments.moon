@@ -7,9 +7,6 @@ This file defines argument types to be used in TODO.
 Class: Arg
 The base argument class. This class is not really meant to be used in practice and is basically a pass through itself,
 but <Arg> lays down some important shared functionality for the other argument classes.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.Arg
 	[=[
@@ -173,9 +170,6 @@ The argument class used for any numeric data.
 
 Passes:
 	A *number* value, defaulting to _0_.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.ArgNum extends ulx.Arg
 	-- Values from parent that we want to override the defaults for
@@ -327,9 +321,6 @@ The argument class used for a timespan using natural language.
 
 Passes:
 	A *number* of seconds, defaulting to _0_.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.ArgTime extends ulx.ArgNum
 	[=[
@@ -350,9 +341,6 @@ The argument class used for string arguments.
 
 Passes:
 	A *string* value, defaulting to _0_.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.ArgString extends ulx.Arg
 	[=[
@@ -378,9 +366,6 @@ The argument class used for SteamID arguments.
 Passes:
 	A *table of strings or players* (between one and <MaximumTargets> items).
 	Each item is either a valid SteamID or a connected player.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.ArgPlayerID extends ulx.Arg
 	[=[
@@ -408,8 +393,5 @@ The argument class used for player arguments.
 
 Passes:
 	A *table of players* (between one and <MaximumTargets> items).
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.ArgPlayerActive extends ulx.ArgPlayerID

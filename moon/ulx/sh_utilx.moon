@@ -4,9 +4,6 @@ A static class used for utility functions that are not specific to Garry's Mod.
 
 Depends On:
 	* <TableX>
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.UtilX
 	[=[
@@ -18,9 +15,6 @@ class ulx.UtilX
 
 	Returns:
 		If value is a Moonscript class, returns a *table* of the class table. Otherwise returns a *string* describing the type (just like standard Lua).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Type: (value) -> -- the moonscript object class
 		base_type = type value
@@ -42,9 +36,6 @@ class ulx.UtilX
 
 	Notes:
 		* This is 'trim6' from <http://lua-users.org/wiki/StringTrim>.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Trim: (str using nil) ->
 		str\match("^()%s*$") and "" or str\match("^%s*(.*%S)")
@@ -53,9 +44,6 @@ class ulx.UtilX
 	[=[
 	Function: LTrim
 	Exactly like <Trim> except it only trims the left side. Taken from <http://lua-users.org/wiki/CommonFunctions>
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@LTrim: (str using nil) ->
 		(str\gsub("^%s*", ""))
@@ -64,9 +52,6 @@ class ulx.UtilX
 	[=[
 	Function: RTrim
 	Exactly like <Trim> except it only trims the right side. Taken from <http://lua-users.org/wiki/CommonFunctions>
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@RTrim: (str using nil) ->
 		n = #str
@@ -130,9 +115,6 @@ class ulx.UtilX
 		* A string will always be surrounded by quotes and a number will always stand by itself. This is to make it easier to identify numbers stored as strings.
 		* Array size and total size are shown in the table header. Array size is the result of the pound operator (#) on the table, total size is the result of <Count>.
 		  Array size is useful debug information when iterating over a table with ipairs or fori.
-
-	Revisions:
-		v4.0.0 - Initial.
 	]=]
 	@Vardump: (... using nil) ->
 		str = ""
@@ -169,9 +151,6 @@ class ulx.UtilX
 
 	Returns:
 		The rounded *number*.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Round: (num, places=0 using nil) ->
 		mult = 10 ^ places
@@ -236,9 +215,6 @@ class ulx.UtilX
 	Notes:
 		* Commas and spacing are ignored.
 		* Any time multiplier that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@TimeStringToSeconds: (str using nil) ->
 		@.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
@@ -291,9 +267,6 @@ class ulx.UtilX
 
 	Returns:
 		Always returns using *<Raise()>*.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@RaiseBadArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		expected = { expected } if expected and @.Type(expected) ~= "table"
@@ -339,9 +312,6 @@ class ulx.UtilX
 		returns...
 
 		:true
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@CheckArg: (fnName, argnum, expected, data, level=1 using nil) ->
 		if expected == nil return true
@@ -374,9 +344,6 @@ class ulx.UtilX
 		returns...
 
 		:true
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@CheckArgs: (fnName, args, level=1 using nil) ->
 		for argnum=1, #args
@@ -407,9 +374,6 @@ class ulx.UtilX
 		returns...
 
 		:{ "This", "is", "a", "sentence" }
-
-		Revisions:
-			4.0.0 - Initial.
 	]=]
 	@Explode: (separator, str, limit using nil) ->
 		t = {}
@@ -451,9 +415,6 @@ class ulx.UtilX
 	Notes:
 		* Mismatched quotes will result in having the last quote grouping the remaining input into one argument.
 		* Args outside of quotes are trimmed (via string.Trim), while args inside quotes is not trimmed at all.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@SplitArgs: (args, startToken='"', endToken='"' using nil) ->
 		args = @.Trim args

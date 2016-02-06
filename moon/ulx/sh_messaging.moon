@@ -1,9 +1,6 @@
 [=[
 File: Messaging
 Helpers for sending notifications to players.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 
 [=[

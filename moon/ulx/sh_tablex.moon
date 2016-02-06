@@ -1,9 +1,6 @@
 [=[
 Class: TableX
 A static class used for table-specific utility functions that are not specific to Garry's Mod.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.TableX
 	[=[
@@ -28,9 +25,6 @@ class ulx.TableX
 		* Use the '#' operator instead of this if the table only contains numeric indices or if you only care about the numeric indices.
 		* Use <IsEmpty> instead of this if you only want to see if a hash table has any values.
 		* Complexity is O(n), where n is the number of values in t.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Count: (t using nil) ->
 		c = 0
@@ -53,9 +47,6 @@ class ulx.TableX
 	Notes:
 		* This is much faster than <Count> for checking if a table has any elements.
 		* Complexity is O(1).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@IsEmpty: (t using nil) ->
 		next(t) == nil
@@ -73,9 +64,6 @@ class ulx.TableX
 
 	Notes:
 		* Complexity is O(Count(t)).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Empty: (t using nil) ->
 		for k, v in pairs t
@@ -96,9 +84,6 @@ class ulx.TableX
 
 	Notes:
 		* Complexity is O(Count(t)).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Copy: (t using nil) ->
 		{ k, v for k, v in pairs t }
@@ -108,9 +93,6 @@ class ulx.TableX
 	Function: CopyI
 	Exactly the same as <Copy> except that it uses fori instead of pairs.
 	In general, this means that it only copies numeric keys. See <A Discussion On fori>.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@CopyI: (t using nil) ->
 		[ v for v in *t ]
@@ -125,9 +107,6 @@ class ulx.TableX
 
 	Returns:
 		The copied *table*.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@DeepCopy: (t using nil) ->
 		{ k, (type(v) == "table" and self.DeepCopy(v) or v) for k, v in pairs t }
@@ -164,9 +143,6 @@ class ulx.TableX
 		* This function operates over numeric indices. See <A Discussion On fori>.
 		* Complexity is around O(#list * log( #list )).
 		* Duplicates are removed after the first value occurs. See example above.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@RemoveDuplicateValues: (list, inPlace using nil) ->
 		list = InPlaceHelperI list, inPlace
@@ -207,9 +183,6 @@ class ulx.TableX
 	Notes:
 		* If both tables have values on the same key, tableB takes precedence.
 		* Complexity is O(Count(tableB)).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@UnionByKey: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelper tableA, inPlace
@@ -224,9 +197,6 @@ class ulx.TableX
 	Function: UnionByKeyI
 	Exactly the same as <UnionByKey> except that it uses fori instead of pairs. In general, this
 	means that it only merges on numeric keys. See <A Discussion On fori>.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@UnionByKeyI: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelperI tableA, inPlace
@@ -263,9 +233,6 @@ class ulx.TableX
 		* This function properly handles duplicate values in either list. All values will be unique in the resulting list.
 		* Complexity is O( (#listA + #listB) * log( (#listA + #listB) ) )
 		* You might want to consider using <SetFromList> combined with <UnionByKey> for large tables or if you plan on doing this often.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Union: (listA, listB, inPlace using nil) ->
 		listA = self.Append listA, listB, inPlace
@@ -295,9 +262,6 @@ class ulx.TableX
 	Notes:
 		* If both tables have values on the same key, tableB takes precedence.
 		* Complexity is O(Count(tableA)).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@IntersectionByKey: (tableA, tableB using nil) ->
 		result = {}
@@ -314,9 +278,6 @@ class ulx.TableX
 	Function: IntersectionByKeyI
 	Exactly the same as <IntersectionByKey> except that it uses fori instead of pairs. In
 	general, this means that it only merges on numeric keys. See <A Discussion On fori>.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@IntersectionByKeyI: (tableA, tableB using nil) ->
 		result = {}
@@ -354,9 +315,6 @@ class ulx.TableX
 		* This function properly handles duplicate values in either list. All values will be unique in the resulting list.
 		* Complexity is O(#ListA * #ListB).
 		* You might want to consider using <SetFromList> combined with <IntersectionByKey> for large tables or if you plan on doing this often.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Intersection: (listA, listB, inPlace using nil) ->
 		listA = self.RemoveDuplicateValues listA, inPlace
@@ -393,9 +351,6 @@ class ulx.TableX
 
 	Notes:
 		* Complexity is O(Count(tableB)).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@DifferenceByKey: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelper tableA, inPlace
@@ -410,9 +365,6 @@ class ulx.TableX
 	Function: DifferenceByKeyI
 	Exactly the same as <DifferenceByKey> except that it uses fori instead of pairs. In general,
 	this means that it only performs the difference on numeric keys. See <A Discussion On fori>.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@DifferenceByKeyI: (tableA, tableB, inPlace using nil) ->
 		tableA = InPlaceHelperI tableA, inPlace
@@ -449,9 +401,6 @@ class ulx.TableX
 		* This function properly handles duplicate values in either list. All values will be unique in the resulting list.
 		* Complexity is O(#listA * #listB).
 		* You might want to consider using <SetFromList> combined with <DifferenceByKey> for large tables or if you plan on doing this often.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Difference: (listA, listB, inPlace using nil) ->
 		listA = self.RemoveDuplicateValues listA, inPlace
@@ -487,9 +436,6 @@ class ulx.TableX
 	Notes:
 		* This function uses fori. See <A Discussion On fori>.
 		* Complexity is O(#listB).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Append: (listA, listB, inPlace using nil) ->
 		listA = InPlaceHelperI listA, inPlace
@@ -517,9 +463,6 @@ class ulx.TableX
 		returns...
 
 		:true, "pear"
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@HasValue: (t, value using nil) ->
 		for k, v in pairs t
@@ -533,9 +476,6 @@ class ulx.TableX
 	Function: HasValueI
 	Exactly the same as <HasValue> except that it uses fori instead of pairs.
 	In general, this means that it only checks numeric keys. See <A Discussion On fori>.
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@HasValueI: (t, value using nil) ->
 		for i=1, #t do
@@ -568,9 +508,6 @@ class ulx.TableX
 	Notes:
 		* This function uses fori during the conversion process. See <A Discussion On fori>.
 		* Complexity is O(#list).
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@SetFromList: (list using nil) ->
 		{ v, true for v in *list }

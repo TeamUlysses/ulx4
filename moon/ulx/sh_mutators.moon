@@ -1,9 +1,6 @@
 [=[
 File: Mutators
 A file containing mutators which are added to <Lang>.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 
 class Mutators

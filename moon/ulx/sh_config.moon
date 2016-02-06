@@ -1,9 +1,6 @@
 [=[
 Class: Config
 A class used for configuration setting management.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.Config
 	@__base.__index = (key) =>

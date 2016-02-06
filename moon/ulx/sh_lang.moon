@@ -1,9 +1,6 @@
 [=[
 Class: Lang
 A static class used for dealing with translated messages.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.Lang
 	@CurrentLanguage: nil
@@ -94,7 +91,7 @@ class ulx.Lang
 		phrase = @.GetPhrase phraseName
 		if not phrase
 			return nil
-			
+
 		mutatedPhrase = phrase\gsub "{.-}", (placeholder using nil) ->
 			processPlaceholder(placeholder, data)
 		ulx.UtilX.Trim mutatedPhrase

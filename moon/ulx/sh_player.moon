@@ -1,9 +1,6 @@
 [=[
 File: Player
 Helpers for dealing with player objects
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 
 [=[

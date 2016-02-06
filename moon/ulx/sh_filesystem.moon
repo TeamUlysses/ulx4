@@ -7,17 +7,11 @@ verifyAndRemoveDataFolder = (path) ->
 Class: File
 
 An adapter class used for file accesses. This is necessary because Garry's API changes frequently.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.File
 	[=[
 	Function: Exists
 	TODO
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Exists: (path, mount="GAME" using nil) ->
 		-- TODO type checking and mounting
@@ -26,9 +20,6 @@ class ulx.File
 	[=[
 	Function: ReadAllText
 	TODO
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@ReadAllText: (path, mount="GAME" using nil) ->
 		-- TODO type checking and mounting
@@ -37,9 +28,6 @@ class ulx.File
 	[=[
 	Function: WriteAllText
 	TODO
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@WriteAllText: (path, txt, mount="GAME" using nil) ->
 		-- TODO type checking and mounting
@@ -51,9 +39,6 @@ class ulx.File
 	[=[
 	Function: Delete
 	TODO
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@Delete: (path, mount="GAME" using nil) ->
 		-- TODO type checking and mounting
@@ -67,17 +52,11 @@ class ulx.File
 Class: Directory
 
 An adapter class used for directory accesses. This is necessary because Garry's API changes frequently.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.Directory
 	[=[
 	Function: GetFiles
 	TODO
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@GetFiles: (path="", searchPattern="*", searchRecursive=false, mount="GAME" using nil) ->
 		-- TODO type checking and mounting
@@ -87,9 +66,6 @@ class ulx.Directory
 	[=[
 	Function: CreateDirectory
 	TODO
-
-	Revisions:
-		4.0.0 - Initial.
 	]=]
 	@CreateDirectory: (path) ->
 		-- TODO type checking

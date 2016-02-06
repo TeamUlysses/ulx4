@@ -2,9 +2,6 @@
 Class: Plugin
 
 Used to create a new ULX plugin. Stores plugin configuration information as well and offers an API to interact with ULX.
-
-Revisions:
-	4.0.0 - Initial.
 ]=]
 class ulx.Plugin
 	[=[
