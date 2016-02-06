@@ -64,60 +64,66 @@ describe "Test Utilities", (using nil) ->
 		return
 
 
-	it "TimeStringToSeconds() compliance", (using nil) ->
+	it "TimeStringToNumber() compliance", (using nil) ->
 		assert.equal 41,
-			ux.TimeStringToSeconds(41),
-			ux.TimeStringToSeconds("41"),
-			ux.TimeStringToSeconds("41s"),
-			ux.TimeStringToSeconds("41 second"),
-			ux.TimeStringToSeconds("41 seconds")
+			ux.TimeStringToNumber(41),
+			ux.TimeStringToNumber("41"),
+			ux.TimeStringToNumber("41s"),
+			ux.TimeStringToNumber("41 second"),
+			ux.TimeStringToNumber("41 seconds")
 
 		assert.equal 41*60,
-			ux.TimeStringToSeconds("41 m"),
-			ux.TimeStringToSeconds("41minute")
+			ux.TimeStringToNumber("41 m"),
+			ux.TimeStringToNumber("41minute")
 
 		assert.equal 39*60,
-			ux.TimeStringToSeconds("41m -3m 1m"),
-			ux.TimeStringToSeconds("41minute  - 3minute 1 m")
+			ux.TimeStringToNumber("41m -3m 1m"),
+			ux.TimeStringToNumber("41minute  - 3minute 1 m")
 
 		assert.equal 41*60*60,
-			ux.TimeStringToSeconds("41h"),
-			ux.TimeStringToSeconds("41 hours ")
+			ux.TimeStringToNumber("41h"),
+			ux.TimeStringToNumber("41 hours ")
 
 		assert.equal 41*60*60 - 7*60,
-			ux.TimeStringToSeconds("41h -7m"),
-			ux.TimeStringToSeconds("41 hours -7 minutes")
+			ux.TimeStringToNumber("41h -7m"),
+			ux.TimeStringToNumber("41 hours -7 minutes")
 
 		assert.equal 41*60*60*24,
-			ux.TimeStringToSeconds("41 d"),
-			ux.TimeStringToSeconds(" 41 day")
+			ux.TimeStringToNumber("41 d"),
+			ux.TimeStringToNumber(" 41 day")
 
 		assert.equal 41*60*60*24*7,
-			ux.TimeStringToSeconds("41 w"),
-			ux.TimeStringToSeconds("41weeks")
+			ux.TimeStringToNumber("41 w"),
+			ux.TimeStringToNumber("41weeks")
 
 		assert.equal 41.5*60*60*24*7 - 11*60*60,
-			ux.TimeStringToSeconds("41.5 w -  11h"),
-			ux.TimeStringToSeconds("41.5weeks -11hours")
+			ux.TimeStringToNumber("41.5 w -  11h"),
+			ux.TimeStringToNumber("41.5weeks -11hours")
 
 		assert.equal 3214991,
-			ux.TimeStringToSeconds("1M7d5h3m11s"),
-			ux.TimeStringToSeconds("1M 7d 5h 3m 11"),
-			ux.TimeStringToSeconds(" 1M 7d 5h 3m 11"),
-			ux.TimeStringToSeconds("1M 7d 5h 3m 11 "),
-			ux.TimeStringToSeconds("1M, 7d, 5h, 3m 11s"),
-			ux.TimeStringToSeconds("1M, 7d, 5h, 3m 11s "),
-			ux.TimeStringToSeconds("1 month  7 days, 5h 3minute, 11 seconds"),
-			ux.TimeStringToSeconds(" 1 month  7 days, 5h 3minute, 11 seconds ")
+			ux.TimeStringToNumber("1M7d5h3m11s"),
+			ux.TimeStringToNumber("1M 7d 5h 3m 11"),
+			ux.TimeStringToNumber(" 1M 7d 5h 3m 11"),
+			ux.TimeStringToNumber("1M 7d 5h 3m 11 "),
+			ux.TimeStringToNumber("1M, 7d, 5h, 3m 11s"),
+			ux.TimeStringToNumber("1M, 7d, 5h, 3m 11s "),
+			ux.TimeStringToNumber("1 month  7 days, 5h 3minute, 11 seconds"),
+			ux.TimeStringToNumber(" 1 month  7 days, 5h 3minute, 11 seconds ")
 
 		assert.equal 60*60*24*365 - 6*60*60,
-			ux.TimeStringToSeconds("1 year - 6 hours")
+			ux.TimeStringToNumber("1 year - 6 hours")
 
 		assert.equal 60*60*24*365 - 6.5*60*60 + 5*60,
-			ux.TimeStringToSeconds("1 year - 6.5 hours + 5 minutes")
+			ux.TimeStringToNumber("1 year - 6.5 hours + 5 minutes")
 
 		assert.equal 60*60*24*365 - 6*60*60 + 2*60,
-			ux.TimeStringToSeconds("1 year - 6 hours + 5 minutes - 3 minutes")
+			ux.TimeStringToNumber("1 year - 6 hours + 5 minutes - 3 minutes"),
+			ux.TimeStringToNumber("1 year - 6 hours + 5 minutes - 3 minutes", "minute")*60*60,
+			ux.TimeStringToNumber("1 year - 6 hours + 5 minutes - 3 minutes", "hour")*60*60
+
+		assert.equal 30,
+			ux.TimeStringToNumber("31m-1", "minute"),
+			ux.TimeStringToNumber("0.5h", "minute")
 		return
 
 

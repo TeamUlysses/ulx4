@@ -158,6 +158,7 @@ class ulx.UtilX
 
 
 	timeCodesRaw =
+		second: 1
 		minute: 60
 		hour: 60 * 60
 		day: 60 * 60 * 24
@@ -191,15 +192,18 @@ class ulx.UtilX
 			phrase = ulx.Lang.GetPhrase phraseName
 			timeCodes[phrase] = value
 	[=[
-	Function: TimeStringToSeconds
-	A natural language time string to convert into seconds. Can accept minutes, hours, days, weeks, months, or years.
+	Function: TimeStringToNumber
+	A natural language time string to convert into a number of time units (like seconds).
+	Can accept minutes, hours, days, weeks, months, or years in the time string.
 	Amounts can be fractional and positive or negative. See examples below.
 
 	Parameters:
-		str - The *string* or *number* to convert to seconds. If it's a number, it's simply passed back.
+		str - The *string* or *number* to convert to a time unit. If it's a number, it's simply passed back.
+		unit - The *string* time unit to conver to, defaults to _"second"_.
+		        Must one of the following values -- "second", "minute", "hour", "day", "week", "month", "year".
 
 	Returns:
-		The *number* of seconds.
+		The *number* of time units.
 
 	Examples:
 		All of the following return the same number of seconds...
@@ -216,8 +220,10 @@ class ulx.UtilX
 		* Commas and spacing are ignored.
 		* Any time multiplier that isn't recognized or supported (E.G., milliseconds) will be considered to be seconds.
 	]=]
-	@TimeStringToSeconds: (str using nil) ->
-		@.CheckArg "TimeStringToSeconds", 1, {"string", "number"}, str
+	@TimeStringToNumber: (str, unit="second" using nil) ->
+		@.CheckArg "TimeStringToNumber", 1, {"string", "number"}, str
+		@.CheckArg "TimeStringToNumber", 2, "string", unit
+		assert timeCodesRaw[unit], "TimeStringToNumber given an invalid time unit to convert to"
 
 		if timeCodes.CurrentLanguage ~= ulx.Lang.CurrentLanguage -- TODO, better way of hooking language changes
 			fillTimeCodes!
@@ -243,9 +249,9 @@ class ulx.UtilX
 			codeIdx = str\find "[^-\\.%d]", startIdx
 
 			if not codeIdx and startIdx < len
-				num += tonumber(str\sub startIdx)
+				num += tonumber(str\sub startIdx) * timeCodesRaw[unit]
 
-		num
+		return num / timeCodesRaw[unit]
 
 
 	-- Transforms the "expected" argument for functions below into a list of strings.
