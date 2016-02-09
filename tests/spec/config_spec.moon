@@ -1,4 +1,4 @@
-require "spec/init"
+require "tests/init"
 
 ulx.Directory.CreateDirectory "data/ulx/config"
 

@@ -6,11 +6,11 @@ ulx.RegisterInitCallback = (callback using nil) ->
 
 require "moonscript"
 
-require "spec/mocks/command"
-require "spec/mocks/filesystem"
-require "spec/mocks/util"
-require "spec/mocks/entity"
-require "spec/mocks/player"
+require "tests/mocks/command"
+require "tests/mocks/filesystem"
+require "tests/mocks/util"
+require "tests/mocks/entity"
+require "tests/mocks/player"
 
 require "moon/lib/tableshape"
 

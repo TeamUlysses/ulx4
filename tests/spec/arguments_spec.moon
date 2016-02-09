@@ -1,4 +1,4 @@
-require "spec/init"
+require "tests/init"
 
 describe "Test Arguments", (using nil) ->
 	it "Base Arg compliance", (using nil) ->

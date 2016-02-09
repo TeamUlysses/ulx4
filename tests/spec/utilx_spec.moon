@@ -1,4 +1,4 @@
-require "spec/init"
+require "tests/init"
 
 tx = ulx.TableX -- Save us typing
 ux = ulx.UtilX

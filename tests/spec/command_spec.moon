@@ -1,4 +1,4 @@
-require "spec/init"
+require "tests/init"
 
 describe "Test Commands", (using nil) ->
 	local ply1, runArgs, fn, wrappedFn

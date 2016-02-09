@@ -1,4 +1,4 @@
-require "spec/init"
+require "tests/init"
 
 describe "Test Language", (using nil) ->
 	lang = ulx.Lang -- Save typing

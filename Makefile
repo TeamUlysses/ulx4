@@ -17,7 +17,7 @@ map:
 	cd moon && find . -name "*.moon" -exec sh -c 'mkdir -p ../maps/$${1%/*} && moonc -X "$$1" > "../maps/$$1.map"' -- {} \;
 
 test:
-	busted
+	busted tests
 
 diagram:
 	plantuml -tpng -o ../diagrams -nbthread auto doc/uml/*.iuml

@@ -1,5 +1,5 @@
 -- Based off GMod command module 18 Jan 2015
-require "spec/mocks/common"
+require "tests/mocks/common"
 
 -- Engine definitions
 AddConsoleCommand = () ->
