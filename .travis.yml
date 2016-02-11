@@ -27,7 +27,7 @@ before_install:
   - luarocks install luafilesystem
 
 script:
-  - busted spec
+  - busted tests
 
 notifications:
   recipients:
