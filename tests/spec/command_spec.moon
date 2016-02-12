@@ -63,7 +63,7 @@ describe "Test Commands", (using nil) ->
 
 		fn\clear!
 		command\Args{
-			ulx.ArgNum!\Min(0)\Max(100)\Round!
+			ulx.ArgNum!\Min(0)\Max(100)\Round(0)
 		}
 
 		command\Execute ply1, {"41.2"}

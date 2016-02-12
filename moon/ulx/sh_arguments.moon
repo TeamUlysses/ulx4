@@ -124,7 +124,9 @@ class ulx.Arg
 		obj - A value of *any type*.
 
 	Returns:
-		The parsed argument for this argument type. For <Arg> (this class), it simply passes back what it receives or the default.
+		1 - A *boolean*. True if the argument was parsed, false otherwise.
+		2 - The parsed value of *any type* or a translated *string* explaining why it couldn't be parsed.
+		    For <Arg>, this function simply returns what was passed or the default value if it's passed nil.
 	]=]
 	Parse: (obj using nil) =>
 		if obj == nil and @_Optional
@@ -172,7 +174,7 @@ class ulx.ArgNum extends ulx.Arg
 	_Hint:    "number"
 	_Help:    "A number argument"
 
-	@ShortcutFn "Default", "number"
+	@ShortcutFn "Default", {"number", "nil"}
 
 	lang = ulx.Lang -- shortcut
 
@@ -191,7 +193,7 @@ class ulx.ArgNum extends ulx.Arg
 
 	@ShortcutFn "Min", {"number", "nil"}
 	@ShortcutFn "Max", {"number", "nil"}
-	@ShortcutFn "Round", {"number", "nil"}, 0
+	@ShortcutFn "Round", {"number", "nil"}
 
 
 	[=[
@@ -239,7 +241,8 @@ class ulx.ArgNum extends ulx.Arg
 	See <Arg.Parse>.
 
 	Returns:
-		An appropriately rounded *number* or *false* and a *string* message if parsing fails.
+		1 - A *boolean*. True if the argument was parsed, false otherwise.
+		2 - The parsed and rounded *number* or a translated *string* explaining why it couldn't be parsed.
 	]=]
 	Parse: (obj using nil) =>
 		local num
@@ -269,7 +272,9 @@ class ulx.ArgNum extends ulx.Arg
 			MIN: @_Min
 			MAX: @_Max
 
-		return false, lang.GetMutatedPhrase("ARG_NOT_SPECIFIED", data) if num == nil and not @_Optional
+		if num == nil
+			return false, lang.GetMutatedPhrase("ARG_NOT_SPECIFIED", data) if not @_Optional
+			return true
 		return false, lang.GetMutatedPhrase("ARG_INCORRECT_TYPE", data) if type(num) ~= "number"
 		return false, lang.GetMutatedPhrase("ARGNUM_BELOW_MIN", data) if @_Min and num < @_Min
 		return false, lang.GetMutatedPhrase("ARGNUM_ABOVE_MAX", data) if @_Max and num > @_Max
@@ -286,7 +291,7 @@ class ulx.ArgNum extends ulx.Arg
 	Serialize: (using nil) =>
 		str = ""
 		str ..= tostring(@_Min) if @_Min
-		str ..= ":"
+		str ..= ":" if @_Min or @_Max
 		str ..= tostring(@_Max) if @_Max
 		str
 
@@ -306,7 +311,7 @@ class ulx.ArgNum extends ulx.Arg
 			min = tonumber(str)
 			max = min
 
-		ArgNum!\Min(min)\Max(max)
+		ulx.ArgNum!\Min(min)\Max(max)
 
 
 
