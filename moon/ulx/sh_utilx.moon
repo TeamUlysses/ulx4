@@ -188,6 +188,7 @@ class ulx.UtilX
 
 	fillTimeCodes = (using timeCodes) ->
 		timeCodes = {}
+		timeCodes.CurrentLanguage = ulx.Lang.StaticLanguage.CurrentLanguage
 		for phraseName, value in pairs timeCodeLanguageMapping
 			phrase = ulx.Lang.GetPhrase phraseName
 			timeCodes[phrase] = value
@@ -225,7 +226,7 @@ class ulx.UtilX
 		@.CheckArg "TimeStringToNumber", 2, "string", unit
 		assert timeCodesRaw[unit], "TimeStringToNumber given an invalid time unit to convert to"
 
-		if timeCodes.CurrentLanguage ~= ulx.Lang.CurrentLanguage -- TODO, better way of hooking language changes
+		if timeCodes.CurrentLanguage ~= ulx.Lang.StaticLanguage.CurrentLanguage -- TODO, better way of hooking language changes
 			fillTimeCodes!
 
 		if num = tonumber(str)
@@ -295,6 +296,7 @@ class ulx.UtilX
 			str ..= ")"
 
 		@.Raise str, level+1
+		return false
 
 
 	[=[
@@ -328,6 +330,7 @@ class ulx.UtilX
 			return true
 
 		@.RaiseBadArg fnName, argnum, expected, data, level+1
+		return false
 
 
 	[=[

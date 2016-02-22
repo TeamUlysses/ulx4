@@ -1,12 +1,14 @@
 [=[
 Class: Lang
-A static class used for dealing with translated messages.
+A class used for dealing with translated messages.
 ]=]
 class ulx.Lang
-	@CurrentLanguage: nil
-	@BackupLanguage: nil
-	@Phrases: {}
+	@StaticLanguage: nil
 	@Mutators: {}
+
+	CurrentLanguage: nil
+	BackupLanguage: nil
+	Phrases: {}
 
 	parseAndVerifyLangTxt = (txt using nil) ->
 		phrases = util.JSONToTable txt
@@ -39,9 +41,9 @@ class ulx.Lang
 			ulx.TableX.UnionByKey phraseAccum, phrases, true
 		return phraseAccum
 
-	init = () ->
-		configLang = ulx.CoreConfig.Language
-		@.SetLanguage configLang
+	init = ->
+		lang = ulx.CoreConfig.Language
+		@@StaticLanguage = ulx.Lang lang
 		return
 	ulx.RegisterInitCallback init
 
@@ -52,11 +54,20 @@ class ulx.Lang
 	@AddMutator: (name, func using nil) ->
 		@Mutators[name] = func
 
+	@GetPhrase: (phraseName using nil) ->
+		@StaticLanguage\GetPhrase phraseName
+
+	@GetMutatedPhrase: (phraseName, data using nil) ->
+		@StaticLanguage\GetMutatedPhrase phraseName, data
+
+	new: (language, backupLanguage using nil) =>
+		@SetLanguage language, backupLanguage
+
 	[=[
 	Function: SetLanguage
 	TODO
 	]=]
-	@SetLanguage: (language, backupLanguage="english" using nil) ->
+	SetLanguage: (language, backupLanguage="english" using nil) =>
 		ulx.UtilX.CheckArg "Language.SetLanguage", 1, "string", language
 		ulx.UtilX.CheckArg "Language.SetLanguage", 2, "string", backupLanguage
 
@@ -80,24 +91,24 @@ class ulx.Lang
 	Function: GetPhrase
 	TODO
 	]=]
-	@GetPhrase: (phraseName using nil) ->
+	GetPhrase: (phraseName using nil) =>
 		@Phrases[phraseName]
 
 	[=[
 	Function: GetMutatedPhrase
 	TODO
 	]=]
-	@GetMutatedPhrase: (phraseName, data using nil) ->
-		phrase = @.GetPhrase phraseName
+	GetMutatedPhrase: (phraseName, data using nil) =>
+		phrase = @GetPhrase phraseName
 		if not phrase
 			return nil
 
 		mutatedPhrase = phrase\gsub "{.-}", (placeholder using nil) ->
-			processPlaceholder(placeholder, data)
+			@processPlaceholder(placeholder, data)
 		ulx.UtilX.Trim mutatedPhrase
 
 	-- Receives everything between and including the brackets "{DAMAGE|NonZero:for %i damage}"
-	processPlaceholder = (placeholder, data using nil) ->
+	processPlaceholder: (placeholder, data using nil) =>
 		curPos = placeholder\find("|", 3, true) or #placeholder -- next pipe or the end bracket
 		placeholderName = placeholder\sub(2, curPos-1)
 
@@ -105,19 +116,19 @@ class ulx.Lang
 		while placeholder\sub(curPos, curPos) == "|"
 			nextPos = placeholder\find("|", curPos+2, true) or #placeholder -- next pipe or the end bracket
 			functionBlock = placeholder\sub(curPos+1, nextPos-1)
-			fn, args = getFnAndArgs functionBlock, mutated
+			fn, args = @getFnAndArgs functionBlock, mutated
 			table.insert mutatorFnsAndArgs, {fn, args}
 			curPos = nextPos
 
 		replacement = data[placeholderName]
-		mutated = pipeMutators replacement, mutatorFnsAndArgs
+		mutated = @pipeMutators replacement, mutatorFnsAndArgs
 		if type(mutated) == "table"
-			mutated = listPipeMutators replacement, mutatorFnsAndArgs
+			mutated = @listPipeMutators replacement, mutatorFnsAndArgs
 
 		return mutated
 
 	-- Receives a mutator function and all its arguments "NonZero:for %i damage"
-	getFnAndArgs = (functionBlock, txt) ->
+	getFnAndArgs: (functionBlock, txt) =>
 		curPos = functionBlock\find(":", 2, true) or #functionBlock+1 -- next colon of end of string
 		functionName = functionBlock\sub(1, curPos-1)
 		args = {}
@@ -128,24 +139,24 @@ class ulx.Lang
 			table.insert args, arg
 			curPos = nextPos
 
-		return @Mutators[functionName], args
+		return @@Mutators[functionName], args
 
 	-- Make a string from a list while piping each item
-	listPipeMutators = (list, ... using nil) ->
+	listPipeMutators: (list, ... using nil) =>
 		str = ""
 		for i=1, #list-2
-			str ..= pipeMutators(list[i], ...) .. ", "
+			str ..= @pipeMutators(list[i], ...) .. ", "
 
 		if #list > 1
-			mutated = pipeMutators(list[#list-1], ...)
-			conjuction = " " .. @.GetPhrase("AND") .. " "
+			mutated = @pipeMutators(list[#list-1], ...)
+			conjuction = " " .. @GetPhrase("AND") .. " "
 			str ..= mutated .. conjuction
 
-		str ..= pipeMutators(list[#list], ...)
+		str ..= @pipeMutators(list[#list], ...)
 		return str
 
 	-- Send a string through each mutator function with the specified arguments
-	pipeMutators = (replacement, mutatorFnsAndArgs using nil) ->
+	pipeMutators: (replacement, mutatorFnsAndArgs using nil) =>
 		for mutatorFnAndArgs in *mutatorFnsAndArgs
 			fn = mutatorFnAndArgs[1]
 			args = mutatorFnAndArgs[2]
