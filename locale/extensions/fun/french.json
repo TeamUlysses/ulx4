@@ -1,0 +1,4 @@
+{
+	"SLAP": "{INITIATOR} a giflé {TARGETS} {DAMAGE|NonZero:pour %i damage}",
+	"SLAP_ANON": "{TARGETS} {TARGETS|Single:was:were} giflé(s) {DAMAGE|NonZero:pour %i damage}"
+}
