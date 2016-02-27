@@ -1,4 +1,4 @@
 {
-	"SLAP": "{INITIATOR} a giflé {TARGETS} {DOMMAGE|NonZero:pour %i damage}",
-	"SLAP_ANON": "{TARGETS} {TARGETS|Single:était:étaient} giflé(s) {DOMMAGE|NonZero:pour %i damage}"
+	"SLAP": "{INITIATOR} a giflé {TARGETS} {DOMMAGE|NonZero:pour %i dommage}",
+	"SLAP_ANON": "{TARGETS} {TARGETS|Single:était:étaient} giflé(s) {DOMMAGE|NonZero:pour %i dommage}"
 }
