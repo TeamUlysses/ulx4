@@ -1,5 +1,12 @@
 return {
+	_all = {
+		ROOT = {"tests"},
+		verbose = true,
+	},
 	default = {
-		verbose = true
+		pattern = "_spec",
+	},
+	checks = {
+		pattern = "_[sc][ph]eck?s?",
 	}
 }

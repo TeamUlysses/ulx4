@@ -19,6 +19,9 @@ map:
 test:
 	busted tests
 
+check:
+	busted --run=checks
+
 diagram:
 	plantuml -tpng -o ../diagrams -nbthread auto doc/uml/*.iuml
 

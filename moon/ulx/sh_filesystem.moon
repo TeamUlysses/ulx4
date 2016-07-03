@@ -67,7 +67,7 @@ class ulx.Directory
 	Function: CreateDirectory
 	TODO
 	]=]
-	@CreateDirectory: (path) ->
+	@CreateDirectory: (path using nil) ->
 		-- TODO type checking
 		path = verifyAndRemoveDataFolder path
 		file.CreateDir path
@@ -87,3 +87,21 @@ class ulx.Directory
 				GetFilesHelper(path .. dir, searchPattern, searchRecursive, mount, filesAccum)
 
 		return filesAccum
+
+
+[=[
+Class: Path
+
+A static class used for path helper utilities.
+]=]
+class ulx.Path
+	[=[
+	Function: GetFileNameWithoutExtension
+	TODO
+	]=]
+	@GetFileNameWithoutExtension: (path using nil) ->
+		reversedPath = path\reverse!
+		posLastSlash = -(reversedPath\find("/", 1, true) or 0)
+		return "" if posLastSlash == -1
+		posLastDot = -(reversedPath\find(".", 1, true) or 0)
+		path\sub(posLastSlash+1, posLastDot-1)
