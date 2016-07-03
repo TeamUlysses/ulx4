@@ -43,7 +43,7 @@ class ulx.Lang
 
 	init = ->
 		lang = ulx.CoreConfig.Language
-		@@StaticLanguage = ulx.Lang lang
+		@@StaticLanguage = ulx.Lang lang, "english"
 		return
 	ulx.RegisterInitCallback init
 
@@ -67,16 +67,16 @@ class ulx.Lang
 	Function: SetLanguage
 	TODO
 	]=]
-	SetLanguage: (language, backupLanguage="english" using nil) =>
+	SetLanguage: (language, backupLanguage using nil) =>
 		ulx.UtilX.CheckArg "Language.SetLanguage", 1, "string", language
-		ulx.UtilX.CheckArg "Language.SetLanguage", 2, "string", backupLanguage
+		ulx.UtilX.CheckArg "Language.SetLanguage", 2, {"string", "nil"}, backupLanguage
 
 		@CurrentLanguage = language\lower!
-		@BackupLanguage = backupLanguage\lower!
+		@BackupLanguage = backupLanguage\lower! if backupLanguage
 
 		primaryPhrases, errPrimary = loadPhrasesForLang @CurrentLanguage
 
-		if @BackupLanguage ~= @CurrentLanguage
+		if @BackupLanguage and @BackupLanguage ~= @CurrentLanguage
 			secondaryPhrases, errSecondary = loadPhrasesForLang @BackupLanguage
 			if secondaryPhrases
 				primaryPhrases = ulx.TableX.UnionByKey secondaryPhrases, primaryPhrases or {}, true
