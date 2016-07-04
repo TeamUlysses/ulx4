@@ -7,6 +7,6 @@ return {
 		pattern = "_spec",
 	},
 	checks = {
-		pattern = "_[sc][ph]eck?s?",
+		pattern = "_checks",
 	}
 }

@@ -27,7 +27,8 @@ before_install:
   - luarocks install luafilesystem
 
 script:
-  - busted tests
+  - make test
+  - '[ "${TRAVIS_PULL_REQUEST}" = "true" ] && make check || false'
 
 notifications:
   recipients:
