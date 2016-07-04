@@ -28,7 +28,7 @@ before_install:
 
 script:
   - make test
-  - [ "${TRAVIS_PULL_REQUEST}" = "true" ] && make check || false
+  - test $TRAVIS_PULL_REQUEST = true && make check || false
 
 notifications:
   recipients:
