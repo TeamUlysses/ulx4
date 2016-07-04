@@ -7,17 +7,32 @@ env:
   global:
     - LUAROCKS=2.3.0
 
-  os:
-    - linux
-    - osx
-    
   matrix:
-    - LUA=lua5.1
-    - LUA=lua5.2
-    - LUA=lua5.3
-    - LUA=luajit     # latest stable version (2.0.4)
-    - LUA=luajit2.0  # current head of 2.0 branch
-    - LUA=luajit2.1  # current head of 2.1 branch
+    include:
+      - os: linux
+        env: LUA=lua5.1
+      - os: osx
+        env: LUA=lua5.1
+      - os: linux
+        env: LUA=lua5.2
+      - os: osx
+        env: LUA=lua5.2
+      - os: linux
+        env: LUA=lua5.3
+      - os: osx
+        env: LUA=lua5.3
+      - os: linux
+        env: LUA=luajit # Latest stable version
+      - os: osx
+        env: LUA=luajit # Latest stable version
+      - os: linux
+        env: LUA=luajit2.0
+      - os: osx
+        env: LUA=luajit2.0
+      - os: linux
+        env: LUA=luajit2.1
+      - os: osx
+        env: LUA=luajit2.1
 
 branches:
   only:
