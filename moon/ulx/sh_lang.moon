@@ -60,6 +60,9 @@ class ulx.Lang
 	@GetMutatedPhrase: (phraseName, data using nil) ->
 		@StaticLanguage\GetMutatedPhrase phraseName, data
 
+	@GetColoredMutatedPhrase: (phraseName, data using nil) ->
+		@StaticLanguage\GetColoredMutatedPhrase phraseName, data
+
 	new: (language, backupLanguage using nil) =>
 		@SetLanguage language, backupLanguage
 
@@ -107,6 +110,55 @@ class ulx.Lang
 			@processPlaceholder(placeholder, data)
 		ulx.UtilX.Trim mutatedPhrase
 
+	[=[
+	Function: GetColoredMutatedPhrase
+	TODO
+	COLOR_DEFAULT
+	COLOR_DEFAULT_REPLACED
+	COLOR_<place holder name>
+	]=]
+	GetColoredMutatedPhrase: (phraseName, data using nil) =>
+		phrase = @GetPhrase phraseName
+		if not phrase
+			return nil
+
+		default = data.COLOR_DEFAULT
+		default_replaced = data.COLOR_DEFAULT_REPLACED
+
+		len = #phrase
+		curIdx = 1
+		pieces = {}
+		color = nil
+		lastColor = false
+		txt = nil
+
+		while curIdx <= len
+			start, stop = phrase\find "{.-}", curIdx
+
+			if not start or start > curIdx
+				txt = phrase\sub(curIdx, (start or 0)-1)
+				color = default
+				lastColor = @insertColoredString pieces, color, txt, lastColor
+				break if not start
+
+			placeholder = phrase\sub start, stop
+			txt, placeholderName = @processPlaceholder placeholder, data
+			color = data["COLOR_#{placeholderName}"] or default_replaced or default
+			lastColor = @insertColoredString pieces, color, txt, lastColor
+
+			curIdx = stop+1
+
+		return pieces
+
+	insertColoredString: (pieces, color, txt, lastColor using nil) =>
+		if color ~= lastColor and txt\find("%S")
+			table.insert pieces, color
+			table.insert pieces, txt
+			return color
+		else
+			pieces[#pieces] ..= txt
+			return lastColor
+
 	-- Receives everything between and including the brackets "{DAMAGE|NonZero:for %i damage}"
 	processPlaceholder: (placeholder, data using nil) =>
 		curPos = placeholder\find("|", 3, true) or #placeholder -- next pipe or the end bracket
@@ -125,7 +177,7 @@ class ulx.Lang
 		if type(mutated) == "table"
 			mutated = @listPipeMutators replacement, mutatorFnsAndArgs
 
-		return mutated
+		return mutated, placeholderName
 
 	-- Receives a mutator function and all its arguments "NonZero:for %i damage"
 	getFnAndArgs: (functionBlock, txt) =>
