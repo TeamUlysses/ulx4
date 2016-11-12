@@ -9,16 +9,16 @@ If you don't have it already, install Homebrew from [http://brew.sh](http://brew
 ### Required (Development) ###
 ```
 brew install lua51
-luarocks-5.1 install moonscript
-luarocks-5.1 install LuaSocket
+sudo luarocks-5.1 install moonscript
+sudo luarocks-5.1 install LuaSocket
 ```
 
 ### Optional (Testing and Documentation) ###
 ```
 brew install naturaldocs plantuml
-luarocks-5.1 install busted
-luarocks-5.1 install lua-cjson
-luarocks-5.1 install luafilesystem
+sudo luarocks-5.1 install busted
+sudo luarocks-5.1 install lua-cjson
+sudo luarocks-5.1 install luafilesystem
 ```
 
 ## Linux ##
