@@ -1,6 +1,6 @@
 print "ULX v#{ulx.VERSION} loading client-side..."
 
-ulx.CoreConfig = Config "client"
+ulx.CoreConfig = ulx.Config "client"
 ulx.CoreConfig\LoadAndUseDefaults
 	Language: ""
 

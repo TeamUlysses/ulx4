@@ -198,6 +198,6 @@ with plugin\Command( "command", ulx.command ) -- Chat alias is automatically ass
 		RestrictToTime "1500-1700" --???
 		RestrictToAbsenceOf "%superadmin"
 		RestrictToPresenceOf "#user"
-		RestrictToCustom (ply, ...) -> if ply\IsAlive() then return false, "you must be alive to run this command" else return true
+		RestrictToCustom (ply, ...) -> if not ply\IsAlive() then return false, "you must be alive to run this command" else return true
 	}
 ]=]

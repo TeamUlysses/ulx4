@@ -12,10 +12,13 @@ IncludeAndAddCSLuaFile = (filename using nil) ->
 -- External libs
 IncludeAndAddCSLuaFile "lib/tableshape.lua"
 
--- General things
+-- Utility things
 IncludeAndAddCSLuaFile "ulx/sh_consts.lua"
 IncludeAndAddCSLuaFile "ulx/sh_tablex.lua"
 IncludeAndAddCSLuaFile "ulx/sh_utilx.lua"
+IncludeAndAddCSLuaFile "ulx/sh_filesystem.lua"
+IncludeAndAddCSLuaFile "ulx/sh_config.lua"
+IncludeAndAddCSLuaFile "ulx/sh_lang.lua"
 
 -- GMod things
 IncludeAndAddCSLuaFile "ulx/sh_arguments.lua"

@@ -22,8 +22,14 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 ![Stickly Man!'s Avatar](https://avatars.githubusercontent.com/u/95759?s=100)
 [Stickly Man!](https://github.com/SticklyMan) (GUI Expert)
 
-![JamminR's Avatar](http://forums.ulyssesmod.net/index.php?action=dlattach;attach=826;type=avatar)
+![JamminR's Avatar](https://forums.ulyssesmod.net/index.php?action=dlattach;attach=1721;type=avatar)
 [JamminR](http://forums.ulyssesmod.net/index.php?action=profile;u=133) (Morale & Support)
+
+![MrPresident's Avatar](http://g4p.org/Forum/uploads/avatars/avatar_3.jpg)
+[MrPresident](https://forums.ulyssesmod.net/index.php?action=profile;u=758) (Developer)
+
+![Timmy's Avatar](http://timmy.github.io/images/cloister-black-t.png)
+[Timmy](https://github.com/timmy) (Developer)
 
 ### Translations ###
 

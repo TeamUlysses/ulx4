@@ -1,6 +1,6 @@
 print "ULX v#{ulx.VERSION} loading server-side..."
 
-ulx.CoreConfig = Config "server"
+ulx.CoreConfig = ulx.Config "server"
 ulx.CoreConfig\LoadAndUseDefaults
 	Language: "english"
 	SteamAPIKey: 123
