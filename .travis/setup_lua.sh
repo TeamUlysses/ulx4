@@ -49,7 +49,7 @@ if [ "$LUAJIT" == "yes" ]; then
 
 	if [ "$LUA" == "luajit2.0" ]; then
 		git checkout v2.0;
-	if [ "$LUA" == "luajit2.1" ]; then
+	elif [ "$LUA" == "luajit2.1" ]; then
 		git checkout v2.1;
 		# force the INSTALL_TNAME to be luajit
 		perl -i -pe 's/INSTALL_TNAME=.+/INSTALL_TNAME= luajit/' Makefile
