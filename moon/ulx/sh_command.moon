@@ -166,7 +166,7 @@ class ulx.Command
 			cmdArg = cmdArgs[i]
 			argRaw = argvRaw[i]
 			argParsed = argRaw
-			if type(argRaw) ~= "number"
+			if type(argRaw) == "string"
 				parsed, returned = cmdArg\Parse argRaw
 				if not parsed
 					return false, i, returned
@@ -186,7 +186,7 @@ with plugin\Command( "command", ulx.command ) -- Chat alias is automatically ass
 	\Hint "Hint text"
 	\Access "admin"
 	--\Category "fun" -- Only need to specify if differing from plugin category
-	--\ChatAlias "command" or {"cmd", "command"} for multiple - if unspecified, "command" from first line is assumed
+	--\ChatAlias "command" or {"!cmd", "!command"} for multiple - if unspecified, "!command" from first line is assumed
 	--\ConsoleAlias "cmd" or {"cmd1", "cmd2"} for multiple
 	\Args{
 		ArgPlayer! -- help text for arguments automatically contains "player to <command name>"
