@@ -1,6 +1,6 @@
 rock_manifest = {
    lib = {
-      ["lpeg.so"] = "c4beb029729e66c80981c18ea2a63fd1"
+      ["lpeg.so"] = "63dbf3142f4408e993000e321e81b37f"
    },
    ["lpeg-1.0.2-1.rockspec"] = "7e5211dafbd5750059819e1ca96241b6",
    lua = {

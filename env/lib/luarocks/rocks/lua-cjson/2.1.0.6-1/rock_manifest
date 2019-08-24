@@ -4,7 +4,7 @@ rock_manifest = {
       lua2json = "824d2392d8ff297f8e67eefcf5095ca6"
    },
    lib = {
-      ["cjson.so"] = "9e4b1506d08af73511c0170b94f8a9c7"
+      ["cjson.so"] = "c4a3502a99beff41aee711bfd8a6afd6"
    },
    lua = {
       cjson = {
