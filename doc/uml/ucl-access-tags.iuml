@@ -1,0 +1,20 @@
+@startuml
+object root
+note right: If a user is granted this access tag,\nthey have access to any other access tag
+
+object "plugin ulx fun" as fun
+note right: If a user is granted this access tag,\nthey have access to all the tags under it
+
+object "plugin ulx utilities" as util
+object "ulx slap" as slap
+object "ulx jail" as jail
+object "ulx kick" as kick
+object "ulx ban" as ban
+
+root o-- fun
+root o-- util
+fun o-- slap
+fun o-- jail
+util o-- kick
+util o-- ban
+@enduml

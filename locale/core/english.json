@@ -1,0 +1,37 @@
+{
+	"AND": "and",
+
+	"SECONDS": "seconds",
+	"SECOND": "second",
+	"SECOND_SHORT": "s",
+	"MINUTES": "minutes",
+	"MINUTE": "minute",
+	"MINUTE_SHORT": "m",
+	"HOURS": "hours",
+	"HOUR": "hour",
+	"HOUR_SHORT": "h",
+	"DAYS": "days",
+	"DAY": "day",
+	"DAY_SHORT": "d",
+	"WEEKS": "weeks",
+	"WEEK": "week",
+	"WEEK_SHORT": "w",
+	"MONTHS": "months",
+	"MONTH": "month",
+	"MONTH_SHORT": "M",
+	"YEARS": "years",
+	"YEAR": "year",
+	"YEAR_SHORT": "y",
+
+	"NUMBER": "number",
+
+	"COMMAND_ARG_MESSAGE": "\"{COMMANDNAME}\" arg #{ARGNUM}: {MESSAGE}",
+	"COMMAND_UNKNOWN": "Unknown command '{COMMANDNAME}'",
+
+	"ARG_NOT_SPECIFIED": "Mandatory argument not specified",
+	"ARG_CANNOT_PARSE": "Cannot parse '{GIVEN}' to {TYPE}",
+	"ARG_INCORRECT_TYPE": "Not a {TYPE} (given '{GIVEN}')",
+
+	"ARGNUM_BELOW_MIN": "Below minimum ({MIN})",
+	"ARGNUM_ABOVE_MAX": "Above maximum ({MAX})"
+}

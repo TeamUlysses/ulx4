@@ -1,0 +1,10 @@
+rock_manifest = {
+   ["alt-getopt-0.8.0-1.rockspec"] = "29fdf40c380705724708b88035aa437d",
+   doc = {
+      LICENSE = "18b8205fae57f066b9d4d7e8203ae2fb",
+      README = "3776d7aab66b795be7383e49caccc28b"
+   },
+   lua = {
+      ["alt_getopt.lua"] = "0cbcb7a7332b24a23d7d662f83db9db3"
+   }
+}

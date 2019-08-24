@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec '/home/travis/build/TeamUlysses/ulx4/env/bin/lua' -e 'package.path="/home/travis/.luarocks/share/lua/5.3/?.lua;/home/travis/.luarocks/share/lua/5.3/?/init.lua;/home/travis/build/TeamUlysses/ulx4/env/share/lua/5.3/?.lua;/home/travis/build/TeamUlysses/ulx4/env/share/lua/5.3/?/init.lua;"..package.path; package.cpath="/home/travis/.luarocks/lib/lua/5.3/?.so;/home/travis/build/TeamUlysses/ulx4/env/lib/lua/5.3/?.so;"..package.cpath' -e 'local k,l,_=pcall(require,"luarocks.loader") _=k and l.add_context("lua-cjson","2.1.0-1")' '/home/travis/build/TeamUlysses/ulx4/env/lib/luarocks/rocks/lua-cjson/2.1.0-1/bin/json2lua' "$@"

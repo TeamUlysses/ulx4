@@ -1,0 +1,67 @@
+rock_manifest = {
+   bin = {
+      busted = "33741fff1f98a660ba62e5ca7a7980ba"
+   },
+   ["busted-2.0.0-1.rockspec"] = "e8f6221e1312d1e92ec660fb5839dc30",
+   doc = {
+      ["CONTRIBUTING.md"] = "d21004ba0756a6de878b1f67ed644152",
+      LICENSE = "cabb1471206ff05b6b3e0e0af73dbd33",
+      ["README.md"] = "7f59d5c60434b7bef0251dd73fb44aa5",
+      ["TODO.md"] = "c8138c422d47e899a02785ac53f98888"
+   },
+   lua = {
+      busted = {
+         ["block.lua"] = "caa7eca8262e5f2ccc6f9df48857d1ed",
+         ["compatibility.lua"] = "ef78cadd1b2f23abb4c008c3570af148",
+         ["context.lua"] = "56df85308da2bc94c11351be1fb61dcb",
+         ["core.lua"] = "3440808f88b46c0b9c44ab6a06e2b3a8",
+         ["done.lua"] = "1a89c2e9a52230a2e3bfe0041e0bfc1d",
+         ["environment.lua"] = "f1a46e9276b7b72d7c9f2e1381a9496f",
+         ["execute.lua"] = "f897b597aff8916515538f8f9aa7ea5d",
+         ["init.lua"] = "f0873bfbe50bf771356af3b7042a6b91",
+         languages = {
+            ["ar.lua"] = "bb95e045d1707e92191873af7eaac74f",
+            ["de.lua"] = "6e383a826b38f04e67fff4f5c9060419",
+            ["en.lua"] = "101bf1032d7629814006353d087b6643",
+            ["es.lua"] = "beb0de3adb0bef8dbc05fdb2e031da9a",
+            ["fr.lua"] = "b654f52c0d3d0e7fffce5a6ba53b85ab",
+            ["it.lua"] = "eab455246bae9f3c73a002a941366d6b",
+            ["ja.lua"] = "6ab146084bef8dfb73a50102e933a864",
+            ["nl.lua"] = "6e708d4e0322f7f8de3c4af5724d065c",
+            ["ru.lua"] = "f2b8d843b98459f3093c4a0d19b77096",
+            ["th.lua"] = "fcdd8c4a7a6aa1459f575252181787b2",
+            ["ua.lua"] = "ffc821d59e8086303dd3fd447c7c6b32",
+            ["zh.lua"] = "8522f50704d68ac01896bb2031a91cb8"
+         },
+         modules = {
+            ["cli.lua"] = "08c15b2616ed45e57783a2071be8f32c",
+            ["configuration_loader.lua"] = "601c8e7f6f2ed2546fd47f11ed6e7760",
+            files = {
+               ["lua.lua"] = "83347dfaac6c6e9532a0ce1d39acd418",
+               ["moonscript.lua"] = "270f15367f651e890870a077aaca81d8",
+               ["terra.lua"] = "916f280ae6bfcfd766474b968596c81c"
+            },
+            ["filter_loader.lua"] = "b84541ad8c0d1f72d399f8d9e93fc5b6",
+            ["helper_loader.lua"] = "e36c5a6bef1e207ee3947e7a69d667e5",
+            ["luacov.lua"] = "62d8082ffe9ba7ac0a665a64bea216be",
+            ["output_handler_loader.lua"] = "8aa967a3b1f41c22ca463e53470847fb",
+            ["standalone_loader.lua"] = "8efb08736b3812c494b83d089cc97ea5",
+            ["test_file_loader.lua"] = "d894857164f36e3bb9c2773277beaed2"
+         },
+         ["options.lua"] = "e8d6f64b4b2feff63faa577db2fd6087",
+         outputHandlers = {
+            ["TAP.lua"] = "2114bded32d92ccf90814d7edb5eb253",
+            ["base.lua"] = "edea548c94965a82b9ae61c2e6423599",
+            ["gtest.lua"] = "dc52ad32cfae3605909e13f98e4e3380",
+            ["json.lua"] = "242d9c3d0203345de2ea59386966aef5",
+            ["junit.lua"] = "c6503988dc5a18522779923cd5c6d8bf",
+            ["plainTerminal.lua"] = "0ea9442113174b2294bb8e679dcff4ce",
+            ["sound.lua"] = "ab8c78c028b9229567309769a5792c4b",
+            ["utfTerminal.lua"] = "848d9b9db1780c0488133ea466200945"
+         },
+         ["runner.lua"] = "5a5b2c436168ce0c02d87c99ce82545e",
+         ["status.lua"] = "8bb455d6125bcc2122c98f608f5d7702",
+         ["utils.lua"] = "e73e9eab05156f68d0c69064c380e045"
+      }
+   }
+}

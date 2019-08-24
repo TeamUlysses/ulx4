@@ -1,0 +1,75 @@
+https://github.com/andyvincent/ASSmod
+https://github.com/Xandaros/evolve
+https://github.com/prefanatic/exsto
+https://github.com/LolcatsV2/CATpublic
+https://github.com/Chessnut/moderator
+https://github.com/Doubleedge/serverbase
+https://github.com/kurt-stolle/exclserver
+https://github.com/VeXan39231/vexadmin
+https://github.com/nedhyett/Vermilion
+https://github.com/DaaOtt/maestro
+"Onion" -- no release page yet
+https://gmodserverguard.com/ -- No free version
+
+-- NS2
+https://github.com/Person8880/Shine -- Borrow ideas heavily here
+https://github.com/xToken/DAK
+
+
+Translations --
+Contact Russian http://steamcommunity.com/id/fixator10/ -- fixator10@mail.ru
+and secondary for RU http://steamcommunity.com/id/Satton -- dragolino6@mail.ru
+Contact French https://github.com/guerryer -- fredboies@hotmail.com
+Contact Portuguese https://github.com/comedinha -- comedinhass@gmail.com
+
+Next Steps:
+# Fix CI -- https://github.com/mpeterv/hererocks
+* Add in fancy printing for command execution
+ - Handle player objects directly?
+* Document client side execution vs server side execution for commands
+ - Use Arg.IsValid for the server to ensure it's getting the right objects?
+* Targeting functions
+* Logger
+ - Errors to URL
+ - Moonscript un-crap (line numbers, stack)
+* Permissions
+* BETTER TESTING
+ - Better way of using the same logic for config loading between testing/production
+ - No longer sure what I meant by the above statement? (4 Jul 2016)
+* Language Checks
+ - Valid formatting, same placeholders, and valid functions
+
+For logging?
+http://logz.io/pricing/#
+
+Idea from Linux:
+Schedule commands relatively or absolutely (see 'at' command)
+Log configuration - like rsyslogd - source/facility and level and destination (e.g., user.spawns -> server.console, admins.chat   ====== server.lua.error -> server.log, server.mail)
+
+
+cd "/Users/zoot/SpiderOak Hive/Projects" && naturaldocs -r -i ulx4 -o HTML ulx4_docs -p ulx4/doc/ndinfo
+cd "/Users/zoot/SpiderOak Hive/Projects" && plantuml -tsvg -o svg -nbthread auto doc/diagrams/*.iuml
+cd "/Users/zoot/SpiderOak Hive/Projects/ulx4/moon" && moonc -t ../lua *
+
+with plugin\Command( "command", ulx.command ) -- Chat alias is automatically assumed, can override with .ChatAlias = ...
+	.Tip = "Help text"
+	.Access = "admin"
+	--.Category = "fun" -- Only need to specify if differing from plugin category
+	--.ChatAlias = "command" or {"cmd", "command"} for multiple - if unspecified, "command" from first line is assumed
+	--.ConsoleAlias = "cmd" or {"cmd1", "cmd2"} for multiple
+	.Args =
+		ArgCommandCaller!
+		ArgPlayer! -- help text for arguments automatically contains "player to <command name>"
+		ArgTime!\Optional!\min 0 -- help text "time (in minutes) to <command name>"
+		ArgString!\Optional!\Greedy!\RestrictToCompletes!\Completes tbl
+
+git remote add -f -t master --no-tags garrysmod https://github.com/garrynewman/garrysmod.git
+git read-tree --prefix=spec/garrysmod -u garrysmod/master:garrysmod/lua
+
+wget -O /tmp/tableshape.moon https://raw.githubusercontent.com/leafo/tableshape/master/tableshape/init.moon
+echo -- Downloaded from github.com/leafo/tableshape on `date` > moon/lib/tableshape.moon
+echo -- Original was modified to load into the global space, since Garry's Mod doesn't support Lua best practices >> moon/lib/tableshape.moon
+cat /tmp/tableshape.moon >> moon/lib/tableshape.moon
+sed -i '' 's/{ :check/export tableshape = { :check/g' moon/lib/tableshape.moon
+
+git archive --format zip --output utime.zip master -9

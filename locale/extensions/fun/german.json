@@ -1,0 +1,4 @@
+{
+	"SLAP": "{INITIATOR} schlug {TARGETS} {DAMAGE|NonZero:, mit einem Schaden von %i HP.}",
+	"SLAP_ANON": "{TARGETS} {TARGETS|Single:wurde:wurden} geschlagen, {DAMAGE|NonZero:mit einem Schaden von %i HP.}"
+}

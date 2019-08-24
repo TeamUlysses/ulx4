@@ -1,0 +1,51 @@
+@startuml
+abstract class Arg {
+	+Default    : //any//
+	+IsOptional : bool = false
+
+	+UsageShort() : string
+	+UsageLong() : string
+	+Completes( str : string ) : table
+	+Parse( str : string ) : //any//, string
+
+	+Serialize() : string
+	+Deserialize( serialized : string ) : Arg {static}
+}
+
+class ArgNum {
+	+Default : number = 0
+	+Min : number?
+	+Max : number?
+	+RoundTo : number?
+}
+
+class ArgTime {
+	+Default : string = ""
+	+Min : number or string?
+	+Max : number or string?
+}
+
+class ArgString {
+	+RestrictToCompletes : bool = false
+	+StrCompletes : table?
+}
+
+class ArgPlayerID {
+	+Default : string = "^"
+	+RestrictTarget : string?
+	+MaximumTargets : number = 1
+	+PassPlayerIfActive : bool
+}
+
+class ArgPlayerActive {
+}
+
+Command "1" *-- "*" Arg
+
+Arg <|-- ArgNum
+ArgNum <|-- ArgTime
+Arg <|-- ArgString
+Arg <|-- ArgPlayerID
+ArgPlayerID <|-- ArgPlayerActive
+Arg <|-- BoolArg
+@enduml

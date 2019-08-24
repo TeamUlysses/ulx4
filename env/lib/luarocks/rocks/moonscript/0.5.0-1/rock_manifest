@@ -1,0 +1,58 @@
+rock_manifest = {
+   bin = {
+      moon = "6d2464e18739ef3df565f07541927a86",
+      moonc = "dd1e765315fc3a97ba5178185e34b66e"
+   },
+   doc = {
+      ["CHANGELOG.md"] = "84344a400d54c49963012909e0b2405b",
+      ["README.md"] = "946d1c776b47fb45dd3b61a13e6c8820"
+   },
+   lua = {
+      moon = {
+         ["all.lua"] = "515a4a46175ca2d388446590da39d372",
+         ["init.lua"] = "7db32ff6850a14e20bb545097a35e25a"
+      },
+      moonscript = {
+         ["base.lua"] = "2c52b43f339f052590a2bf491cd61973",
+         cmd = {
+            ["args.lua"] = "938861a97458f4f9684e4fa065b1041d",
+            ["coverage.lua"] = "00d01fdbe062bdc5c1eb6259f140efba",
+            ["lint.lua"] = "345d398ce084225b363e920c9649cb39",
+            ["moonc.lua"] = "7904755d10bf2ff00d91503262323567",
+            ["watchers.lua"] = "e768d665111f2045e3ef2137544dbbf0"
+         },
+         compile = {
+            ["statement.lua"] = "21023c489560d96bb85c07b0b77a9739",
+            ["value.lua"] = "fdf36a3cca3745f8bb42f7fb720596e5"
+         },
+         ["compile.lua"] = "be3a3c67f22fd66c525fd4e454c27339",
+         ["data.lua"] = "cd20b901357f6351fd596b63b011b3b7",
+         ["dump.lua"] = "a7f06b01060a1f2a102abbce06341edd",
+         ["errors.lua"] = "6258128af0eeaddbf129909d7ff0e8f1",
+         ["init.lua"] = "0a25d3424694b97b2e8f21bcb83aa5bd",
+         ["line_tables.lua"] = "2f63db8a7f01d8d70104b8d8a35d8880",
+         parse = {
+            ["env.lua"] = "48b857cbae23b8c1e830074707f893de",
+            ["literals.lua"] = "248475194375882cacae6b53ad11d5be",
+            ["util.lua"] = "bdeaed1d4f631d96792d5be50f9a4d28"
+         },
+         ["parse.lua"] = "488381aa7140b782c79e257b46a9dc54",
+         transform = {
+            ["accumulator.lua"] = "402afe0da97a15405bd55ea5b601d176",
+            ["class.lua"] = "22678ff492ce0eab15b5cf78c2161745",
+            ["comprehension.lua"] = "4cdc88f58ae03b104ed9be0f26d94c27",
+            ["destructure.lua"] = "1e49cdbdc1455418659a908edced756e",
+            ["names.lua"] = "32fc449c17e0d8d5a3996f915c9d5331",
+            ["statement.lua"] = "ba8ee7fce4e3f05bd5f08186c0a97c93",
+            ["statements.lua"] = "7faaf075dc5eec5728431dadb7a8c178",
+            ["transformer.lua"] = "f1cee2a90cbc168f22fc42847c79a182",
+            ["value.lua"] = "d4e210690766d3af5775efd999c75594"
+         },
+         ["transform.lua"] = "8a71a1c4832fcc1f2daedcca7c0c0e5c",
+         ["types.lua"] = "b42ffe5fed4bcad1db58a3a9c211e09a",
+         ["util.lua"] = "6ef64f6b5759b2d978b0bb966c3a065a",
+         ["version.lua"] = "e05c867249e2e5500ae8617c1e3e06c1"
+      }
+   },
+   ["moonscript-0.5.0-1.rockspec"] = "e8159b321205bea698541dcb02b91c89"
+}

@@ -1,0 +1,39 @@
+@startuml
+
+start
+:Command.RunString( ply : Player, args : string ) ;
+:Command.Run( ply, argv : list<//any//> ) ;
+note right
+	**""argv""** is normally just a list of string arguments, but it can contain pre-parsed
+	(non-string) arguments as well. For example, you could pass player arguments
+	as the player object itself.
+end note
+
+:retrieve Command instance ;
+
+if (player has access to overall command?) then (no)
+	stop
+endif
+
+while (each argument (argObj) in command instance)
+	:arg = corresponding argument from argv ;
+
+	if (argObj:IsValid( arg : //any// )) then (false)
+		note right: IsValid() ensures basic format (or object type) is correct
+		stop
+	endif
+
+	if (arg is string) then (yes)
+		:arg = argObj:Parse( arg ) ;
+	endif
+
+	if (argObj:HasPermission( arg )) then (false)
+		stop
+	endif
+endwhile
+
+: commandInstance:Execute( ply, parsedArg1, parsedArg2, .. );
+
+stop
+
+@enduml

@@ -1,0 +1,25 @@
+if declare -f -F deactivate-lua >/dev/null; then
+    deactivate-lua
+fi
+
+deactivate-lua () {
+    if [ -x '/home/travis/build/TeamUlysses/ulx4/env/bin/lua' ]; then
+        PATH=`'/home/travis/build/TeamUlysses/ulx4/env/bin/lua' '/home/travis/build/TeamUlysses/ulx4/env/bin/get_deactivated_path.lua'`
+        export PATH
+
+        # Need to rehash under bash and zsh so that new PATH is taken into account.
+        if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ]; then
+            hash -r 2>/dev/null
+        fi
+    fi
+
+    unset -f deactivate-lua
+}
+
+PATH='/home/travis/build/TeamUlysses/ulx4/env/bin':"$PATH"
+export PATH
+
+# As in deactivate-lua, rehash after changing PATH.
+if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ]; then
+    hash -r 2>/dev/null
+fi

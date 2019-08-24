@@ -1,4 +1,4 @@
-doc
+doc/*
 !doc/ndinfo/*.txt
 !doc/uml
 lua/**/*.lua
