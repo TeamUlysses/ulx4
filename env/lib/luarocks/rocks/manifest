@@ -3,10 +3,10 @@ commands = {
       "busted/2.0.0-1"
    },
    json2lua = {
-      "lua-cjson/2.1.0-1"
+      "lua-cjson/2.1.0.6-1"
    },
    lua2json = {
-      "lua-cjson/2.1.0-1"
+      "lua-cjson/2.1.0.6-1"
    },
    moon = {
       "moonscript/0.5.0-1"
@@ -188,7 +188,7 @@ dependencies = {
       }
    },
    ["lua-cjson"] = {
-      ["2.1.0-1"] = {
+      ["2.1.0.6-1"] = {
          {
             constraints = {
                {
@@ -503,10 +503,10 @@ modules = {
       "busted/2.0.0-1"
    },
    cjson = {
-      "lua-cjson/2.1.0-1"
+      "lua-cjson/2.1.0.6-1"
    },
    ["cjson.util"] = {
-      "lua-cjson/2.1.0-1"
+      "lua-cjson/2.1.0.6-1"
    },
    cliargs = {
       "lua_cliargs/3.0-2"
@@ -554,7 +554,7 @@ modules = {
       "dkjson/2.5-2"
    },
    json2lua = {
-      "lua-cjson/2.1.0-1"
+      "lua-cjson/2.1.0.6-1"
    },
    lfs = {
       "luafilesystem/1.7.0-2"
@@ -563,7 +563,7 @@ modules = {
       "lpeg/1.0.2-1"
    },
    lua2json = {
-      "lua-cjson/2.1.0-1"
+      "lua-cjson/2.1.0.6-1"
    },
    luassert = {
       "luassert/1.8.0-0"
@@ -992,7 +992,7 @@ repository = {
       }
    },
    ["lua-cjson"] = {
-      ["2.1.0-1"] = {
+      ["2.1.0.6-1"] = {
          {
             arch = "installed",
             commands = {

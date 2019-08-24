@@ -5,7 +5,7 @@ rock_manifest = {
    },
    lib = {
       system = {
-         ["core.so"] = "4fb292c6f1bc713e1d1d8d5d8f2705c1"
+         ["core.so"] = "c0363ea62e6f570b9760479a01df43cf"
       }
    },
    lua = {
