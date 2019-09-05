@@ -87,13 +87,9 @@ Note: LuaRocks requires [Visual Studio (free)](https://www.visualstudio.com/prod
 
  `luarocks install busted`
 
-### NaturalDocs (Optional) ###
-1. NaturalDocs requires Perl. We recommend installing [StrawberryPerl](http://strawberryperl.com/).
-2. [Download the latest release of NaturalDocs here](http://www.naturaldocs.org/download.html).
-3. Extract NaturalDocs to a location that can be accessed via %PATH%, or add a new entry to %PATH%.
-4. Modify NaturalDocs.bat in the main folder, and fine the line that says `perl NaturalDocs %NatrualDocsParams%`. Replace `NaturalDocs` with the path you installed NaturalDocs to, like so:
-
- `perl E:\NaturalDocs\NaturalDocs %NaturalDocsParams%`
+### Natural Docs (Optional) ###
+1. [Download the latest release of Natural Docs here](https://www.naturaldocs.org/download/).
+2. Extract it to a location that can be accessed via %PATH%, or add a new entry to %PATH%.
 
 ### PlantUML (Optional) ###
 1. PlantUML requires the [Java Runtime Environment (JRE)](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html).
