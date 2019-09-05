@@ -4,11 +4,11 @@
 
 ### NOTE: This version of ULX is in early development, and is not currently a full replacement for ULX 3. Do not run this on your servers yet! ###
 
-ULX is an addon for [Garry's Mod](http://garrysmod.com). Insert some witty and concise description here.
+ULX is an addon for [Garry's Mod](https://gmod.facepunch.com). Insert some witty and concise description here.
 
 ULX is licensed under the MIT license. For an easy-to-understand summary of the license, please check out [tl;dr Legal](https://tldrlegal.com/license/mit-license).
 
-Note that ULX is written primarily in [MoonScript](http://moonscript.org) (described below). Even though Garry's Mod will be running the compiled version of the MoonScript, we ship ULX with both the original and the compiled source for your convenience.
+Note that ULX is written primarily in [MoonScript](https://moonscript.org) (described below). Even though Garry's Mod will be running the compiled version of the MoonScript, we ship ULX with both the original and the compiled source for your convenience.
 
 
 
@@ -23,12 +23,12 @@ Note that ULX is written primarily in [MoonScript](http://moonscript.org) (descr
 [Stickly Man!](https://github.com/SticklyMan) (GUI Expert)
 
 ![JamminR's Avatar](https://forums.ulyssesmod.net/index.php?action=dlattach;attach=1721;type=avatar)
-[JamminR](http://forums.ulyssesmod.net/index.php?action=profile;u=133) (Morale & Support)
+[JamminR](https://forums.ulyssesmod.net/index.php?action=profile;u=133) (Morale & Support)
 
-![MrPresident's Avatar](http://g4p.org/downloads/avatar.jpg)
+![MrPresident's Avatar](https://g4p.org/downloads/avatar.jpg)
 [MrPresident](https://forums.ulyssesmod.net/index.php?action=profile;u=758) (Developer)
 
-![Timmy's Avatar](http://timmy.github.io/images/cloister-black-t.png)
+![Timmy's Avatar](https://timmy.github.io/images/cloister-black-t.png)
 [Timmy](https://github.com/timmy) (Developer)
 
 ### Translations ###
@@ -52,22 +52,22 @@ This helps ULX verify the validity of data as it's being loaded or moved around.
 
 ULX's codebase and documentation were built using the following tools. You do not need these dependencies installed for ULX to function.
 
-[MoonScript](http://moonscript.org) - A programmer friendly language that compiles to Lua.
+[MoonScript](https://moonscript.org) - A programmer friendly language that compiles to Lua.
 MoonScript was chosen for ULX in order to minimize typing, increase clarity of intent, and because it remains compatible with Garry's modified version of Lua 5.1.
 
-[Busted](http://olivinelabs.com/busted) - Elegant Lua unit testing.
+[Busted](https://olivinelabs.com/busted/) - Elegant Lua unit testing.
 Busted tests our core functionality to ensure that everything is working as advertised.
 
-[lua-cjson](http://www.kyne.com.au/~mark/software/lua-cjson.php) - A [JSON](http://json.org) library.
+[lua-cjson](https://www.kyne.com.au/~mark/software/lua-cjson.php) - A [JSON](https://json.org) library.
 JSON is the format of choice for ULX when writing to plain text files. This format was chosen over the existing Source KeyValues format because it's an accepted Internet standard (and thus easier to move the data around) in addition to being less prone to errors. Garry's Mod natively supports JSON, but we need to process JSON data in our unit tests.
 
 [LuaFileSystem](https://keplerproject.github.io/luafilesystem/) - File System Library for the Lua Programming Language.
 This is necessary since vanilla Lua only implements very basic file I/O functionality.
 
-[Natural Docs](http://naturaldocs.org) - Documentation generator.
-Natural Docs generates ULX documentation from comments in the source code and is available online at http://ulyssesmod.net/ulx4-doc.
+[Natural Docs](https://naturaldocs.org) - Documentation generator.
+Natural Docs generates ULX documentation from comments in the source code and is available online at https://ulyssesmod.net/ulx4-doc.
 
-[PlantUML](http://plantuml.sf.net) - Generates [Unified Modeling Language (UML)](http://www.uml.org/) diagrams from plain-text descriptions.
+[PlantUML](http://plantuml.com) - Generates [Unified Modeling Language (UML)](https://www.uml.org) diagrams from plain-text descriptions.
 This allows us to quickly document ULX source structure without the hassle of a graphical UML editor.
 
 
@@ -76,7 +76,7 @@ This allows us to quickly document ULX source structure without the hassle of a 
 
 Install ULX by placing the contents of this repository in `addons\ulx` such that `addon.txt` resides in `addons\ulx\addon.txt`. Your file structure should look like the following:
 
-![File structure](http://teamulysses.github.io/ulx4/doc/diagrams/file-structure.png)
+![File structure](https://teamulysses.github.io/ulx4/doc/diagrams/file-structure.png)
 
 
 
