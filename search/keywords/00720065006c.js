@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("rel",["Variable"],[["ReleaseVersion",,[["Plugin",,,,0,"File:moon/ulx/sh_plugin.moon:Plugin.ReleaseVersion","MoonScriptClass:Plugin:ReleaseVersion"]]]]);

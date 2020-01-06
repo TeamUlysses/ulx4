@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("ser",["Function"],[["Serialize",,[["Arg",,,,0,"File:moon/ulx/sh_arguments.moon:Arg.Serialize","MoonScriptClass:Arg:Serialize"],["ArgNum",,,,0,"File:moon/ulx/sh_arguments.moon:ArgNum.Serialize","MoonScriptClass:ArgNum:Serialize"]]]]);

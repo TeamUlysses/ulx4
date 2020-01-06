@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("has",["Function"],[["HasValue",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.HasValue","MoonScriptClass:TableX:HasValue"]]],["HasValueI",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.HasValueI","MoonScriptClass:TableX:HasValueI"]]]]);

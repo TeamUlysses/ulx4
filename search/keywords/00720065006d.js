@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("rem",["Function"],[["RemoveDuplicateValues",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.RemoveDuplicateValues","MoonScriptClass:TableX:RemoveDuplicateValues"]]]]);

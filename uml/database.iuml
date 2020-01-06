@@ -1,0 +1,57 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+
+table(UCLS) {
+	Defines the UCLs we have
+	==
+	+ UCL_ID : number
+	+ GROUP_NAME : string?
+}
+note left: A UCL can be mapped to a\n"group", but doesn't have to be.
+
+table(UCL_INHERIT) {
+	Defines UCL inheritance chain
+	==
+	+ UCL_ID : number
+	+ UCL_INHERIT_ID : number
+}
+
+table(UCL_PLY) {
+	Mapping players to UCLs
+	==
+	+ UCL_ID : number
+	+ PLY_ID : string
+}
+
+'table(UCL_META) {
+'	All metadata needed by the UCL is stored here
+'	==
+'	+ UCL_ID : number
+'	+ KEY : string
+'	+ VALUE : string
+'}
+'note left: Examples of things that will be stored here are inheritance information
+
+table(UCL_ACCESS) {
+	Where access information (except detailed restrictions) is stored
+	==
+	+ UCL_ID : number
+	+ PRIVILEGE : string
+	+ ACCESS : enum {ALLOW, RESTRICT, DENY}
+}
+
+table(UCL_RESTRICTION) {
+	Where restriction information is stored
+	==
+	+ UCL_ID : number
+	+ PRIVILEGE : string
+	+ TYPE : string
+	+ RESTRICTION : string
+	+ ARGNUM : number
+}
+note left: Type is ArgNum, ArgPlys, or one of the\ncommand-level restrictions like TimeOfDay
+
+' Foo::field1 --> Bar::field3 : foo
+' Foo::field2 --> Bar::field4 : bar
+@enduml

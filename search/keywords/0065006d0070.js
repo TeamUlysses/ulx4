@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("emp",["Function"],[["Empty",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.Empty","MoonScriptClass:TableX:Empty"]]]]);

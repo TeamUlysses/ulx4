@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("max",["Variable"],[["Max",,[["ArgTime",,,,0,"File:moon/ulx/sh_arguments.moon:ArgTime.Max","MoonScriptClass:ArgTime:Max"]]],["MaximumTargets",,[["ArgPlayerID",,,,0,"File:moon/ulx/sh_arguments.moon:ArgPlayerID.MaximumTargets","MoonScriptClass:ArgPlayerID:MaximumTargets"]]]]);

@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("MoonScriptClass:Path","Path");NDSummary.OnSummaryLoaded("MoonScriptClass:Path",[["MoonScript","MoonScript"]],[["Classes","Class"],["Functions","Function"],["Groups","Group"]],[[11,0,0,"Path"],[12,0,2,"Functions","Functions"],[13,0,1,"GetFileNameWithoutExtension","GetFileNameWithoutExtension"]]);

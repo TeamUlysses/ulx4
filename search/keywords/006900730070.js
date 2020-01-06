@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("isp",["Function"],[["IsPermissible",,[["Arg",,,,0,"File:moon/ulx/sh_arguments.moon:Arg.IsPermissible","MoonScriptClass:Arg:IsPermissible"],["ArgNum",,,,0,"File:moon/ulx/sh_arguments.moon:ArgNum.IsPermissible","MoonScriptClass:ArgNum:IsPermissible"]]]]);

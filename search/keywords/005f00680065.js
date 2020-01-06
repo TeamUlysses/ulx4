@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("_he",["Variable"],[["_Help",,[["Arg",,,,0,"File:moon/ulx/sh_arguments.moon:Arg._Help","MoonScriptClass:Arg:_Help"]]]]);

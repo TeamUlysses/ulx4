@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("hoo",["Class"],[["Hook",,[[,,,,0,"File:moon/ulx/sh_hook.moon:Hook","MoonScriptClass:Hook"]]]]);

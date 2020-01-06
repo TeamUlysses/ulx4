@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("min",["Variable"],[["Min",,[["ArgTime",,,,0,"File:moon/ulx/sh_arguments.moon:ArgTime.Min","MoonScriptClass:ArgTime:Min"]]]]);

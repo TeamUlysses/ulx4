@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("_ma",["Variable"],[["_Max",,[["ArgNum",,,,0,"File:moon/ulx/sh_arguments.moon:ArgNum._Max","MoonScriptClass:ArgNum:_Max"]]]]);

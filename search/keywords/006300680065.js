@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("che",["Function"],[["CheckArg",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.CheckArg","MoonScriptClass:UtilX:CheckArg"]]],["CheckArgs",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.CheckArgs","MoonScriptClass:UtilX:CheckArgs"]]]]);

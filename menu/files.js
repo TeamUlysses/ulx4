@@ -1,0 +1,1 @@
+NDMenu.OnSectionLoaded("files.js",[[1,"sh_arguments.moon"],[1,"sh_command.moon"],[1,"sh_config.moon"],[1,"sh_consts.moon"],[1,"sh_filesystem.moon"],[1,"sh_hook.moon"],[1,"sh_lang.moon"],[1,"sh_messaging.moon"],[1,"sh_mutators.moon"],[1,"sh_player.moon"],[1,"sh_plugin.moon"],[1,"sh_tablex.moon"],[1,"sh_utilx.moon"]]);

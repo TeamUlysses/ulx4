@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("lan",["Class"],[["Lang",,[[,,,,0,"File:moon/ulx/sh_lang.moon:Lang","MoonScriptClass:Lang"]]]]);

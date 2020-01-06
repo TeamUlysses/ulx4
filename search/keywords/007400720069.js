@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("tri",["Function"],[["Trim",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.Trim","MoonScriptClass:UtilX:Trim"]]]]);

@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("File:moon/ulx/sh_player.moon","sh_player.moon");NDSummary.OnSummaryLoaded("File:moon/ulx/sh_player.moon",[["MoonScript","MoonScript"]],[["Files","File"],["Functions","Function"],["Groups","Group"]],[[72,0,0,"Player","Player"],[73,0,2,"Functions","Functions"],[74,0,1,"IsServerConsole","IsServerConsole"]]);

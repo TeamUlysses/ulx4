@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("cou",["Function"],[["Count",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.Count","MoonScriptClass:TableX:Count"]]]]);

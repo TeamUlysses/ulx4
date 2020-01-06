@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("cop",["Function"],[["Copy",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.Copy","MoonScriptClass:TableX:Copy"]]],["CopyI",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.CopyI","MoonScriptClass:TableX:CopyI"]]]]);

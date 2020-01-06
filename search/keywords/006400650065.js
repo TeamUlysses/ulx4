@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("dee",["Function"],[["DeepCopy",,[["TableX",,,,0,"File:moon/ulx/sh_tablex.moon:TableX.DeepCopy","MoonScriptClass:TableX:DeepCopy"]]]]);

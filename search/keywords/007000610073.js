@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("pas",["Variable"],[["PassPlayerIfActive",,[["ArgPlayerID",,,,0,"File:moon/ulx/sh_arguments.moon:ArgPlayerID.PassPlayerIfActive","MoonScriptClass:ArgPlayerID:PassPlayerIfActive"]]]]);

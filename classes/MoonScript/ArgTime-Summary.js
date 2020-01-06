@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("MoonScriptClass:ArgTime","ArgTime");NDSummary.OnSummaryLoaded("MoonScriptClass:ArgTime",[["MoonScript","MoonScript"]],[["Classes","Class"],["Groups","Group"],["Variables","Variable"]],[[108,0,0,"ArgTime"],[109,0,1,"Variables","Variables"],[110,0,2,"ArgNum Variables","ArgNum_Variables"],[111,0,2,,"Min"],[112,0,2,,"Max"]]);

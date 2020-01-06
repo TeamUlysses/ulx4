@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("iss",["Function"],[["IsServerConsole",,[[,,,,0,"File:moon/ulx/sh_player.moon:IsServerConsole"]]]]);

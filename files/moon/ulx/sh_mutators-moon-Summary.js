@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("File:moon/ulx/sh_mutators.moon","sh_mutators.moon");NDSummary.OnSummaryLoaded("File:moon/ulx/sh_mutators.moon",[["MoonScript","MoonScript"]],[["Files","File"],["Groups","Group"],["Mutators","Mutator"]],[[134,0,0,"Mutators","Mutators"],[135,0,1,"Mutators","Mutators(2)"],[136,0,2,"NonZero","NonZero"],[137,0,2,"Single","Single"]]);

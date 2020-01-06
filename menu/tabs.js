@@ -1,0 +1,1 @@
+NDMenu.OnTabsLoaded([["File","Files","File:moon/ulx/","files.js"],["Class","Classes","MoonScriptClass:","classes.js"]]);

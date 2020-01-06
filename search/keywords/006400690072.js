@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("dir",["Class"],[["Directory",,[[,,,,0,"File:moon/ulx/sh_filesystem.moon:Directory","MoonScriptClass:Directory"]]]]);

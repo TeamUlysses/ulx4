@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("exp",["Function"],[["Explode",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.Explode","MoonScriptClass:UtilX:Explode"]]]]);

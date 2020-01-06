@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("nam",["Variable"],[["Name",,[["Plugin",,,,0,"File:moon/ulx/sh_plugin.moon:Plugin.Name","MoonScriptClass:Plugin:Name"]]]]);

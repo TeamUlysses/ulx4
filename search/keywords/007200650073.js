@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("res",["Variable"],[["RestrictTarget",,[["ArgPlayerID",,,,0,"File:moon/ulx/sh_arguments.moon:ArgPlayerID.RestrictTarget","MoonScriptClass:ArgPlayerID:RestrictTarget"]]],["RestrictToCompletes",,[["ArgString",,,,0,"File:moon/ulx/sh_arguments.moon:ArgString.RestrictToCompletes","MoonScriptClass:ArgString:RestrictToCompletes"]]]]);

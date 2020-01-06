@@ -1,0 +1,1 @@
+NDSummary.OnToolTipsLoaded("File:moon/ulx/sh_hook.moon",{138:"<div class=\"NDToolTip TClass LMoonScript\"><div class=\"TTSummary\">TODO</div></div>"});

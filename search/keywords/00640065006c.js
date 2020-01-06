@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("del",["Function"],[["Delete",,[["File",,,,0,"File:moon/ulx/sh_filesystem.moon:File.Delete","MoonScriptClass:File:Delete"]]]]);

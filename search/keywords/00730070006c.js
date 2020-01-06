@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("spl",["Function"],[["SplitArgs",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.SplitArgs","MoonScriptClass:UtilX:SplitArgs"]]]]);

@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("ltr",["Function"],[["LTrim",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.LTrim","MoonScriptClass:UtilX:LTrim"]]]]);

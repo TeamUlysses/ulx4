@@ -1,0 +1,19 @@
+@startuml
+class UCL {
+	+Name : string
+	+Allows : table<string, bool or list<Arg>>
+	+Denies : table<string, bool or list<Arg>>
+	+Parents : list<UCL>
+
+	+Serialize() : string
+	+Deserialize( serial : string ) : UCL {static}
+}
+UCL "*" *-- "*" UCL
+Player "*" o-- "*" UCL
+
+class ULX << (S,#FF7700) Singleton >>
+ULX *-- "*" Plugin
+Plugin *-- "*" Hook
+Plugin *-- "*" Command
+Command *-- "*" Arg
+@enduml

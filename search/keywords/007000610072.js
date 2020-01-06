@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("par",["Function"],[["Parse",,[["Arg",,,,0,"File:moon/ulx/sh_arguments.moon:Arg.Parse","MoonScriptClass:Arg:Parse"],["ArgNum",,,,0,"File:moon/ulx/sh_arguments.moon:ArgNum.Parse","MoonScriptClass:ArgNum:Parse"]]]]);

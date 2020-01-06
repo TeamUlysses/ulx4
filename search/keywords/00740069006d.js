@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("tim",["Function"],[["TimeStringToNumber",,[["UtilX",,,,0,"File:moon/ulx/sh_utilx.moon:UtilX.TimeStringToNumber","MoonScriptClass:UtilX:TimeStringToNumber"]]]]);

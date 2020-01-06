@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("wri",["Function"],[["WriteAllText",,[["File",,,,0,"File:moon/ulx/sh_filesystem.moon:File.WriteAllText","MoonScriptClass:File:WriteAllText"]]]]);

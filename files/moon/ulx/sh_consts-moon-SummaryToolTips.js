@@ -1,0 +1,1 @@
+NDSummary.OnToolTipsLoaded("File:moon/ulx/sh_consts.moon",{69:"<div class=\"NDToolTip TFile LMoonScript\"><div class=\"TTSummary\">TODO</div></div>",71:"<div class=\"NDToolTip TConstant LMoonScript\"><div class=\"TTSummary\">Used for network communication to send command information to the client.</div></div>"});

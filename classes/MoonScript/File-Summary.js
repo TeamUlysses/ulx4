@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("MoonScriptClass:File","File");NDSummary.OnSummaryLoaded("MoonScriptClass:File",[["MoonScript","MoonScript"]],[["Classes","Class"],["Functions","Function"],["Groups","Group"]],[[1,0,0,"File"],[2,0,2,"Functions","Functions"],[3,0,1,"Exists","Exists"],[4,0,1,"ReadAllText","ReadAllText"],[5,0,1,"WriteAllText","WriteAllText"],[6,0,1,"Delete","Delete"]]);

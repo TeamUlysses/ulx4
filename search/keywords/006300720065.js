@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("cre",["Function"],[["CreateDirectory",,[["Directory",,,,0,"File:moon/ulx/sh_filesystem.moon:Directory.CreateDirectory","MoonScriptClass:Directory:CreateDirectory"]]]]);

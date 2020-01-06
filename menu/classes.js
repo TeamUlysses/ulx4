@@ -1,0 +1,1 @@
+NDMenu.OnSectionLoaded("classes.js",[[1,"Arg"],[1,"ArgNum"],[1,"ArgPlayerActive"],[1,"ArgPlayerID"],[1,"ArgString"],[1,"ArgTime"],[1,"Command"],[1,"Config"],[1,"Directory"],[1,"File"],[1,"Hook"],[1,"Lang"],[1,"Path"],[1,"Plugin"],[1,"TableX"],[1,"UtilX"]]);

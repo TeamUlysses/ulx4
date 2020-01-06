@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sho",["Function"],[["ShortcutFn",,[["Command",,,,0,"File:moon/ulx/sh_command.moon:Command.ShortcutFn","MoonScriptClass:Command:ShortcutFn"]]]]);
