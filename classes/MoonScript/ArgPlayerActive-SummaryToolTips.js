@@ -1,1 +1,1 @@
-NDSummary.OnToolTipsLoaded("MoonScriptClass:ArgPlayerActive",{133:"<div class=\"NDToolTip TClass LMoonScript\"><div class=\"TTSummary\">The argument class used for player arguments.</div></div>"});
+NDSummary.OnToolTipsLoaded("MoonScriptClass:ArgPlayerActive",{126:"<div class=\"NDToolTip TClass LMoonScript\"><div class=\"TTSummary\">The argument class used for player arguments.</div></div>"});
