@@ -27,25 +27,18 @@ For Debian-based Linux distributions (like Ubuntu), use the following commands t
 
 #### Required (Development) ####
 ```
-sudo apt-get install make lua5.1 luarocks
-sudo luarocks install moonscript LuaSocket
+sudo apt-get install -y make lua5.1 luarocks
+sudo luarocks install moonscript
+sudo luarocks install LuaSocket
 ```
 
 ### Optional (Testing and Documentation) ###
 ```
-sudo apt-get install naturaldocs
+sudo apt-get install -y mono-runtime plantuml
 sudo luarocks install busted
 sudo luarocks install lua-cjson
 sudo luarocks install luafilesystem
-```
 
-Installing PlantUML will take a bit more work:
-
-```
-sudo apt-get install default-jre graphvis
-sudo wget -P /usr/local/lib/ -O plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-sudo sh -c 'echo "/usr/bin/java -jar /usr/local/lib/plantuml.jar \"\$@\"" > /usr/local/bin/plantuml'
-sudo chmod 755 /usr/local/bin/plantuml
 ```
 
 ## Windows ##

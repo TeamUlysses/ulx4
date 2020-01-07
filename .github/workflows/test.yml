@@ -1,0 +1,43 @@
+name: test
+
+on: [push]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        luaVersion:
+          - "5.1"
+          - "5.2"
+          - "5.3"
+          - "luajit-2.0.4" # Version used by Garry's Mod
+          - "luajit-2.0.5"
+          - "luajit-2.1.0-beta3"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: leafo/gh-actions-lua@v5
+      with:
+        luaVersion: ${{ matrix.luaVersion }}
+
+    - uses: leafo/gh-actions-luarocks@v2
+
+    - name: Dependencies
+      run: |
+        luarocks install busted
+        luarocks install moonscript
+        luarocks install LuaSocket
+        # Bug in newer cjson for Lua >= 5.2
+        if [ "${{ matrix.luaVersion }}" = "5.2" ] ||
+           [ "${{ matrix.luaVersion }}" = "5.3" ]; then
+          luarocks install lua-cjson 2.1.0-1;
+        else
+          luarocks install lua-cjson;
+        fi
+        luarocks install luafilesystem
+
+    - name: Test
+      run: |
+        make test
